@@ -10,7 +10,191 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_023332) do
+ActiveRecord::Schema.define(version: 2018_12_11_090100) do
+
+  create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "day_check", default: "2018-11-12", null: false
+    t.string "reason", default: ""
+    t.boolean "confirmed", default: false
+    t.bigint "unit_id", null: false
+    t.bigint "student_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_attendances_on_student_id"
+    t.index ["unit_id"], name: "index_attendances_on_unit_id"
+    t.index ["user_id"], name: "index_attendances_on_user_id"
+  end
+
+  create_table "class_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "classroom_id", null: false
+    t.bigint "subject_id", null: false
+    t.bigint "user_id", null: false
+    t.bigint "semester_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_class_subjects_on_classroom_id"
+    t.index ["semester_id"], name: "index_class_subjects_on_semester_id"
+    t.index ["subject_id"], name: "index_class_subjects_on_subject_id"
+    t.index ["user_id"], name: "index_class_subjects_on_user_id"
+  end
+
+  create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "school_id", null: false
+    t.bigint "semester_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_classrooms_on_school_id"
+    t.index ["semester_id"], name: "index_classrooms_on_semester_id"
+    t.index ["user_id"], name: "index_classrooms_on_user_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "content", default: "", null: false
+    t.integer "parent_id"
+    t.bigint "student_id", null: false
+    t.bigint "user_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_comments_on_student_id"
+    t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "day_offs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "date_off", default: "2018-11-12"
+    t.string "reason", default: "", null: false
+    t.boolean "confirmed", default: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["student_id"], name: "index_day_offs_on_student_id"
+  end
+
+  create_table "examination_schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.date "exam_date", default: "2018-11-12", null: false
+    t.bigint "class_subject_id", null: false
+    t.bigint "point_type_id", null: false
+    t.bigint "unit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_subject_id"], name: "index_examination_schedules_on_class_subject_id"
+    t.index ["point_type_id"], name: "index_examination_schedules_on_point_type_id"
+    t.index ["unit_id"], name: "index_examination_schedules_on_unit_id"
+  end
+
+  create_table "feedbacks", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "from_id", null: false
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "from_id", null: false
+    t.integer "to_id", null: false
+    t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "point_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.float "value", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "points", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "point", default: 0.0
+    t.bigint "point_type_id", null: false
+    t.bigint "student_subject_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["point_type_id"], name: "index_points_on_point_type_id"
+    t.index ["student_subject_id"], name: "index_points_on_student_subject_id"
+  end
+
+  create_table "school_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "school_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_school_users_on_school_id"
+    t.index ["user_id"], name: "index_school_users_on_user_id"
+  end
+
+  create_table "schools", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.string "adress", null: false
+    t.string "phone", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "semesters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "period", null: false
+    t.date "start_date", default: "2018-11-12", null: false
+    t.date "end_date", default: "2018-11-12", null: false
+    t.string "school_year", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "student_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.float "average", default: 0.0
+    t.float "average_total", default: 0.0
+    t.string "classification", default: "F"
+    t.bigint "student_id", null: false
+    t.bigint "class_subject_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_subject_id"], name: "index_student_subjects_on_class_subject_id"
+    t.index ["student_id"], name: "index_student_subjects_on_student_id"
+  end
+
+  create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "student_code", null: false
+    t.date "birth", default: "2018-11-12", null: false
+    t.string "adress", null: false
+    t.string "favorite", default: ""
+    t.string "phone", default: ""
+    t.string "father_name", default: ""
+    t.string "father_phone", default: ""
+    t.string "mother_name", default: ""
+    t.string "mother_phone", default: ""
+    t.bigint "user_id", null: false
+    t.bigint "classroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_students_on_classroom_id"
+    t.index ["user_id"], name: "index_students_on_user_id"
+  end
+
+  create_table "subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_subjects_on_name", unique: true
+  end
+
+  create_table "timetables", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
+    t.integer "day", null: false
+    t.bigint "class_subject_id", null: false
+    t.bigint "unit_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["class_subject_id"], name: "index_timetables_on_class_subject_id"
+    t.index ["unit_id"], name: "index_timetables_on_unit_id"
+  end
+
+  create_table "units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.time "time_start", null: false
+    t.time "time_end", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
@@ -33,4 +217,30 @@ ActiveRecord::Schema.define(version: 2018_12_11_023332) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "attendances", "students"
+  add_foreign_key "attendances", "units"
+  add_foreign_key "attendances", "users"
+  add_foreign_key "class_subjects", "classrooms"
+  add_foreign_key "class_subjects", "semesters"
+  add_foreign_key "class_subjects", "subjects"
+  add_foreign_key "class_subjects", "users"
+  add_foreign_key "classrooms", "schools"
+  add_foreign_key "classrooms", "semesters"
+  add_foreign_key "classrooms", "users"
+  add_foreign_key "comments", "students"
+  add_foreign_key "comments", "users"
+  add_foreign_key "day_offs", "students"
+  add_foreign_key "examination_schedules", "class_subjects"
+  add_foreign_key "examination_schedules", "point_types"
+  add_foreign_key "examination_schedules", "units"
+  add_foreign_key "points", "point_types"
+  add_foreign_key "points", "student_subjects"
+  add_foreign_key "school_users", "schools"
+  add_foreign_key "school_users", "users"
+  add_foreign_key "student_subjects", "class_subjects"
+  add_foreign_key "student_subjects", "students"
+  add_foreign_key "students", "classrooms"
+  add_foreign_key "students", "users"
+  add_foreign_key "timetables", "class_subjects"
+  add_foreign_key "timetables", "units"
 end
