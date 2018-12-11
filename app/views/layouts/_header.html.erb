@@ -1,0 +1,57 @@
+<% if user_signed_in? %>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+      <div class="navbar-header">
+        <%= link_to t("layouts.header.home"), root_path, class: "navbar-brand" %>
+      </div>
+
+      <div class="collapse navbar-collapse cssmenu" id="bs-example-navbar-collapse-1">
+        <ul class="nav navbar-nav mt-5">
+          <li class='has-sub'><a href="#"><i class="fa fa-th"></i> <%= t "layouts.admin.admin_header.category" %></a>
+          </li>
+          <li class='has-sub'><a href="#"><i class="fa fa-globe"></i> <%= I18n.locale %> <span class="caret"></span></a>
+            <ul>
+              <li><%= link_to t(".english"), locale:"en" %></li>
+              <li><%= link_to t(".vietnam"), locale:"vi" %></li>
+            </ul>
+          </li>
+        </ul>
+        <%= form_tag "#", method: :GET, class: "navbar-form navbar-left" do %>
+          <div class="form-group">
+            <%= text_field_tag :search, "", placeholder: "Search", class: "form-control",required: true %>
+          </div>
+          <button type="submit" class="btn btn-default glyphicon glyphicon-search"></button>
+        <% end %>
+        <ul class="nav navbar-nav navbar-right mt-5">
+          <% if user_signed_in? %>
+            <li style="display:none;" id="current_user"><%= current_user.id %></li>
+            <li class="show-cart">
+            </li>
+            <li class="show-cart">
+            </li>
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">
+              <%= current_user.name %> <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li>
+                </li>
+                <li role="separator" class="divider"></li>
+                <li>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
+                    <i class="fa fa-sign-out fa-fw"></i>
+                    <%= t ".logout" %>
+                  <% end %>
+                </li>
+              </ul>
+            </li>
+          <% else %>
+            <li class="show-cart-not-login">
+            </li>
+            <li class="username-header"><%= link_to t(".signin"), new_user_session_path %></li>
+            <li class="username-header"><%= link_to t(".signup"), new_user_registration_path %></li>
+          <% end %>
+        </ul>
+      </div>
+    </div>
+  </nav>
+<% end %>
