@@ -1,6 +1,6 @@
 <div class="center-attr" id="modal-signup" >
   <div class="modal-dialog modal-dialog-centered">
-    <div class="modal-content">
+    <div class="background-modal modal-content">
       <div class="modal-header">
         <h4><b><%= t ".sign_up" %></b></h4>
       </div>
@@ -35,7 +35,7 @@
           <%= f.submit "sign_up", class:"modal-input form-control btn btn-danger" %>
         <% end %>
         <hr>
-        <p><%= t ".already_account" %> <%= link_to t(".sign_in"), "#" %></p>
+        <p><%= t ".already_account" %> <%= link_to t(".sign_in"), new_user_session_path %></p>
       </div>
     </div>
   </div>

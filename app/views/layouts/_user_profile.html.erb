@@ -1,0 +1,26 @@
+<a href="#" class="dropdown-toggle" data-toggle="dropdown">
+  <%= image_tag "user2-160x160", class: "user-image" %>
+  <span class="hidden-xs">
+    <%= current_user.name %>
+  </span>
+</a>
+<ul class="dropdown-menu">
+  <li class="user-header">
+    <%= image_tag "user2-160x160", class: "img-circle" %>
+    <p>
+      <%= current_user.name %>
+      <small><%= "Birth day: #{current_user.birth}" %></small>
+    </p>
+  </li>
+  <li class="user-body">
+    <%=  current_user.role %>
+  </li>
+  <li class="user-footer">
+    <div class="pull-left">
+      <a href="#" class="btn btn-default btn-flat">Profile</a>
+    </div>
+    <div class="pull-right">
+      <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-default btn-flat", method: :delete %>
+    </div>
+  </li>
+</ul>

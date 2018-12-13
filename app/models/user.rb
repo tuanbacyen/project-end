@@ -16,6 +16,22 @@ class User < ApplicationRecord
 
   enum role: {student_parent: 0, teacher: 1, manage: 2, admin: 3}
 
+  def admin?
+    role == "admin"
+  end
+
+  def manage?
+    role == "manage"
+  end
+
+  def teacher?
+    role == "teacher"
+  end
+
+  def student_parent?
+    role == "student_parent"
+  end
+
   def login
     @login || self.phone || self.email
   end
