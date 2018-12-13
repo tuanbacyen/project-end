@@ -9,11 +9,25 @@
     <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
   </head>
 
-  <body>
-    <%= render "layouts/header" %>
-    <% flash.each do |message_type, message| %>
-      <%= content_tag(:div, message, class: "time-out alert alert-#{message_type}") %>
+  <body class="skin-blue sidebar-mini">
+    <% if user_signed_in? %>
+      <%= render "layouts/header" %>
+      <%= render "layouts/left_main_bar" %>
+      <div class="content-wrapper">
     <% end %>
-    <%= yield %>
+        <% flash.each do |message_type, message| %>
+          <div class="time-out alert alert-<%= "#{message_type}" %> alert-dismissible">
+            <button type="button" class="close" data-dismiss="alert" aria-hidden="true">&times;</button>
+            <h4><i class="icon fa fa-warning"></i> Alert!</h4>
+            <%= message %>
+          </div>
+        <% end %>
+        <%= yield %>
+    <% if user_signed_in? %>    
+      </div>
+      <footer class="main-footer">
+        <%= render "layouts/footer" %>
+      </footer>
+    <% end %>
   </body>
 </html>

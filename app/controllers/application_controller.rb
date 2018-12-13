@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
 
   def user_confirmed
     return if current_user.nil?
-    render "pages/404" unless current_user.confirmed
+    render "pages/need_confirmed" unless current_user.confirmed
   end
 
   protected
