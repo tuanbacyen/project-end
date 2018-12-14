@@ -1,4 +1,6 @@
 class Student < ApplicationRecord
+  mount_uploader :avatar, AvatarUploader
+
   has_many :attendances, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :day_offs, dependent: :destroy

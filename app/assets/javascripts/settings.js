@@ -3,6 +3,7 @@ $(document).ready(function() {
 
   $('div.alert-notice').addClass('alert-success');
   $('div.alert-alert').addClass('alert-danger');
+  $('.datatable').DataTable();
 });
 
 $(document).on('click', '.close', function () {$(this).parent().hide();});

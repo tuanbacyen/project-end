@@ -20,23 +20,25 @@
       </div>
     </form>
     <ul class="sidebar-menu" data-widget="tree">
-      <li class="header">Notification</li>
-      <li>
-        <a href="#">
-            <i class="fa fa-bell-o"></i> <span>Notification</span>
-            <span class="pull-right-container">
-              <small class="label pull-right bg-yellow">12</small>
-            </span>
-          </a>
-      </li>
-        <%= render "layouts/left_bar/admin" %>
-        <%= render "layouts/left_bar/manager" %>
-        <%= render "layouts/left_bar/teacher" %>
-        <%= render "layouts/left_bar/parent" %>
+      <% if current_user.confirmed %>
+        <li class="header">Notification</li>
+        <li>
+          <a href="#">
+              <i class="fa fa-bell-o"></i> <span>Notification</span>
+              <span class="pull-right-container">
+                <small class="label pull-right bg-yellow">12</small>
+              </span>
+            </a>
+        </li>
+      <% end %>
       <% if current_user.admin? %>
+        <%= render "layouts/left_bar/admin" %>
       <% elsif current_user.manage? %>
+        <%= render "layouts/left_bar/manager" %>
       <% elsif current_user.teacher? %>
+        <%= render "layouts/left_bar/teacher" %>
       <% elsif current_user.student_parent? %>
+        <%= render "layouts/left_bar/parent" %>
       <% end %>
       <li class="header">Feed back</li>
       <li><a href="#"><i class="fa fa-flag-o text-red"></i> <span>Feed back</span></a></li>

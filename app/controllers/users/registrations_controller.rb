@@ -2,7 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: :create
 
   before_action :configure_account_update_params, only: :update
-  
   layout :edit_template, only: %i(edit update)
 
   def create
@@ -15,9 +14,11 @@ class Users::RegistrationsController < Devise::RegistrationsController
         flash[:success] = t "devise.registrations.signed_up"
         sign_up(resource_name, resource)
       else
-        set_flash_message! :notice, :"signed_up_but_#{resource.inactive_message}"
+        set_flash_message! :notice,
+          :"signed_up_but_#{resource.inactive_message}"
         expire_data_after_sign_in!
-        respond_with resource, location: after_inactive_sign_up_path_for(resource)
+        respond_with resource,
+          location: after_inactive_sign_up_path_for(resource)
       end
     else
       clean_up_passwords resource
@@ -26,8 +27,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def update
-    self.resource = resource_class.to_adapter
-      .get!(send(:"current_#{resource_name}").to_key)
+    self.resource = resource_class
+                    .to_adapter
+                    .get!(send(:"current_#{resource_name}").to_key)
     resource_updated = update_resource resource, account_update_params
     yield resource if block_given?
     if resource_updated
@@ -42,7 +44,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
   protected
 
   def configure_sign_up_params
-    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone, :adress, :identity_card, :birth, :gender])
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :email, :phone,
+      :address, :identity_card, :birth, :gender])
   end
 
   def configure_account_update_params
