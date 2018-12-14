@@ -10,6 +10,7 @@ class User < ApplicationRecord
   has_many :students, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :day_offs, dependent: :destroy
 
   validates :name, presence: true
   validates :phone, presence: true

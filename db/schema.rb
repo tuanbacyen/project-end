@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_11_090100) do
+ActiveRecord::Schema.define(version: 2018_12_14_020026) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", default: "2018-11-12", null: false
@@ -45,6 +45,9 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
     t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "name"
+    t.integer "sizes"
+    t.integer "number"
     t.index ["school_id"], name: "index_classrooms_on_school_id"
     t.index ["semester_id"], name: "index_classrooms_on_semester_id"
     t.index ["user_id"], name: "index_classrooms_on_user_id"
@@ -68,7 +71,9 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
     t.bigint "student_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_id"
     t.index ["student_id"], name: "index_day_offs_on_student_id"
+    t.index ["user_id"], name: "index_day_offs_on_user_id"
   end
 
   create_table "examination_schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -94,6 +99,14 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
     t.integer "from_id", null: false
     t.integer "to_id", null: false
     t.string "content", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.bigint "notify_type_id"
+    t.index ["notify_type_id"], name: "index_notifications_on_notify_type_id"
+  end
+
+  create_table "notify_types", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.string "name", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -167,6 +180,8 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
     t.bigint "classroom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.boolean "studying"
     t.index ["classroom_id"], name: "index_students_on_classroom_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
@@ -212,6 +227,8 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
     t.datetime "remember_created_at"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "avatar"
+    t.boolean "working"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
@@ -230,9 +247,11 @@ ActiveRecord::Schema.define(version: 2018_12_11_090100) do
   add_foreign_key "comments", "students"
   add_foreign_key "comments", "users"
   add_foreign_key "day_offs", "students"
+  add_foreign_key "day_offs", "users"
   add_foreign_key "examination_schedules", "class_subjects"
   add_foreign_key "examination_schedules", "point_types"
   add_foreign_key "examination_schedules", "units"
+  add_foreign_key "notifications", "notify_types"
   add_foreign_key "points", "point_types"
   add_foreign_key "points", "student_subjects"
   add_foreign_key "school_users", "schools"
