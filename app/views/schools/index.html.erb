@@ -1,0 +1,11 @@
+<section class="content">
+  <div class="box">
+    <div class="box-header center-attr">
+      <h3 class="box-title">List Schools</h3>
+    </div>
+    <%= link_to new_school_path, class: "btn btn-lg" do %>
+      <i class="fa fa-plus-square"></i> New schools
+    <% end %>
+    <%= render "grid_schools" %>
+  </div>
+</section>

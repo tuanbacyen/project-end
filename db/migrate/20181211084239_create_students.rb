@@ -2,8 +2,8 @@ class CreateStudents < ActiveRecord::Migration[5.2]
   def change
     create_table :students do |t|
       t.string :student_code,     null: false
-      t.date :birth,              null: false, default: DateTime.now.strftime("%Y-%d-%m")
-      t.string :adress,           null: false
+      t.date :birth,              null: false
+      t.string :address,          null: false
       t.string :favorite,         null: true, default: ""
       t.string :phone,            null: true, default: ""
       t.string :father_name,      null: true, default: ""

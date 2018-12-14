@@ -1,0 +1,32 @@
+<div class="box-body">
+  <table id="example1" class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-5">Address</th>
+        <th class="col-md-2">Phone</th>
+        <th class="col-md-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @schools.each do |school| %>
+        <tr>
+          <td><%= school.name %></td>
+          <td><%= school.address %></td>
+          <td><%= school.phone %></td>
+          <td>
+            <%= render "action", school: school %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Name</th>
+        <th>Address</th>
+        <th>Phone</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

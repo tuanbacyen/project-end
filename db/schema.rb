@@ -13,7 +13,7 @@
 ActiveRecord::Schema.define(version: 2018_12_14_020026) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "day_check", default: "2018-11-12", null: false
+    t.date "day_check", null: false
     t.string "reason", default: ""
     t.boolean "confirmed", default: false
     t.bigint "unit_id", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
   end
 
   create_table "day_offs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "date_off", default: "2018-11-12"
+    t.date "date_off"
     t.string "reason", default: "", null: false
     t.boolean "confirmed", default: false
     t.bigint "student_id", null: false
@@ -77,7 +77,7 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
   end
 
   create_table "examination_schedules", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "exam_date", default: "2018-11-12", null: false
+    t.date "exam_date", null: false
     t.bigint "class_subject_id", null: false
     t.bigint "point_type_id", null: false
     t.bigint "unit_id", null: false
@@ -139,7 +139,7 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
 
   create_table "schools", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
-    t.string "adress", null: false
+    t.string "address", null: false
     t.string "phone", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -147,8 +147,8 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
 
   create_table "semesters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.integer "period", null: false
-    t.date "start_date", default: "2018-11-12", null: false
-    t.date "end_date", default: "2018-11-12", null: false
+    t.date "start_date", null: false
+    t.date "end_date", null: false
     t.string "school_year", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -168,8 +168,8 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "student_code", null: false
-    t.date "birth", default: "2018-11-12", null: false
-    t.string "adress", null: false
+    t.date "birth", null: false
+    t.string "address", null: false
     t.string "favorite", default: ""
     t.string "phone", default: ""
     t.string "father_name", default: ""
@@ -217,8 +217,8 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
     t.string "name", default: "", null: false
     t.string "identity_card", default: ""
     t.boolean "gender"
-    t.string "adress", default: ""
-    t.date "birth", default: "2018-11-12"
+    t.string "address", default: ""
+    t.date "birth"
     t.integer "role", default: 0, null: false
     t.boolean "confirmed", default: false, null: false
     t.string "encrypted_password", default: "", null: false

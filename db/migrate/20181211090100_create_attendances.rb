@@ -1,7 +1,7 @@
 class CreateAttendances < ActiveRecord::Migration[5.2]
   def change
     create_table :attendances do |t|
-      t.date :day_check,        null: false, default: DateTime.now.strftime("%Y-%d-%m")
+      t.date :day_check,        null: false
       t.string :reason,         null: true, default: ""
       t.boolean :confirmed,     null: true, default: false
 

@@ -1,6 +1,7 @@
 //= require_self
 //= require_tree ../../../vendor/assets/stylesheets/.
 //= require_tree .
+//= require dataTables/bootstrap/3/jquery.dataTables.bootstrap
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
