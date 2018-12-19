@@ -1,4 +1,5 @@
 class SchoolsController < ApplicationController
+  load_and_authorize_resource except: :create
   before_action :user_confirmed, :authenticate_user!
   before_action :load_all_schools, only: :index
   before_action :new_school, only: :new
@@ -18,7 +19,7 @@ class SchoolsController < ApplicationController
   end
 
   def edit; end
-  
+
   def update
     if @school.update_attributes load_school
       flash[:success] = t "update_success"
@@ -32,14 +33,12 @@ class SchoolsController < ApplicationController
   def destroy
     if @school.check_present?
       flash[:danger] = "truong hoc co truong con"
-      redirect_to schools_path
     elsif @school.destroy
       flash[:success] = "oke"
-      redirect_to schools_path
     else
       flash[:danger] = "Loi"
-      redirect_to schools_path
     end
+    redirect_to schools_path
   end
 
   private
@@ -57,9 +56,8 @@ class SchoolsController < ApplicationController
 
   def get_school
     @school = School.find_by(id: params[:id])
-    unless @school
-      flash[:danger] = "school not found"
-      redirect_to schools_path
-    end
+    return if @school
+    flash[:danger] = "school not found"
+    redirect_to schools_path
   end
 end

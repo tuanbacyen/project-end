@@ -18,3 +18,9 @@
 //= require_tree .
 //= require bootstrap-sprockets
 //= require activestorage
+//= require bootstrap-datepicker
+//= require moment
+//= require bootstrap-datetimepicker
+//= require i18n
+//= require i18n.js
+//= require i18n/translations
