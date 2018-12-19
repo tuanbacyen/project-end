@@ -3,9 +3,9 @@
     <thead>
       <tr>
         <th class="col-md-3">Period</th>
+        <th class="col-md-2">School year</th>
         <th class="col-md-2">Start date</th>
         <th class="col-md-2">End date</th>
-        <th class="col-md-2">School year</th>
         <th class="col-md-3">Action</th>
       </tr>
     </thead>
@@ -13,9 +13,9 @@
       <% @semesters.each do |semester| %>
         <tr>
           <td><%= key_to_text semester.period %></td>
+          <td><%= semester.school_year %></td>
           <td><%= semester.start_date.strftime t("date") %></td>
           <td><%= semester.end_date.strftime t("date") %></td>
-          <td><%= semester.school_year %></td>
           <td>
             <%= render "action", semester: semester %>
           </td>
@@ -25,9 +25,9 @@
     <tfoot>
       <tr>
         <th>Period</th>
+        <th>School year</th>
         <th>Start date</th>
         <th>End date</th>
-        <th>School year</th>
         <th>Action</th>
       </tr>
     </tfoot>
