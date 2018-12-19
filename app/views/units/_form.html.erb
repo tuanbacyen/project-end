@@ -1,0 +1,19 @@
+
+<%= form_for @unit do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <%= f.hidden_field :numunit, value: @unit.numunit ? @unit.numunit : next_unit %>
+    <div class="form-group">
+      <div class="input-daterange input-group">
+        <%= f.text_field :time_start, placeholder: "time start", class: "input-sm form-control", id: "time_start_picker", autocomplete: "off" %>
+        
+        <span class="input-group-addon">to</span>
+        <%= f.text_field :time_end, placeholder: "time end", class: "input-sm form-control", id: "time_end_picker", autocomplete: "off" %>
+      </div>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", units_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

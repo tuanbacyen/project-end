@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_14_020026) do
+ActiveRecord::Schema.define(version: 2018_12_19_081043) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -205,10 +205,11 @@ ActiveRecord::Schema.define(version: 2018_12_14_020026) do
   end
 
   create_table "units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.time "time_start", null: false
-    t.time "time_end", null: false
+    t.string "time_start", null: false
+    t.string "time_end", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "numunit"
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

@@ -1,0 +1,32 @@
+<div class="box-body">
+  <table id="example1" class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-2">Num</th>
+        <th class="col-md-3">Time start</th>
+        <th class="col-md-3">Time end</th>
+        <th class="col-md-4">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @units.each do |unit| %>
+        <tr>
+          <td><%= t "Tiet #{unit.numunit}" %></td>
+          <td><%= unit.time_start %></td>
+          <td><%= unit.time_end %></td>
+          <td>
+            <%= render "action", unit: unit %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Num</th>
+        <th>Time start</th>
+        <th>Time end</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

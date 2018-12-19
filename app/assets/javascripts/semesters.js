@@ -23,5 +23,5 @@ function setup_daterange() {
     } else {
       $('input[name="semester[school_year]"]').val(start_date + ' - ' + end_date);
     }
-  });;
+  });
 }
