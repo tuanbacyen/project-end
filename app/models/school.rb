@@ -6,9 +6,9 @@ class School < ApplicationRecord
   validates :address, presence: true
   validates :phone, presence: true
 
-  scope :load_all_schools?, -> {order(created_at: :desc).select :id, :name, :address, :phone}
+  scope :load_all_schools?, ->{select :id, :name, :address, :phone}
 
   def check_present?
-    school_users.present? &&  classrooms.present?
+    school_users.present? || classrooms.present?
   end
 end

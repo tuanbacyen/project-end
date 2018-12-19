@@ -1,0 +1,27 @@
+
+<%= form_for @semester do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.label :lbl_period, "period" %>
+      <%= f.collection_select :period, semesters_periods, :last, :first,
+          {include_blank: false}, {class: "form-control"} %>
+    </div>
+    <%= f.label :lbl_start_end, "Select start date and end date" %>
+    <div class="form-group start-to-end">
+      <div class="input-daterange input-group" id="datepicker">
+        <%= f.text_field :start_date, placeholder: "start date", class: "input-sm form-control", readonly: true %>
+        <span class="input-group-addon">to</span>
+        <%= f.text_field :end_date, placeholder: "end date", class: "input-sm form-control", readonly: true %>
+      </div>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_school_year, "school year" %>
+      <%= f.text_field :school_year, placeholder: "school year", class: "form-control", readonly: true %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", semesters_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

@@ -1,1 +1,4 @@
 en:
+  locale: "vi"
+  date: "%m/%d/%Y"
+  date-js: "mm/dd/yyyy"

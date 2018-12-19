@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "home/index"
   root "home#index"
   resources :schools
+  resources :semesters
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions",
     passwords: "users/passwords"}
 end
