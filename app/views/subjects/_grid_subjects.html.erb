@@ -1,0 +1,29 @@
+<div class="box-body">
+  <table id="example1" class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-2">STT</th>
+        <th class="col-md-6">Name</th>
+        <th class="col-md-4">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subjects.each_with_index do |subject, index| %>
+        <tr>
+          <td><%= index + 1 %></td>
+          <td><%= subject.name %></td>
+          <td>
+            <%= render "action", subject: subject %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>STT</th>
+        <th>Name</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

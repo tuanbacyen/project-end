@@ -4,6 +4,7 @@ $(document).ready(function() {
   $('div.alert-notice').addClass('alert-success');
   $('div.alert-alert').addClass('alert-danger');
   $('.datatable').DataTable();
+  icheck();
 });
 
 $(document).on('click', '.close', function () {$(this).parent().hide();});
@@ -33,4 +34,19 @@ function show_notify(id, type, message, url) {
   var div_notify = $('#'+id);
   div_notify.delay(0).fadeIn('slow');
   div_notify.delay(5000).fadeOut('slow', function() {$(this).remove();});
+}
+
+function icheck(){
+  if($(".icheck-me").length > 0){
+    $(".icheck-me").each(function(){
+      var $el = $(this);
+      var skin = ($el.attr('data-skin') !== undefined) ? "_" + $el.attr('data-skin') : "",
+      color = ($el.attr('data-color') !== undefined) ? "-" + $el.attr('data-color') : "";
+      var opt = {
+        checkboxClass: 'icheckbox' + skin + color,
+        radioClass: 'iradio' + skin + color,
+      }
+      $el.iCheck(opt);
+    });
+  }
 }

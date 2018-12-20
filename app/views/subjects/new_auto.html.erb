@@ -1,0 +1,34 @@
+<div class="col-md-offset-2 col-lg-8">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Check subject you need</h3>
+    </div>
+    <div class="box-body">
+      <% unless list_subject_default.blank? %>
+        <div class="form-group">
+          <input type="checkbox" id="check-all-subject" class="icheck-me" data-skin="square" data-color="orange">
+          <strong>Check all</strong>
+        </div>
+      <% end %>
+      <%= form_tag create_auto_subject_path do %>
+        <% Settings.list_default_subject.each do |subject| %>
+          <% if list_subject_default.include? subject %>
+            <div class="form-group col-md-4">
+              <%= check_box_tag "check_subject[]", subject, false, class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
+              <%= label_tag subject %>
+            </div>
+          <% else %>
+            <div class="form-group col-md-4">
+              <i class="fa fa-check has-subject"></i>
+              <%= label_tag subject %>
+            </div>
+          <% end %>
+        <% end %>
+        <div class="form-group col-md-12">
+          <%= submit_tag "Save", class: "btn btn-success pull-right" %>
+          <%= link_to "Back", subjects_path, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>

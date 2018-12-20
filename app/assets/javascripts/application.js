@@ -24,3 +24,10 @@
 //= require i18n
 //= require i18n.js
 //= require i18n/translations
+//= require "icheck"
+
+$(function(){
+  $.ajaxSetup({
+    headers: { 'X-CSRF-Token': $('meta[name="csrf-token"]').attr('content') }
+  });
+});

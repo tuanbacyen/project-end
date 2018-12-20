@@ -131,6 +131,10 @@ GEM
       concurrent-ruby (~> 1.0)
     i18n-js (3.2.0)
       i18n (>= 0.8.0, < 2)
+    icheck-rails (1.0.2.2)
+      jquery-rails
+      rails (>= 3.1.0)
+      sass-rails
     jbuilder (2.8.0)
       activesupport (>= 4.2.0)
       multi_json (>= 1.2)
@@ -300,6 +304,7 @@ DEPENDENCIES
   devise
   font-awesome-rails
   i18n-js
+  icheck-rails
   jbuilder (~> 2.5)
   jquery-datatables-rails (~> 3.4.0)
   jquery-rails
