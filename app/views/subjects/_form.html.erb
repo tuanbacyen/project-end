@@ -1,0 +1,12 @@
+<%= simple_form_for @subject do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.input :name, placeholder: "name", input_html: { class: "form-control" } %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", subjects_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

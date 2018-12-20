@@ -6,7 +6,6 @@ class Unit < ApplicationRecord
   validates :time_start, presence: true, uniqueness: true
   validates :time_end, presence: true, uniqueness: true
   validate :end_after_start
-  
 
   scope :load_all_units?, ->{select :id, :numunit, :time_start, :time_end}
 
