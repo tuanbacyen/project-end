@@ -4,7 +4,7 @@ class Ability
   def initialize user
     user ||= User.new
     if user.admin?
-      can :manage, [School, Semester, Unit, Subject]
+      can :manage, [School, Semester, Unit, Subject, NotifyType]
     elsif user.manage?
     elsif user.teacher?
     elsif user.student_parent?

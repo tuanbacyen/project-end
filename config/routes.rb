@@ -9,6 +9,7 @@ Rails.application.routes.draw do
   resources :subjects
   get "new_auto_subject", to: "subjects#new_auto", as: "new_auto_subject"
   post "create_auto_subject", to: "subjects#create_auto", as: "create_auto_subject"
+  resources :notify_types
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions",
     passwords: "users/passwords"}
 end

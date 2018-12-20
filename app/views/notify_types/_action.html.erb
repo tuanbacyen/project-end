@@ -1,0 +1,7 @@
+<%= link_to edit_notify_type_path(notify_type), method: :GET, class: "btn btn-warning" do %>
+    <i class="fa fa-trash-o"></i> Edit
+<% end %>
+
+<%= link_to notify_type_path(notify_type), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+    <i class="fa fa-trash-o"></i> Destroy
+<% end %>
