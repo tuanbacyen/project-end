@@ -1,4 +1,4 @@
-<%= form_for @user, url: {controller: "manager_users", action: action} do |f| %>
+<%= form_for @user, url: {controller: "users", action: action} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="box-body">
     <div class="form-group">
@@ -33,13 +33,13 @@
     <div class="form-group">
       <%= f.label :lbl_gender, "gender" %>
       <br>
-      <%= f.radio_button :gender, "true", class: "icheck-me", data: { "skin" => "square", "color" => "blue" }, checked: true %>
+      <%= f.radio_button :gender, "true", class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
       <%= f.label :lbl_gender, "Nam"%>
       &nbsp;&nbsp;&nbsp;&nbsp;
       <%= f.radio_button :gender, "false", class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
       <%= f.label :lbl_gender, "Nu" %>
       &nbsp;&nbsp;&nbsp;&nbsp;      
-      <%= f.radio_button :gender, "nil", class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
+      <%= f.radio_button :gender, "nil", class: "icheck-me", data: { "skin" => "square", "color" => "blue" }, checked: true %>
       <%= f.label :lbl_gender, "Khac" %>
     </div>
     <div class="form-group">
@@ -48,7 +48,7 @@
     </div>
     <div class="form-group">
       <%= f.label :lbl_birth, "birth" %>
-      <%= f.text_field :birth, placeholder: "start date", class: "input-datetimepiker form-control", readonly: true %>
+      <%= f.text_field :birth, placeholder: "birth", class: "input-datetimepiker form-control", readonly: true %>
     </div>
     <div class="form-group">
       <%= f.label :lbl_avatar, "avatar" %>
@@ -56,7 +56,7 @@
     </div>
   </div>
   <div class="box-footer">
-    <%= link_to "Back", manager_users_path, class: "btn btn-default" %>
+    <%= link_to "Back", admin_users_path, class: "btn btn-default" %>
     <%= f.button :submit, class: "btn btn-primary" %>
   </div>
 <% end %>

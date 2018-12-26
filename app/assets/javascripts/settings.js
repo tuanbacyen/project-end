@@ -54,12 +54,17 @@ function icheck(){
 }
 
 function active_slide() {
-  var url = window.location.href.substr(window.location.href.lastIndexOf('/'));
-  var child = $('.sidebar-menu li a[href="'+url+'"]').parent().addClass('active');
-  var parent = child.parent().parent();
-  if (parent.hasClass('treeview')) {
-    parent.addClass('active');
-  }
+  var url = window.location.href;
+  $("a[id^='sidebar-item']").each(function(){
+    if (url.includes(this.href) && url != '/'){
+      var child = $(this).parent().addClass('active');
+      var parent = child.parent().parent();
+      if (parent.hasClass('treeview')) {
+        parent.addClass('active');
+      }
+      return false;
+    }
+  });
 }
 
 function setup_datepiker() {

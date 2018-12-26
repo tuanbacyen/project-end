@@ -5,10 +5,11 @@ class Ability
     user ||= User.new
     if user.admin?
       can :manage, [School, Semester, Unit, Subject, NotifyType, User]
-      cannot [:create, :update, :destroy], User do |user|
+      cannot [:edit, :update, :destroy], User do |user|
         user.admin?
       end
       cannot :destroy, User, id: user.id
+      can [:edit, :update], User, id: user.id
     elsif user.manage?
     elsif user.teacher?
     elsif user.student_parent?

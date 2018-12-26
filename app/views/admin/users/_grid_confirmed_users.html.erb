@@ -1,0 +1,50 @@
+<div class="box-body">
+  <table class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th>
+          <input type="checkbox" id="check-all-user-confirm" class="icheck-me" data-skin="square" data-color="orange">
+        </th>
+        <th class="col-md-2">Name</th>
+        <th class="col-md-2">Email</th>
+        <th class="col-md-2">Phone</th>
+        <th class="col-md-1">Role</th>
+        <th class="col-md-2">Avatar</th>
+        <th class="col-md-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if user.role_than_you? current_user %>
+        <% end %>
+        <tr id="confirm-<%= user.id %>">
+          <td>
+            <%= check_box_tag "check_user_confirm[]", user, false, class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
+          </td>
+          <td>
+            <%= link_to user.name, admin_user_path(user), method: :GET,
+            data: {toggle: "modal", target: "#modal-admin"}, remote: true %>
+          </td>
+          <td><%= user.email %></td>
+          <td><%= user.phone %></td>
+          <td><%= role_label user.role %></td>
+          <td><%= image_tag user.avatar.thumb.url, class: "img-thumb-size" %></td>
+          <td>
+            <%= render "action", user: user %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th></th>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Avatar</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

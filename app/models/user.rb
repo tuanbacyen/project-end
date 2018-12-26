@@ -24,10 +24,14 @@ class User < ApplicationRecord
   enum role: {student_parent: 0, teacher: 1, manage: 2, admin: 3}
 
   scope :load_all_users?, ->{order(updated_at: :desc)
-                            .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar, :working}
+                            .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar, :working, :confirmed}
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)
+  end)
+
+  scope :user_less_than_role, (lambda do |current_user|
+    where("role < ?", current_user.get_role)
   end)
 
   def admin?

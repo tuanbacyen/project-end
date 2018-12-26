@@ -17,7 +17,7 @@
   </li>
   <li class="user-footer">
     <div class="pull-left">
-      <%= link_to manager_user_path(current_user), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary", remote: true do %>
+      <%= link_to admin_user_path(current_user), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary", remote: true do %>
         <i class="fa fa-eye"></i> Profile
       <% end %>
     </div>
