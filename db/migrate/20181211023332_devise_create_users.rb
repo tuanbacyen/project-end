@@ -10,7 +10,7 @@ class DeviseCreateUsers < ActiveRecord::Migration[5.2]
       t.string :identity_card,    null: true, default: ""
       t.boolean :gender,          null: true, default: nil
       t.string :address,           null: true, default: ""
-      t.date :birth,              null: true, default: DateTime.now.strftime("%Y-%d-%m")
+      t.date :birth,              null: true, default: "1980-01-01"
       t.integer :role,            null: false, default: 0
       t.boolean :confirmed,       null: false, default: false
 

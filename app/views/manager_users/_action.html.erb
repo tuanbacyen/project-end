@@ -1,0 +1,15 @@
+<% unless user.role_equal_than_you? current_user %>
+  <%= link_to edit_manager_user_path(user), method: :GET, class: "btn btn-warning" do %>
+    <i class="fa fa-edit"></i> Edit
+  <% end %>
+<% end %>
+
+<% unless user.it_me_or_role_equal_than_you? current_user %>
+  <%= link_to manager_user_path(user), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+    <i class="fa fa-trash-o"></i> Destroy
+  <% end %>
+<% end %>
+
+<%= link_to manager_user_path(user), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary", remote: true do %>
+  <i class="fa fa-eye"></i> Detail
+<% end %>

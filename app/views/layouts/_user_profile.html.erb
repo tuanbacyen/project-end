@@ -17,7 +17,9 @@
   </li>
   <li class="user-footer">
     <div class="pull-left">
-      <a href="#" class="btn btn-default btn-flat">Profile</a>
+      <%= link_to manager_user_path(current_user), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary", remote: true do %>
+        <i class="fa fa-eye"></i> Profile
+      <% end %>
     </div>
     <div class="pull-right">
       <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-default btn-flat", method: :delete %>

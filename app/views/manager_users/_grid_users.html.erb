@@ -1,0 +1,46 @@
+<div class="box-body">
+  <table id="example1" class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-2">Name</th>
+        <th class="col-md-2">Email</th>
+        <th class="col-md-2">Phone</th>
+        <th class="col-md-1">Role</th>
+        <th class="col-md-1">Working</th>
+        <th class="col-md-2">Avatar</th>
+        <th class="col-md-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @users.each do |user| %>
+        <% if user.role_than_you? current_user %>
+          <tr>
+            <td>
+              <%= link_to user.name, manager_user_path(user), method: :GET,
+              data: {toggle: "modal", target: "#modal-admin"}, remote: true %>
+            </td>
+            <td><%= user.email %></td>
+            <td><%= user.phone %></td>
+            <td><%= role_label user.role %></td>
+            <td><%= working_label user.working %></td>
+            <td><%= image_tag user.avatar.thumb.url, class: "img-thumb-size" %></td>
+            <td>
+              <%= render "action", user: user %>
+            </td>
+          </tr>
+        <% end %>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>Name</th>
+        <th>Email</th>
+        <th>Phone</th>
+        <th>Role</th>
+        <th>Working</th>
+        <th>Avatar</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

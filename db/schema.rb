@@ -181,7 +181,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_081043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
-    t.boolean "studying"
+    t.boolean "studying", default: true
     t.index ["classroom_id"], name: "index_students_on_classroom_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
@@ -219,7 +219,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_081043) do
     t.string "identity_card", default: ""
     t.boolean "gender"
     t.string "address", default: ""
-    t.date "birth"
+    t.date "birth", default: "1980-01-01"
     t.integer "role", default: 0, null: false
     t.boolean "confirmed", default: false, null: false
     t.string "encrypted_password", default: "", null: false
@@ -229,7 +229,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_081043) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
-    t.boolean "working"
+    t.boolean "working", default: true
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["phone"], name: "index_users_on_phone", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true

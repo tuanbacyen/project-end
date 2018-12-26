@@ -1,10 +1,12 @@
 $(document).ready(function() {
   setTimeout(function() {$('.time-out').hide('slow');}, 3000);
 
+  active_slide();
   $('div.alert-notice').addClass('alert-success');
   $('div.alert-alert').addClass('alert-danger');
   $('.datatable').DataTable();
   icheck();
+  setup_datepiker();
 });
 
 $(document).on('click', '.close', function () {$(this).parent().hide();});
@@ -49,4 +51,24 @@ function icheck(){
       $el.iCheck(opt);
     });
   }
+}
+
+function active_slide() {
+  var url = window.location.href.substr(window.location.href.lastIndexOf('/'));
+  var child = $('.sidebar-menu li a[href="'+url+'"]').parent().addClass('active');
+  var parent = child.parent().parent();
+  if (parent.hasClass('treeview')) {
+    parent.addClass('active');
+  }
+}
+
+function setup_datepiker() {
+  $('.input-datetimepiker').datepicker({
+    clearBtn: true,
+    todayBtn: true,
+    language: I18n.locale,
+    todayHighlight: true,
+    autoclose: true,
+    format: I18n.t('date-js')
+  });
 }
