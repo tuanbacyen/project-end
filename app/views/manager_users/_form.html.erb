@@ -1,0 +1,62 @@
+<%= form_for @user, url: {controller: "manager_users", action: action} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.label :lbl_role, "role" %>
+      <%= f.collection_select :role, user_roles, :last, :first,
+          {include_blank: false}, {class: "form-control"} %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_email, "Email" %>
+      <% if action == "create" %>
+        <%= f.text_field :email, placeholder: "Email", class: "form-control", required: true %>
+      <% else %>
+        <%= f.text_field :email, placeholder: "Email", class: "form-control", required: true, readonly: true %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_phone, "Phone" %>
+      <% if action == "create" %>
+        <%= f.text_field :phone, placeholder: "Phone", class: "form-control", required: true %>
+      <% else %>
+        <%= f.text_field :phone, placeholder: "Phone", class: "form-control", required: true, readonly: true %>
+      <% end %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_name, "Name" %>
+      <%= f.text_field :name, placeholder: "name", class: "form-control", required: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_identity_card, "Identity card" %>
+      <%= f.text_field :identity_card, placeholder: "identity card", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_gender, "gender" %>
+      <br>
+      <%= f.radio_button :gender, "true", class: "icheck-me", data: { "skin" => "square", "color" => "blue" }, checked: true %>
+      <%= f.label :lbl_gender, "Nam"%>
+      &nbsp;&nbsp;&nbsp;&nbsp;
+      <%= f.radio_button :gender, "false", class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
+      <%= f.label :lbl_gender, "Nu" %>
+      &nbsp;&nbsp;&nbsp;&nbsp;      
+      <%= f.radio_button :gender, "nil", class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
+      <%= f.label :lbl_gender, "Khac" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_address, "address" %>
+      <%= f.text_area :address, placeholder: "address", class: "form-control" %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_birth, "birth" %>
+      <%= f.text_field :birth, placeholder: "start date", class: "input-datetimepiker form-control", readonly: true %>
+    </div>
+    <div class="form-group">
+      <%= f.label :lbl_avatar, "avatar" %>
+      <%= f.file_field :avatar, placeholder: "avatar", class: "form-control" %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", manager_users_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

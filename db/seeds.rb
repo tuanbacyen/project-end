@@ -1,6 +1,6 @@
 User.create!(
   email: "admin@gmail.com",
-  phone: 19001000,
+  phone: "0900000000",
   password: "123456",
   name: "admin",
   role: "admin",

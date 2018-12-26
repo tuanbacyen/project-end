@@ -26,14 +26,21 @@
 </li>
 <li class="treeview">
   <a href="#">
-    <i class="fa fa-dashboard"></i> <span>Users</span>
+    <i class="fa fa-users"></i> <span>Users</span>
     <span class="pull-right-container">
       <i class="fa fa-angle-left pull-right"></i>
     </span>
   </a>
   <ul class="treeview-menu">
-    <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Manager</a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Teacher</a></li>
-    <li><a href="#"><i class="fa fa-circle-o text-blue"></i>Parent</a></li>
+    <li>
+      <%= link_to manager_users_path do %>
+        <i class="fa fa-user"></i> <span>Manager users</span>
+      <% end %>
+    </li>
+    <li>
+      <%= link_to "asdas" do %>
+        <i class="fa fa-user-secret"></i> <span>Manager confirmed</span>
+      <% end %>
+    </li>
   </ul>
 </li>

@@ -1,0 +1,11 @@
+<section class="content">
+  <div class="box">
+    <div class="box-header center-attr">
+      <h3 class="box-title">List Users</h3>
+    </div>
+    <%= link_to new_manager_user_path, class: "btn btn-lg" do %>
+      <i class="fa fa-user-plus"></i> New users
+    <% end %>
+    <%= render "grid_users" %>
+  </div>
+</section>

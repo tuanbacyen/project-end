@@ -12,7 +12,7 @@
     <tbody>
       <% @semesters.each do |semester| %>
         <tr>
-          <td><%= key_to_text semester.period %></td>
+          <td><%= key_to_text_semester semester.period %></td>
           <td><%= semester.school_year %></td>
           <td><%= semester.start_date.strftime t("date") %></td>
           <td><%= semester.end_date.strftime t("date") %></td>
