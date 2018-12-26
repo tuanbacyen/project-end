@@ -54,4 +54,11 @@ class ApplicationController < ActionController::Base
         return 0
     end
   end
+
+  def repond
+    respond_to do |format|
+      format.html
+      format.js
+    end
+  end
 end

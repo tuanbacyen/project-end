@@ -1,4 +1,4 @@
-module ManagerUsersHelper
+module UsersHelper
   def user_roles
     User.roles.map{|p| p[0] = key_to_text_user(p[0]), p[1] = p[0]}[0..-2]
   end
@@ -23,6 +23,11 @@ module ManagerUsersHelper
       text = "Inactivity"      
     end
     "<span class='label label-#{status}'>#{text}</span>".html_safe
+  end
+
+  def confirm_label confirm
+    "<span class='label label-primary'>Need confirme</span>".html_safe unless confirm
+    
   end
 
   def role_label role

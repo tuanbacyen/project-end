@@ -8,6 +8,6 @@ modal.find('.btn-primary').remove();
 <% else %>
   modal.find('h4').text('Detail of user: ' + '<%= @user.name %>');
   modal.find('.modal-dialog').addClass('modal-profile-size');
-  modal.find('.modal-body').html('<%= j render "manager_users/profile", user: @user %>');
+  modal.find('.modal-body').html('<%= j render "admin/users/profile", user: @user %>');
   modal.modal();
 <% end %>

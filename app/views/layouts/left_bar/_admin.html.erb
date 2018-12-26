@@ -1,26 +1,26 @@
 <li class="header">ADMIN</li>
 <li>
-  <%= link_to schools_path do %>
+  <%= link_to schools_path, id: "sidebar-item" do %>
     <i class="fa fa-graduation-cap"></i> <span>Schools</span>
   <% end %>
 </li>
 <li>
-  <%= link_to notify_types_path do %>
+  <%= link_to notify_types_path, id: "sidebar-item" do %>
     <i class="fa fa-commenting-o"></i> <span>Type of Comment</span>
   <% end %>
 </li>
 <li>
-  <%= link_to semesters_path do %>
+  <%= link_to semesters_path, id: "sidebar-item" do %>
     <i class="fa fa-drupal"></i> <span>Semesters</span>
   <% end %>
 </li>
 <li>
-  <%= link_to units_path do %>
+  <%= link_to units_path, id: "sidebar-item" do %>
     <i class="fa fa-clock-o"></i> <span>Unit</span>
   <% end %>
 </li>
 <li>
-  <%= link_to subjects_path do %>
+  <%= link_to subjects_path, id: "sidebar-item" do %>
     <i class="fa fa-book"></i> <span>Subjects</span>
   <% end %>
 </li>
@@ -33,12 +33,12 @@
   </a>
   <ul class="treeview-menu">
     <li>
-      <%= link_to manager_users_path do %>
+      <%= link_to admin_users_path, id: "sidebar-item" do %>
         <i class="fa fa-user"></i> <span>Manager users</span>
       <% end %>
     </li>
     <li>
-      <%= link_to "asdas" do %>
+      <%= link_to admin_users_confirmed_path, id: "sidebar-item" do %>
         <i class="fa fa-user-secret"></i> <span>Manager confirmed</span>
       <% end %>
     </li>

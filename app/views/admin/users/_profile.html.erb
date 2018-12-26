@@ -10,7 +10,10 @@
           <i class="ace-icon fa fa-envelope-o bigger-110"></i>
           <span class="bigger-110">Send a message</span>
         </a>
-        <%= link_to edit_manager_user_path(user), method: :GET, class: "btn btn-sm btn-block btn-warning" do %>
+        <%= link_to edit_admin_user_path(user), method: :GET, class: "btn btn-sm btn-block btn-warning" do %>
+          <i class="ace-icon fa fa-edit bigger-110"></i> Edit
+        <% end %>
+        <%= link_to edit_admin_user_path(user), method: :GET, class: "btn btn-sm btn-block btn-warning" do %>
           <i class="ace-icon fa fa-edit bigger-110"></i> Edit
         <% end %>
       </div>
@@ -24,6 +27,9 @@
           </span>
           <span>
             <%= working_label user.working %>
+          </span>
+          <span>
+            <%= confirm_label user.confirmed %>
           </span>
         </h4>
         <div class="profile-user-info">

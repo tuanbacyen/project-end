@@ -1,0 +1,7 @@
+<% if @user.errors.any? %>
+  show_notify('user-not-found', 3, 'User not found', '/');
+<% else %>
+  var table = $('.datatable').DataTable();
+  table.row($('<%= "#confirm-#{@user.id}" %>')).remove().draw();
+  show_notify('<%= "user-success-#{@user.id}" %>', 1, 'Thanh Cong', '<%= admin_user_path(@user) %>');
+<% end %>
