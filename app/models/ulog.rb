@@ -1,0 +1,2 @@
+class Ulog < ApplicationRecord
+end

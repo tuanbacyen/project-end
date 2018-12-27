@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_081043) do
+ActiveRecord::Schema.define(version: 2018_12_27_060519) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -202,6 +202,16 @@ ActiveRecord::Schema.define(version: 2018_12_19_081043) do
     t.datetime "updated_at", null: false
     t.index ["class_subject_id"], name: "index_timetables_on_class_subject_id"
     t.index ["unit_id"], name: "index_timetables_on_unit_id"
+  end
+
+  create_table "ulogs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "form_user", null: false
+    t.integer "action", null: false
+    t.string "content", null: false
+    t.string "new"
+    t.string "old"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "units", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
