@@ -23,10 +23,13 @@ gem "mini_magick", "4.7.0"
 gem "momentjs-rails", ">= 2.9.0"
 gem "mysql2", ">= 0.4.4", "< 0.6.0"
 gem "puma", "~> 3.11"
+gem "pygments.rb", "~> 0.6.3" 
 gem "rails", "~> 5.2.2"
 gem "rails-i18n"
+gem "redcarpet", "~> 3.3", ">= 3.3.4"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
+gem "simplemde-rails"
 gem "uglifier", ">= 1.3.0"
 
 group :development, :test do

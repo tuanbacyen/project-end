@@ -1,0 +1,7 @@
+<%= link_to feedback_path(feedback), method: :PUT, class: "btn btn-warning" do %>
+  <i class="fa fa-trash-o"></i> Done
+<% end %>
+
+<%= link_to feedback_path(feedback), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+  <i class="fa fa-trash-o"></i> Destroy
+<% end %>

@@ -10,6 +10,7 @@ Rails.application.routes.draw do
   get "new_auto_subject", to: "subjects#new_auto", as: "new_auto_subject"
   post "create_auto_subject", to: "subjects#create_auto", as: "create_auto_subject"
   resources :notify_types
+  resources :feedbacks, expect: :edit
   namespace :admin do
     resources :users
     get "users_confirmed", to: "users#index_confirm", as: "users_confirmed"
