@@ -19,17 +19,14 @@ class ApplicationController < ActionController::Base
 
   def can_show_list
     user_confirmed
-    unless current_user.can_show_list?
-      flash[:danger] = "Ban khong co quyen"
-      redirect_to root_path
-    end
+    return if current_user.can_show_list?
+    flash[:danger] = "Ban khong co quyen"
+    redirect_to root_path
   end
 
   def can_permission? user_request
     user_confirmed
-    if current_user.get_role <= user_request.get_role && current_user.id != user_request.id
-      flash[:danger] = "Ban khong co quyen"
-    end
+    flash[:danger] = "Ban khong co quyen" if current_user.get_role <= user_request.get_role && current_user.id != user_request.id
   end
 
   def convert_date date
@@ -44,14 +41,14 @@ class ApplicationController < ActionController::Base
 
   def convert_role role
     case role
-      when "admin"
-        return 3
-      when "manage"
-        return 2
-      when "teacher"
-        return 1
-      else
-        return 0
+    when "admin"
+      3
+    when "manage"
+      2
+    when "teacher"
+      1
+    else
+      0
     end
   end
 

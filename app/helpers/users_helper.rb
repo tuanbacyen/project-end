@@ -12,7 +12,7 @@ module UsersHelper
   def gender_user gender
     return "<i class='fa fa-male'> Nam</i>".html_safe if gender
     return "<i class='fa fa-female'> Nu</i>".html_safe if gender == false
-    return "<i class='fa fa-adjust'> Khac</i>".html_safe
+    "<i class='fa fa-adjust'> Khac</i>".html_safe
   end
 
   def working_label working
@@ -20,26 +20,25 @@ module UsersHelper
     text = "Working"
     unless working
       status = "danger"
-      text = "Inactivity"      
+      text = "Inactivity"
     end
     "<span class='label label-#{status}'>#{text}</span>".html_safe
   end
 
   def confirm_label confirm
     "<span class='label label-primary'>Need confirme</span>".html_safe unless confirm
-    
   end
 
   def role_label role
     case role
-      when "admin"
-        "<span class='label bg-red'>Admin</span>".html_safe
-      when "manage"
-        "<span class='label bg-orange'>Mange</span>".html_safe
-      when "teacher"
-        "<span class='label bg-blue'>Teacher</span>".html_safe
-      when "student_parent"
-        "<span class='label bg-yellow'>Parent</span>".html_safe
+    when "admin"
+      "<span class='label bg-red'>Admin</span>".html_safe
+    when "manage"
+      "<span class='label bg-orange'>Mange</span>".html_safe
+    when "teacher"
+      "<span class='label bg-blue'>Teacher</span>".html_safe
+    when "student_parent"
+      "<span class='label bg-yellow'>Parent</span>".html_safe
     end
   end
 end
