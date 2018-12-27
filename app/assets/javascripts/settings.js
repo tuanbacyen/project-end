@@ -54,9 +54,9 @@ function icheck(){
 }
 
 function active_slide() {
-  var url = window.location.href;
+  var url = window.location.pathname + '/';
   $("a[id^='sidebar-item']").each(function(){
-    if (url.includes(this.href) && url != '/'){
+    if (url.includes($(this).attr('href')+'/') && url != '/'){
       var child = $(this).parent().addClass('active');
       var parent = child.parent().parent();
       if (parent.hasClass('treeview')) {

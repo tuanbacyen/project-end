@@ -161,7 +161,7 @@ Style/ClassCheck:
 
 Metrics/ClassLength:
   CountComments: false  # count full line comments?
-  Max: 100
+  Max: 150
 
 # Align with the style guide.
 Style/CollectionMethods:
@@ -276,7 +276,7 @@ Style/LambdaCall:
     - braces
 
 Metrics/LineLength:
-  Max: 100
+  Max: 150
   AllowURI: true
   Exclude:
     - config/routes.rb

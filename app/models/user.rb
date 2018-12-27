@@ -15,16 +15,21 @@ class User < ApplicationRecord
   has_many :day_offs, dependent: :destroy
 
   validate :birth_not_than_today
-  validates :email, presence: true, uniqueness: true, format: { with: Devise::email_regexp }
+  validates :email, presence: true, uniqueness: true, format: {with: Devise.email_regexp}
   validates :name, presence: true
-  validates :phone, presence: true, uniqueness: true, length: { minimum: 10, maximum: 11 },
-                    format: { with: /\A(0)[8|9|3|7|5]\d{8,9}/ }
+  validates :phone, presence: true, uniqueness: true, length: {minimum: 10, maximum: 11},
+                    format: {with: /\A(0)[8|9|3|7|5]\d{8,9}/}
+  validates_length_of :identity_card, minimum: 9, maximum: 12,
+                      numericality: {only_integer: true}, allow_blank: true
   validates_uniqueness_of :identity_card, allow_blank: true
 
   enum role: {student_parent: 0, teacher: 1, manage: 2, admin: 3}
 
-  scope :load_all_users?, ->{order(updated_at: :desc)
-                            .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar, :working, :confirmed}
+  scope :load_all_users?, (lambda do
+    order(updated_at: :desc)
+    .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar,
+      :working, :confirmed
+  end)
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)
@@ -60,7 +65,7 @@ class User < ApplicationRecord
 
   def has_permission_edit? current_user, new_role
     (current_user.id == id && current_user.get_role == new_role) ||
-    (current_user.get_role > get_role && new_role < current_user.get_role)
+      (current_user.get_role > get_role && new_role < current_user.get_role)
   end
 
   def can_show_list?
@@ -69,14 +74,14 @@ class User < ApplicationRecord
 
   def get_role
     case role
-      when "admin"
-        return 3
-      when "manage"
-        return 2
-      when "teacher"
-        return 1
-      else
-        return 0
+    when "admin"
+      3
+    when "manage"
+      2
+    when "teacher"
+      1
+    else
+      0
     end
   end
 
@@ -109,12 +114,12 @@ class User < ApplicationRecord
   end
 
   def default_password
-    "#{sprintf '%02d', birth.day}#{sprintf '%02d', birth.month}#{birth.year}"
+    "#{format('%02d', birth.day)}#{format('%02d', birth.month)}#{birth.year}"
   end
 
   def check_present?
     school_users.present? || classrooms.present? || class_subjects.present? ||
-    students.present? || attendances.present? || comments.present? || day_offs.present?
+      students.present? || attendances.present? || comments.present? || day_offs.present?
   end
 
   def update_gender
@@ -123,7 +128,8 @@ class User < ApplicationRecord
 
   def age
     now = Time.now.utc.to_date
-    now.year - birth.year - ((now.month > birth.month || (now.month == birth.month && now.day >= birth.day)) ? 0 : 1)
+    now.year - birth.year -
+      (now.month > birth.month || (now.month == birth.month && now.day >= birth.day) ? 0 : 1)
   end
 
   def struct_user?
@@ -157,10 +163,10 @@ class User < ApplicationRecord
       where(username: conditions[:username]).first
     end
   end
-  
+
   private
   def birth_not_than_today
     return if birth.blank?
-    errors.add(:base, "Birthday cannot equal than today") if age < 0 || birth.today?
+    errors.add(:base, "Birthday cannot equal than today") if age.negative? || birth.today?
   end
 end

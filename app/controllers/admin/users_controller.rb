@@ -17,7 +17,7 @@ class Admin::UsersController < ApplicationController
       redirect_to root_path
     end
   end
-  
+
   def show
     repond
   end
@@ -30,12 +30,12 @@ class Admin::UsersController < ApplicationController
     @user.update confirmed: true
     repond
   end
-  
+
   def new; end
 
   def create
     @user = User.new create_params
-    setting_before_create 
+    setting_before_create
     if @user.permission_create? current_user
       semester_convert_date
       render :new
@@ -51,7 +51,7 @@ class Admin::UsersController < ApplicationController
   def edit; end
 
   def update
-    if @user.update_attributes(current_user.it_me?(@user) ? update_params.except(:role) : update_params)
+    if @user.update_attributes current_user.it_me?(@user) ? update_params.except(:role) : update_params
       @user.update_gender if params[:user][:gender] == "nil"
       flash[:success] = t "update_success"
       redirect_to admin_users_path
@@ -75,14 +75,14 @@ class Admin::UsersController < ApplicationController
   private
   def load_all_users
     @users = User.load_all_users?
-                .user_less_than_role(current_user)
-                .user_confirmed true
+                 .user_less_than_role(current_user)
+                 .user_confirmed true
   end
 
   def load_all_confirmed_users
     @users = User.load_all_users?
-                .user_less_than_role(current_user)
-                .user_confirmed false
+                 .user_less_than_role(current_user)
+                 .user_confirmed false
   end
 
   def new_user
@@ -92,16 +92,18 @@ class Admin::UsersController < ApplicationController
 
   def create_params
     params[:user][:birth] = convert_date params[:user][:birth]
-    params.require(:user).permit :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar, :working
+    params.require(:user).permit :email, :phone, :name, :identity_card, :gender,
+      :address, :birth, :role, :avatar, :working
   end
 
   def update_params
     params[:user][:birth] = convert_date params[:user][:birth]
-    params.require(:user).permit :name, :identity_card, :gender, :address, :birth, :role, :avatar, :working
+    params.require(:user).permit :name, :identity_card, :gender, :address,
+      :birth, :role, :avatar, :working
   end
 
   def get_user
-    @user = User.find_by(id: params[:id])
+    load_this_user
     if @user
       semester_convert_date
       return
@@ -111,7 +113,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def get_user_confirm
-    @user = User.find_by(id: params[:id])
+    load_this_user
     if @user
       semester_convert_date
       return

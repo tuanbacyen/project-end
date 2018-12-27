@@ -35,7 +35,7 @@ Style/ClassAndModuleChildren:
   Enabled: false
 
 Metrics/ClassLength:
-  Description: "Avoid classes longer than 100 lines of code."
+  Description: "Avoid classes longer than 150 lines of code."
   Enabled: false
 
 Metrics/MethodLength:
