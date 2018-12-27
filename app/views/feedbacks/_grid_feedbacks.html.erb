@@ -1,0 +1,36 @@
+<div class="box-body">
+  <table class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-2">User</th>
+        <th class="col-md-6">Content</th>
+        <th class="col-md-1">Status</th>
+        <th class="col-md-1">Day create</th>
+        <th class="col-md-2">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @feedbacks.each do |feedback| %>
+        <tr>
+          <td><%= "#{feedback.user_send.name} #{role_label feedback.user_send.role} 
+          #{working_label feedback.user_send.working} #{confirm_label feedback.user_send.confirmed}".html_safe %></td>
+          <td class="post-article markdown"><%= markdown feedback.content %></td>
+          <td><%= status_feedback_label feedback.status %></td>
+          <td><%= convert_date feedback.created_at %></td>
+          <td>
+            <%= render "action", feedback: feedback %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>User</th>
+        <th>Content</th>
+        <th>Status</th>
+        <th>Day create</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

@@ -54,7 +54,7 @@ class Admin::UsersController < ApplicationController
     if @user.update_attributes current_user.it_me?(@user) ? update_params.except(:role) : update_params
       @user.update_gender if params[:user][:gender] == "nil"
       flash[:success] = t "update_success"
-      redirect_to admin_users_path
+      current_user.admin? ? redirect_to(admin_users_path) : redirect_to(admin_user_path(current_user))
     else
       semester_convert_date
       render :edit

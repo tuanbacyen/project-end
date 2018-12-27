@@ -1,5 +1,6 @@
 $(document).ready(function() {
   setTimeout(function() {$('.time-out').hide('slow');}, 3000);
+  var simplemde = new SimpleMDE({ element: document.getElementById("markdown") });
 
   active_slide();
   $('div.alert-notice').addClass('alert-success');

@@ -1,0 +1,12 @@
+<%= simple_form_for @feedback do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.text_area :content, class: "form-control input-md",  placeholder: true, id: "markdown" %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", root_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

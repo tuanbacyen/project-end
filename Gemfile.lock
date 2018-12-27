@@ -180,8 +180,12 @@ GEM
     parallel (1.12.1)
     parser (2.5.3.0)
       ast (~> 2.4.0)
+    posix-spawn (0.3.13)
     powerpack (0.1.2)
     puma (3.12.0)
+    pygments.rb (0.6.3)
+      posix-spawn (~> 0.3.6)
+      yajl-ruby (~> 1.2.0)
     rack (2.0.6)
     rack-test (1.1.0)
       rack (>= 1.0, < 3)
@@ -222,6 +226,7 @@ GEM
     rb-fsevent (0.10.3)
     rb-inotify (0.9.10)
       ffi (>= 0.5.0, < 2)
+    redcarpet (3.4.0)
     responders (2.4.0)
       actionpack (>= 4.2.0, < 5.3)
       railties (>= 4.2.0, < 5.3)
@@ -253,6 +258,7 @@ GEM
     simple_form (4.1.0)
       actionpack (>= 5.0)
       activemodel (>= 5.0)
+    simplemde-rails (1.11.2)
     spring (2.0.2)
       activesupport (>= 4.2)
     spring-watcher-listen (2.0.1)
@@ -286,6 +292,7 @@ GEM
     websocket-driver (0.7.0)
       websocket-extensions (>= 0.1.0)
     websocket-extensions (0.1.3)
+    yajl-ruby (1.2.3)
 
 PLATFORMS
   ruby
@@ -313,12 +320,15 @@ DEPENDENCIES
   momentjs-rails (>= 2.9.0)
   mysql2 (>= 0.4.4, < 0.6.0)
   puma (~> 3.11)
+  pygments.rb (~> 0.6.3)
   rails (~> 5.2.2)
   rails-erd
   rails-i18n
+  redcarpet (~> 3.3, >= 3.3.4)
   rubocop (~> 0.54.0)
   sass-rails (~> 5.0)
   simple_form
+  simplemde-rails
   spring
   spring-watcher-listen (~> 2.0.0)
   tzinfo-data

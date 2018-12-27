@@ -1,5 +1,5 @@
 <% if @user.errors.any? %>
-  show_notify('user-not-found', 3, 'User not found', '/');
+  show_notify('user-errors', 3, '<%= @user.errors.full_messages.to_sentence %>', '/');
 <% else %>
   var table = $('.datatable').DataTable();
   table.row($('<%= "#confirm-#{@user.id}" %>')).remove().draw();

@@ -3,8 +3,9 @@ class Ability
 
   def initialize user
     user ||= User.new
+    can [:create, :new], Feedback
     if user.admin?
-      can :manage, [School, Semester, Unit, Subject, NotifyType, User]
+      can :manage, [School, Semester, Unit, Subject, NotifyType, User, Feedback]
       cannot [:edit, :update, :destroy], User do |user|
         user.admin?
       end
@@ -13,6 +14,7 @@ class Ability
     elsif user.manage?
     elsif user.teacher?
     elsif user.student_parent?
+      can [:show, :edit, :update], User, id: user.id
     end
   end
 end

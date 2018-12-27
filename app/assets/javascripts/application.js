@@ -25,6 +25,7 @@
 //= require i18n.js
 //= require i18n/translations
 //= require "icheck"
+//= require simplemde.min
 
 $(function(){
   $.ajaxSetup({
