@@ -23,7 +23,7 @@ class FeedbacksController < ApplicationController
     if @feedback.update status: true
       flash[:success] = t "update_success"
     else
-      flash[:success] = t "Loiiiiii"
+      flash[:danger] = t "Loiiiiii"
     end
     redirect_to feedbacks_path
   end
