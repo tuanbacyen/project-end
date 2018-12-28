@@ -41,6 +41,15 @@ class UnitsController < ApplicationController
     redirect_to units_path
   end
 
+  def new_auto; end
+
+  def create_auto
+    unit = UnitService.new params
+    unit.auto_create_unit
+    flash[:success] = "done"
+    redirect_to units_path
+  end
+
   private
   def load_all_units
     @units = Unit.load_all_units?

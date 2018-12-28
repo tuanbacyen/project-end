@@ -1,0 +1,71 @@
+<div class="col-md-offset-2 col-lg-8">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Config setting before create unit</h3>
+    </div>
+    <div class="box-body">
+      <%= form_tag create_auto_unit_path do %>
+        <h4>Morning</h4>
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-3">
+              <%= label_tag "Time start morning in day" %>
+              <%= text_field_tag :morning_time_start, Settings.morning_time_start, class: "form-control time_picker", id: "morning_time_start" %>
+            </div>
+            <div class="col-md-3">
+              <%= label_tag "Time end morning in day" %>
+              <%= text_field_tag :morning_time_end, Settings.morning_time_end, class: "form-control time_picker", id: "morning_time_end" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "Time relax" %>
+              <%= number_field_tag :morning_time_relax, Settings.relax_time, min: 5, max: 20, class: "form-control", id: "morning_time_relax" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "Time of unit" %>
+              <%= number_field_tag :morning_time_unit, Settings.unit_time, min: 30, max: 100, class: "form-control", id: "morning_time_unit" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "count unit" %>
+              <%= number_field_tag :morning_count_unit, Settings.morning_count_unit, min:0, max: 5, class: "form-control", id: "morning_count_unit" %>
+            </div>
+          </div>
+          <br><hr>
+          <ul id="list_unit_morning"></ul>
+        </div>
+        <hr>
+        <h4>Afternoon</h4>        
+        <div class="row">
+          <div class="form-group">
+            <div class="col-md-3">
+              <%= label_tag "Time start afternoon in day" %>
+              <%= text_field_tag :afternoon_time_start, Settings.afternoon_time_start, class: "form-control time_picker", id: "afternoon_time_start" %>
+            </div>
+            <div class="col-md-3">
+              <%= label_tag "Time end afternoon in day" %>
+              <%= text_field_tag :afternoon_time_end, Settings.afternoon_time_end, class: "form-control time_picker", id: "afternoon_time_end" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "Time relax" %>
+              <%= number_field_tag :afternoon_time_relax, Settings.relax_time, min: 10, max: 30, class: "form-control", id: "afternoon_time_relax" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "Time of unit" %>
+              <%= number_field_tag :afternoon_time_unit, Settings.unit_time, min: 30, max: 100, class: "form-control", id: "afternoon_time_unit" %>
+            </div>
+            <div class="col-md-2">
+              <%= label_tag "count unit" %>
+              <%= number_field_tag :afternoon_count_unit, Settings.afternoon_count_unit, min:0, max: 5, class: "form-control", id: "afternoon_count_unit" %>
+            </div>
+          </div>
+          <br><hr>
+          <ul id="list_unit_afternoon"></ul>
+        </div>
+        <br><hr>
+        <div class="form-group col-md-12">
+          <%= submit_tag "Save", class: "btn btn-success pull-right", id: "submit_unit", style: "display: none;" %>
+          <%= link_to "Back", units_path, class: "btn btn-default" %>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
