@@ -6,6 +6,8 @@ Rails.application.routes.draw do
   resources :schools
   resources :semesters
   resources :units
+  get "new_auto_unit", to: "units#new_auto", as: "new_auto_unit"
+  post "create_auto_unit", to: "units#create_auto", as: "create_auto_unit"
   resources :subjects
   get "new_auto_subject", to: "subjects#new_auto", as: "new_auto_subject"
   post "create_auto_subject", to: "subjects#create_auto", as: "create_auto_subject"

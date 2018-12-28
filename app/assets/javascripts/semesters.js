@@ -13,10 +13,13 @@ function setup_daterange() {
   }).on('hide', function(e) {
     var start_date = new Date($('input[name="semester[start_date]"]').val());
     var end_date = new Date($('input[name="semester[end_date]"]').val());
+    var end_month = end_date.getMonth();
     start_date = start_date.getFullYear();
     end_date = end_date.getFullYear();
-    if (start_date == end_date){
+    if (start_date == end_date && end_month > 6){
       end_date += 1;
+    } else {
+      start_date = end_date - 1;
     }
     if (isNaN(start_date) || isNaN(end_date)){
       $('input[name="semester[school_year]"]').val('');
