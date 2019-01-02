@@ -49,6 +49,16 @@
             </div>
           </div>
           <div class="profile-info-row">
+            <div class="profile-info-name"> Schools </div>
+            <div class="profile-info-value">
+              <ul>
+                <% @user.school_users.each do |school_user| %>
+                  <li><%= school_user.school.name %></li>
+                <% end %>
+              </ul>
+            </div>
+          </div>
+          <div class="profile-info-row">
             <div class="profile-info-name"> Identity card </div>
             <div class="profile-info-value">
               <span>

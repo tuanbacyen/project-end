@@ -14,7 +14,9 @@ Rails.application.routes.draw do
   resources :notify_types
   resources :feedbacks, expect: :edit
   namespace :admin do
-    resources :users
+    resources :users do
+      resources :school_user, only: [:index, :new, :create, :destroy]
+    end
     get "users_confirmed", to: "users#index_confirm", as: "users_confirmed"
     put "confirm", to: "users#confirm", as: "confirm"
   end

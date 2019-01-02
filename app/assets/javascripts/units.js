@@ -1,27 +1,28 @@
 $(document).ready(function() {
-  var morning = ['#list_unit_morning', '#morning_time_start', '#morning_time_end', '#morning_time_relax',
-                '#morning_time_unit', '#morning_count_unit'];
-  var afternoon = ['#list_unit_afternoon', '#afternoon_time_start', '#afternoon_time_end', '#afternoon_time_relax',
-                '#afternoon_time_unit', '#afternoon_count_unit'];
   setup_time_start();
   setup_time_end();
-  setup_time();
-  unit_create(morning);
-  unit_create(afternoon);
-  $('body').on('change', '#morning_time_relax, #morning_time_unit, #morning_count_unit', function(){
+  if (window.location.pathname.includes('new_auto_unit')){
+    var morning = ['#list_unit_morning', '#morning_time_start', '#morning_time_end', '#morning_time_relax',
+                  '#morning_time_unit', '#morning_count_unit'];
+    var afternoon = ['#list_unit_afternoon', '#afternoon_time_start', '#afternoon_time_end', '#afternoon_time_relax',
+                  '#afternoon_time_unit', '#afternoon_count_unit'];
+    setup_time();
     unit_create(morning);
-  });
-  $('body').on('change', '#afternoon_time_relax, #afternoon_time_unit, #afternoon_count_unit', function(){
     unit_create(afternoon);
-  });
+    $('body').on('change', '#morning_time_relax, #morning_time_unit, #morning_count_unit', function(){
+      unit_create(morning);
+    });
+    $('body').on('change', '#afternoon_time_relax, #afternoon_time_unit, #afternoon_count_unit', function(){
+      unit_create(afternoon);
+    });
+  }
 });
 
 function setup_time_start() {
   $('#time_start_picker').datetimepicker({
     format: 'HH:mm:00'
   }).on('dp.hide', function(e) {
-    unit_create(morning);
-    unit_create(afternoon);
+    change_time_end();
   });
 }
 
