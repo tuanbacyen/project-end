@@ -11,3 +11,4 @@ afternoon_time_end: "17:00:00"
 afternoon_count_unit: 4
 unit_time: 45
 relax_time: 10
+list_gender: [[true, "Nam"], [false, "Nu"], [nil, "Khac"]]

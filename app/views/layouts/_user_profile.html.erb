@@ -21,6 +21,9 @@
         <i class="fa fa-eye"></i> Profile
       <% end %>
     </div>
+    <div class="pull-left">
+      <%= link_to "Change", edit_user_registration_path, class: "btn btn-default btn-flat" %>
+    </div>
     <div class="pull-right">
       <%= link_to "Sign out", destroy_user_session_path, class: "btn btn-default btn-flat", method: :delete %>
     </div>
