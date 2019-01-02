@@ -35,10 +35,9 @@ class Admin::SchoolUserController < ApplicationController
 
   def get_user
     @user = User.find_by(id: params[:user_id])
-    unless @user
-      flash[:danger] = "user_not_found"
-      redirect_to admin_users_path
-    end
+    return if @user
+    flash[:danger] = "user_not_found"
+    redirect_to admin_users_path
   end
 
   def get_school_user
