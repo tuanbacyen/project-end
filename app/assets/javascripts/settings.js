@@ -8,6 +8,7 @@ $(document).ready(function() {
   $('.datatable').DataTable();
   icheck();
   setup_datepiker();
+  set_up_chosen();
 });
 
 $(document).on('click', '.close', function () {$(this).parent().hide();});
@@ -76,6 +77,14 @@ function setup_datepiker() {
     todayHighlight: true,
     autoclose: true,
     format: I18n.t('date-js')
+  });
+}
+
+function set_up_chosen() {
+  $('.chosen-select').chosen({
+    allow_single_deselect: true,
+    no_results_text: 'Result not match',
+    width: '100%'
   });
 }
 

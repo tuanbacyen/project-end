@@ -1,0 +1,31 @@
+<div class="box-body">
+  <table class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-8">School name</th>
+        <th class="col-md-4">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @school_user.each do |school_user| %>
+        <tr>
+          <td><%= school_user.school.name %></td>
+          <td>
+            <% if current_user.admin? %>
+              <%= link_to admin_user_school_user_path(id: school_user.id), method: :DELETE,
+                data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+                <i class="fa fa-trash-o"></i> Destroy
+              <% end %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+    <tfoot>
+      <tr>
+        <th>School name</th>
+        <th>Action</th>
+      </tr>
+    </tfoot>
+  </table>
+</div>

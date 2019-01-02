@@ -1,0 +1,14 @@
+<%= form_for @school_user, url: {controller: "school_user", action: "create"} do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.label :lbl_role, "role" %>
+      <%= f.collection_select :school_id, school_users(@user), :last, :first,
+          {include_blank: false}, {class: "chosen-select"} %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", admin_user_school_user_index_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

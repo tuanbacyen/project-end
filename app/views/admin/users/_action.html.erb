@@ -14,6 +14,10 @@
   <%= link_to admin_user_path(user), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary", remote: true do %>
     <i class="fa fa-eye"></i> View
   <% end %>
+
+  <%= link_to admin_user_school_user_index_path(user), method: :GET, class: "btn btn-info" do %>
+    <i class="fa fa-eye"></i> Schools
+  <% end %>
 <% else %>
   <%= link_to admin_confirm_path(id: user), method: :PUT, class: "btn bg-green", remote: true do %>
     <i class="fa fa-check"></i> confirmed

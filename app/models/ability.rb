@@ -5,7 +5,7 @@ class Ability
     user ||= User.new
     can [:create, :new], Feedback
     if user.admin?
-      can :manage, [School, Semester, Unit, Subject, NotifyType, User, Feedback]
+      can :manage, [School, Semester, Unit, Subject, NotifyType, User, Feedback, SchoolUser]
       cannot [:edit, :update, :destroy], User do |user|
         user.admin?
       end
