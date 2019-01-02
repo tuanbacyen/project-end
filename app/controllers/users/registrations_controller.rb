@@ -2,7 +2,6 @@ class Users::RegistrationsController < Devise::RegistrationsController
   before_action :configure_sign_up_params, only: :create
 
   before_action :configure_account_update_params, only: :update
-  layout :edit_template, only: %i(edit update)
 
   def create
     build_resource(sign_up_params)
@@ -49,8 +48,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
   end
 
   def configure_account_update_params
+    params[:user][:birth] = convert_date params[:user][:birth]
     devise_parameter_sanitizer
-      .permit(:account_update, keys: %i(name email avatar))
+      .permit(:account_update, keys: [:name, :identity_card, :gender, :address, :birth, :avatar])
   end
 
   def update_resource user, user_params
@@ -59,9 +59,5 @@ class Users::RegistrationsController < Devise::RegistrationsController
     else
       user.update_without_password user_params.except(:current_password)
     end
-  end
-
-  def edit_template
-    current_user.admin? ? "layouts/dashboard" : "layouts/application"
   end
 end

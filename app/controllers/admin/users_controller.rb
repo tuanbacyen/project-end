@@ -41,7 +41,6 @@ class Admin::UsersController < ApplicationController
       render :new
     elsif @user.save
       flash[:success] = "create success"
-      # redirect_to admin_users_path
       redirect_to new_admin_user_school_user_path @user
     else
       semester_convert_date
