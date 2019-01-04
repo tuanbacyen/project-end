@@ -43,14 +43,10 @@ class ClassroomsController < ApplicationController
 
   def teacher_can_teach
     list_user = User.load_user_of_school(current_user).load_teacher.user_has_classroom(params[:semester_id]).pluck :name, :birth, :id
-    listaa = []
-    list_user.map {|u| listaa << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
+    list = []
+    list_user.map{|u| list << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
     respond_to do |format|
-      format.json  {
-        render json: {
-          list_teacher: listaa,
-        }
-      }
+      format.json{render json: {list_teacher: list}}
     end
   end
 
