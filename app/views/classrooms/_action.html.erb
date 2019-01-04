@@ -1,0 +1,7 @@
+<%= link_to edit_classroom_path(classroom), method: :GET, class: "btn btn-warning" do %>
+  <i class="fa fa-trash-o"></i> Edit
+<% end %>
+
+<%= link_to classroom_path(classroom), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+  <i class="fa fa-trash-o"></i> Destroy
+<% end %>

@@ -12,9 +12,14 @@
   </ul>
 </li>
 <li>
-  <a href="#">
-    <i class="fa fa-th"></i> <span>student</span>
-  </a>
+  <%= link_to subjects_path, id: "sidebar-item" do %>
+    <i class="fa fa-user-circle-o"></i> <span>Student</span>
+  <% end %>
+</li>
+<li>
+  <%= link_to classrooms_path, id: "sidebar-item" do %>
+    <i class="fa fa-briefcase"></i> <span>Classrooms</span>
+  <% end %>
 </li>
 <li>
   <a href="#">

@@ -1,0 +1,34 @@
+<%= simple_form_for @classroom do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <div class="form-group">
+      <%= f.label :lbl_school, "Add class for School : #{current_user.name_school}" %>
+      <%= f.hidden_field :school_id, value: current_user.school_users.first.school_id %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :lbl_semester, "semester" %>
+      <%= f.collection_select :semester_id, list_semester, :last, :first,
+          {include_blank: false}, {class: "chosen-select", id: "semester-year"} %>
+    </div>
+    <div class="form-group col-md-6">
+      <%= f.label :lbl_teacher, "teacher" %>
+      <%= f.collection_select :user_id, list_teacher_in_school(@classroom.user_id), :last, :first,
+          {include_blank: false}, {class: "chosen-select", id: "teacher-has"} %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.label :lbl_number, "number" %>
+      <%= f.collection_select :number, Settings.list_class_num, :first, :last,
+          {include_blank: false}, {class: "chosen-select", id: "select-number"} %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.input :name, placeholder: "name", input_html: { class: "form-control", id: "class-name" } %>
+    </div>
+    <div class="form-group col-md-4">
+      <%= f.input :sizes, placeholder: "sizes", input_html: { value: 20, class: "form-control", type: "number", min: 20, max: 50 } %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", classrooms_path, class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>

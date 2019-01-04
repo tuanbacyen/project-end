@@ -6,5 +6,5 @@ class ClassSubject < ApplicationRecord
   belongs_to :subject
   belongs_to :semester
   belongs_to :classroom
-  belongs_to :user, class_name: User.name, foreign_key: "teacher"
+  belongs_to :teacher, class_name: :User, foreign_key: "user_id"
 end

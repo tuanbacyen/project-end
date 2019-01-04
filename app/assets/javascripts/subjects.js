@@ -26,17 +26,3 @@ $(document).ready(function() {
     }
   });
 });
-
-function send_ajax(method, url, data){
-  $.ajax({
-    type: method,
-    url: url,
-    dataType: 'json',
-    data: data,
-    success: function(data){
-    },
-    error: function (error){
-      alert(error);
-    }
-  });
-}
