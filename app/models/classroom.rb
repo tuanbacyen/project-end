@@ -23,7 +23,6 @@ class Classroom < ApplicationRecord
     .select :id, :school_id, :semester_id, :user_id, :name, :sizes, :number
   end)
 
-
   def check_present?
     class_subjects.present? || students.present?
   end
