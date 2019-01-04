@@ -1,11 +1,13 @@
 <%= form_for @user, url: {controller: "users", action: action} do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="box-body">
-    <div class="form-group">
-      <%= f.label :lbl_role, "role" %>
-      <%= f.collection_select :role, user_roles, :last, :first,
-          {include_blank: false}, {class: "form-control"} %>
-    </div>
+    <% if current_user.admin? || current_user.manage? %>
+      <div class="form-group">
+        <%= f.label :lbl_role, "role" %>
+        <%= f.collection_select :role, user_roles, :last, :first,
+            {include_blank: false}, {class: "form-control"} %>
+      </div>
+    <% end %>
     <div class="form-group">
       <%= f.label :lbl_email, "Email" %>
       <% if action == "create" %>

@@ -31,6 +31,16 @@ class User < ApplicationRecord
       :working, :confirmed
   end)
 
+  scope :load_user_of_school, (lambda do |user|
+    eager_load(:school_users).where("school_users.school_id in (?)", user.school_users.pluck(:school_id))
+  end)
+
+  scope :user_has_classroom, (lambda do |semester_id|
+    where.not(id: Classroom.where(semester_id: semester_id).pluck(:user_id)).uniq
+  end)
+
+  scope :load_teacher, ->{where(role: 1)}
+
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)
   end)
@@ -70,6 +80,14 @@ class User < ApplicationRecord
 
   def can_show_list?
     role == "admin" || role == "manage"
+  end
+
+  def list_school
+    school_users.pluck(:school_id)
+  end
+
+  def name_school
+    school_users.first.school.name
   end
 
   def get_role
