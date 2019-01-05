@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   before_action :user_confirmed, :authenticate_user!
   before_action :load_all_users, only: :index
   before_action :load_all_confirmed_users, only: :index_confirm
-  before_action :load_this_user, only: :show
+  before_action :load_user, only: :show
   before_action :new_user, only: :new
   before_action :get_user, only: [:destroy, :update, :edit]
   before_action :get_user_confirm, only: :confirm
@@ -122,7 +122,7 @@ class Admin::UsersController < ApplicationController
     redirect_to admin_users_confirmed_path
   end
 
-  def load_this_user
+  def load_user
     @user = User.find_by(id: params[:id])
   end
 

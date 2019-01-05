@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_015839) do
+ActiveRecord::Schema.define(version: 2019_01_05_061448) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -65,7 +65,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_015839) do
   end
 
   create_table "day_offs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
-    t.date "date_off"
+    t.date "date_off", default: "2019-05-01"
     t.string "reason", default: "", null: false
     t.boolean "confirmed", default: false
     t.bigint "student_id", null: false
@@ -186,11 +186,12 @@ ActiveRecord::Schema.define(version: 2019_01_05_015839) do
     t.string "father_phone", default: ""
     t.string "mother_name", default: ""
     t.string "mother_phone", default: ""
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
     t.boolean "studying", default: true
+    t.string "name", null: false
+    t.bigint "user_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
