@@ -1,6 +1,6 @@
 class Classroom < ApplicationRecord
   has_many :class_subjects, dependent: :destroy
-  has_many :students, dependent: :destroy
+  has_many :student_classrooms, dependent: :destroy
 
   belongs_to :school
   belongs_to :semester
