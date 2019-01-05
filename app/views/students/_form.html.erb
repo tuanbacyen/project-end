@@ -46,7 +46,7 @@
         <% if @student.avatar.url.present? %>
           <%= image_tag @student.avatar.url, class: "image img-avatar" %>
         <% else %>
-          <%= image_tag "default_avatar_big", class: "image img-avatar"%>
+          <%= image_tag "default_avatar", class: "image img-avatar"%>
         <% end %>
         <div class="middle">
           <%= f.label :avatar, "Upload", class: "btn btn-success" %>
