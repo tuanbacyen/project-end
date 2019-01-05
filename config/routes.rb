@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   resources :notify_types
   resources :classrooms
   post "teacher_can_teach", to: "classrooms#teacher_can_teach", as: "teacher_can_teach"
+  resources :students
   resources :feedbacks, expect: :edit
   namespace :admin do
     resources :users do

@@ -39,7 +39,11 @@ class User < ApplicationRecord
     where.not(id: Classroom.where(semester_id: semester_id).pluck(:user_id)).uniq
   end)
 
+  scope :load_manager, ->{where(role: 2)}
+
   scope :load_teacher, ->{where(role: 1)}
+  
+  scope :load_parent, ->{where(role: 0)}
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)

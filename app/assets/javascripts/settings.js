@@ -88,6 +88,16 @@ function set_up_chosen() {
   });
 }
 
+function readURL(input) {
+  if (input.files && input.files[0]) {
+    var reader = new FileReader();
+    reader.onload = function(e) {
+      $('#img-prev').attr('src', e.target.result);
+    }
+    reader.readAsDataURL(input.files[0]);
+  }
+}
+
 Number.prototype.toHHMMSS = function () {
   var sec_num = parseInt(this, 10);
   var hours   = Math.floor(sec_num / 3600);
