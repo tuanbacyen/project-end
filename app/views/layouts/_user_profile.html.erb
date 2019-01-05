@@ -1,12 +1,12 @@
 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-  <%= image_tag "user2-160x160", class: "user-image" %>
+  <%= image_tag "default_avatar", class: "user-image" %>
   <span class="hidden-xs">
     <%= current_user.name %>
   </span>
 </a>
 <ul class="dropdown-menu">
   <li class="user-header">
-    <%= image_tag "user2-160x160", class: "img-circle" %>
+    <%= image_tag "default_avatar", class: "img-circle" %>
     <p>
       <%= current_user.name %>
       <small><%= "Birth day: #{current_user.birth}" %></small>
