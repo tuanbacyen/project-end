@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_27_060519) do
+ActiveRecord::Schema.define(version: 2019_01_05_015839) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -93,6 +93,7 @@ ActiveRecord::Schema.define(version: 2018_12_27_060519) do
     t.string "content", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "status", default: false
   end
 
   create_table "notifications", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -154,16 +155,25 @@ ActiveRecord::Schema.define(version: 2018_12_27_060519) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "student_classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "student_id", null: false
+    t.bigint "classroom_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["classroom_id"], name: "index_student_classrooms_on_classroom_id"
+    t.index ["student_id"], name: "index_student_classrooms_on_student_id"
+  end
+
   create_table "student_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "average", default: 0.0
     t.float "average_total", default: 0.0
     t.string "classification", default: "F"
-    t.bigint "student_id", null: false
     t.bigint "class_subject_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "student_classroom_id"
     t.index ["class_subject_id"], name: "index_student_subjects_on_class_subject_id"
-    t.index ["student_id"], name: "index_student_subjects_on_student_id"
+    t.index ["student_classroom_id"], name: "index_student_subjects_on_student_classroom_id"
   end
 
   create_table "students", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -177,12 +187,10 @@ ActiveRecord::Schema.define(version: 2018_12_27_060519) do
     t.string "mother_name", default: ""
     t.string "mother_phone", default: ""
     t.bigint "user_id", null: false
-    t.bigint "classroom_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "avatar"
     t.boolean "studying", default: true
-    t.index ["classroom_id"], name: "index_students_on_classroom_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -267,9 +275,10 @@ ActiveRecord::Schema.define(version: 2018_12_27_060519) do
   add_foreign_key "points", "student_subjects"
   add_foreign_key "school_users", "schools"
   add_foreign_key "school_users", "users"
+  add_foreign_key "student_classrooms", "classrooms"
+  add_foreign_key "student_classrooms", "students"
   add_foreign_key "student_subjects", "class_subjects"
-  add_foreign_key "student_subjects", "students"
-  add_foreign_key "students", "classrooms"
+  add_foreign_key "student_subjects", "student_classrooms"
   add_foreign_key "students", "users"
   add_foreign_key "timetables", "class_subjects"
   add_foreign_key "timetables", "units"
