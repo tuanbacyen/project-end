@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_05_061448) do
+ActiveRecord::Schema.define(version: 2019_01_07_030128) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -192,6 +192,8 @@ ActiveRecord::Schema.define(version: 2019_01_05_061448) do
     t.boolean "studying", default: true
     t.string "name", null: false
     t.bigint "user_id"
+    t.bigint "school_id"
+    t.index ["school_id"], name: "index_students_on_school_id"
     t.index ["user_id"], name: "index_students_on_user_id"
   end
 
@@ -280,6 +282,7 @@ ActiveRecord::Schema.define(version: 2019_01_05_061448) do
   add_foreign_key "student_classrooms", "students"
   add_foreign_key "student_subjects", "class_subjects"
   add_foreign_key "student_subjects", "student_classrooms"
+  add_foreign_key "students", "schools"
   add_foreign_key "students", "users"
   add_foreign_key "timetables", "class_subjects"
   add_foreign_key "timetables", "units"
