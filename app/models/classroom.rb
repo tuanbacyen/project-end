@@ -23,6 +23,14 @@ class Classroom < ApplicationRecord
     .select :id, :school_id, :semester_id, :user_id, :name, :sizes, :number
   end)
 
+  scope :load_class_student, (lambda do |classroom_ids|
+    where(id: classroom_ids)
+  end)
+
+  def show_classroom
+    "(#{number}) #{name} / Học kỳ: #{semester.get_period} Năm Học: #{semester.school_year}"
+  end
+
   def check_present?
     class_subjects.present? || students.present?
   end

@@ -18,6 +18,17 @@ class Semester < ApplicationRecord
     class_subjects.present? || classrooms.present?
   end
 
+  def get_period
+    case period
+    when "hoc_ky_he"
+      3
+    when "hoc_ky_hai"
+      2
+    else
+      1
+    end
+  end
+
   private
   def end_after_start
     return if end_date.blank? || start_date.blank?

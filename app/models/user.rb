@@ -94,6 +94,18 @@ class User < ApplicationRecord
     school_users.first.school.name
   end
 
+  def build_student
+    school_users.first.school.students.build
+  end
+
+  def manage_get_student
+    school_users.first.school.students if manage?
+  end
+
+  def manage_get_classroom
+    school_users.first.school.classrooms if manage?
+  end
+
   def get_role
     case role
     when "admin"

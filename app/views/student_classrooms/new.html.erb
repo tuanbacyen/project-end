@@ -1,0 +1,21 @@
+<div class="col-md-offset-2 col-lg-8">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Add new school</h3>
+    </div>
+    <%= form_for @student_classroom, url: {controller: "student_classrooms", action: "create"} do |f| %>
+      <%= render "shared/error_messages", object: f.object %>
+      <div class="box-body">
+        <div class="form-group">
+          <%= f.label :lbl_classroom, "role" %>
+          <%= f.collection_select :classroom_id, list_class_can_join(@student), :last, :first,
+              {include_blank: false}, {class: "chosen-select"} %>
+        </div>
+      </div>
+      <div class="box-footer">
+        <%= link_to "Back", student_student_classrooms_path, class: "btn btn-default" %>
+        <%= f.button :submit, class: "btn btn-primary" %>
+      </div>
+    <% end %>
+  </div>
+</div>

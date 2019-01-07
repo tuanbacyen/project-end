@@ -14,9 +14,10 @@ class StudentsController < ApplicationController
   def new; end
 
   def create
+    @student = current_user.build_student student_params
     if @student.save
       flash[:success] = "create success"
-      redirect_to students_path
+      redirect_to new_student_student_classroom_path @student
     else
       render :new
     end
@@ -46,7 +47,7 @@ class StudentsController < ApplicationController
 
   private
   def load_all_students
-    @students = Student.load_all_students current_user
+    @students = current_user.manage_get_student.load_all_students
   end
 
   def new_student

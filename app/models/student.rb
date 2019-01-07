@@ -7,6 +7,7 @@ class Student < ApplicationRecord
   has_many :student_classrooms, dependent: :destroy
 
   belongs_to :parent, class_name: :User, foreign_key: "user_id", optional: true
+  belongs_to :school
   
   validate :birth_not_than_today
   validates :student_code, presence: true, uniqueness: true
@@ -17,7 +18,7 @@ class Student < ApplicationRecord
 
   delegate :name, :phone, to: :parent, prefix: true, allow_nil: true
 
-  scope :load_all_students, (lambda do |current_user|
+  scope :load_all_students, (lambda do ||
     order(created_at: :desc)
     .select :id, :student_code, :name, :birth, :address, :favorite, :phone, :father_name,
       :father_phone, :mother_name, :mother_phone, :user_id, :avatar, :studying

@@ -1,0 +1,27 @@
+<div class="box-body">
+  <table class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-3">Class name</th>
+        <th class="col-md-3">Học kỳ</th>
+        <th class="col-md-3">Năm học</th>
+        <th class="col-md-3">Action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student_classrooms.each do |student_classroom| %>
+        <tr>
+          <td><%= student_classroom.classroom.name %></td>
+          <td><%= key_to_text_semester student_classroom.classroom.semester.period %></td>
+          <td><%= student_classroom.classroom.semester.school_year %></td>
+          <td>
+            <%= link_to student_student_classroom_path(id: student_classroom.id), method: :DELETE,
+              data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+              <i class="fa fa-trash-o"></i> Destroy
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>

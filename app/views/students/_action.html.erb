@@ -7,9 +7,13 @@
 <% end %>
 
 <%= link_to student_path(student), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary" do %>
-<i class="fa fa-eye"></i> Detail
+  <i class="fa fa-eye"></i> Detail
 <% end %>
 
-<%= link_to "$", method: :GET, class: "btn btn-info" do %>
-<i class="fa fa-eye"></i> Result
+<%= link_to student_student_classrooms_path(student), method: :GET, class: "btn btn-info" do %>
+  <i class="fa fa-briefcase"></i> Class
+<% end %>
+
+<%= link_to "#", method: :GET, class: "btn btn-info" do %>
+  <i class="fa fa-eye"></i> Result
 <% end %>
