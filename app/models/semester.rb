@@ -1,6 +1,6 @@
 class Semester < ApplicationRecord
   has_many :classrooms, dependent: :destroy
-  has_many :class_subjects, dependent: :destroy
+
   validates :period, presence: true
   validates :start_date, :end_date, presence: true
   validates :school_year, presence: true, uniqueness: {scope: :period}
