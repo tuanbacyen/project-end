@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_08_020053) do
+ActiveRecord::Schema.define(version: 2019_01_09_020900) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -231,6 +231,15 @@ ActiveRecord::Schema.define(version: 2019_01_08_020053) do
     t.integer "numunit"
   end
 
+  create_table "user_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["subject_id"], name: "index_user_subjects_on_subject_id"
+    t.index ["user_id"], name: "index_user_subjects_on_user_id"
+  end
+
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "phone", default: "", null: false
@@ -283,4 +292,6 @@ ActiveRecord::Schema.define(version: 2019_01_08_020053) do
   add_foreign_key "students", "users"
   add_foreign_key "timetables", "class_subjects"
   add_foreign_key "timetables", "units"
+  add_foreign_key "user_subjects", "subjects"
+  add_foreign_key "user_subjects", "users"
 end

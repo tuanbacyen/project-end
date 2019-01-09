@@ -13,6 +13,7 @@ class User < ApplicationRecord
   has_many :attendances, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :day_offs, dependent: :destroy
+  has_many :user_subjects, dependent: :destroy
 
   validate :birth_not_than_today
   validates :email, presence: true, uniqueness: true, format: {with: Devise.email_regexp}
