@@ -18,7 +18,7 @@ class Ability
         user.list_school.include?(classroom.school_id)
       end
       can [:new, :create, :load_teacher_can_teach], Classroom
-      can :manage, [Student, StudentClassroom]
+      can :manage, [Student, StudentClassroom, UserSubject]
     elsif user.teacher?
     elsif user.student_parent?
     end

@@ -12,6 +12,7 @@
 //
 //= require rails-ujs
 //= require jquery
+//= require jquery-ui
 //= require adminlte
 //= require dataTables/jquery.dataTables
 //= require dataTables/bootstrap/3/jquery.dataTables.bootstrap

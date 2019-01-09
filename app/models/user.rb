@@ -26,7 +26,7 @@ class User < ApplicationRecord
 
   enum role: {student_parent: 0, teacher: 1, manage: 2, admin: 3}
 
-  scope :load_all_users?, (lambda do
+  scope :load_users?, (lambda do
     order(updated_at: :desc)
     .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar,
       :working, :confirmed
@@ -45,6 +45,8 @@ class User < ApplicationRecord
   scope :load_teacher, ->{where(role: 1)}
   
   scope :load_parent, ->{where(role: 0)}
+
+  scope :is_working, ->{where(working: 1)}
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)

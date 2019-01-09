@@ -3,42 +3,39 @@
     <thead>
       <tr>
         <th class="col-md-2">Name</th>
-        <th class="col-md-2">Email</th>
         <th class="col-md-2">Phone</th>
-        <th class="col-md-1">Role</th>
-        <th class="col-md-1">Working</th>
         <th class="col-md-2">Avatar</th>
+        <th class="col-md-1">Working</th>
+        <th class="col-md-3">Subject</th>
         <th class="col-md-2">Action</th>
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @user_subjects.each do |user| %>
         <tr>
           <td>
             <%= link_to user.name, admin_user_path(user), method: :GET,
             data: {toggle: "modal", target: "#modal-admin"}, remote: true %>
           </td>
-          <td><%= user.email %></td>
           <td><%= user.phone %></td>
-          <td><%= role_label user.role %></td>
-          <td><%= working_label user.working %></td>
           <td><%= image_tag user.avatar.thumb.url, class: "img-thumb-size" %></td>
+          <td><%= working_label user.working %></td>
+          <td>
+            <ul>
+              <% if user.user_subjects.present? %>
+                <% user.user_subjects.each do |us| %>
+                  <li><%= us.subject_name %></li>
+                <% end %>
+              <% else %>
+                <li>Teacher no subject</li>
+              <% end %>
+            </ul>
+          </td>
           <td>
             <%= render "action", user: user %>
           </td>
         </tr>
       <% end %>
     </tbody>
-    <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Role</th>
-        <th>Working</th>
-        <th>Avatar</th>
-        <th>Action</th>
-      </tr>
-    </tfoot>
   </table>
 </div>

@@ -74,13 +74,13 @@ class Admin::UsersController < ApplicationController
 
   private
   def load_all_users
-    @users = User.load_all_users?
+    @users = User.load_users?
                  .user_less_than_role(current_user)
                  .user_confirmed true
   end
 
   def load_all_confirmed_users
-    @users = User.load_all_users?
+    @users = User.load_users?
                  .user_less_than_role(current_user)
                  .user_confirmed false
   end
