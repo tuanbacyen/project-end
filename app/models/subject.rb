@@ -10,6 +10,10 @@ class Subject < ApplicationRecord
 
   scope :list_subject_exists?, ->{pluck :name}
 
+  def list_teacher
+    user_subjects.uniq.pluck :user_id
+  end
+
   def check_present?
     class_subjects.present?
   end

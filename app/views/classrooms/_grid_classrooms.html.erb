@@ -2,24 +2,24 @@
   <table class="table table-bordered table-striped datatable">
     <thead>
       <tr>
-        <th class="col-md-2">School</th>
-        <th class="col-md-2">Semester</th>
-        <th class="col-md-2">Teacher</th>
         <th class="col-md-2">Name</th>
+        <th class="col-md-2">Semester</th>
+        <th class="col-md-2">Chairman Teacher</th>
         <th class="col-md-1">Number</th>
         <th class="col-md-1">Sizes</th>
-        <th class="col-md-2">Action</th>
+        <th class="col-md-1">Count Subject</th>
+        <th class="col-md-3">Action</th>
       </tr>
     </thead>
     <tbody>
       <% @classrooms.each do |classroom| %>
         <tr>
-          <td><%= classroom.school_name %></td>
+          <td><%= classroom.name %></td>
           <td><%= name_semester classroom.semester %></td>
           <td><%= classroom.teacher_name %></td>
-          <td><%= classroom.name %></td>
           <td><%= classroom.number %></td>
           <td><%= classroom.sizes %></td>
+          <td><%= classroom.class_subjects.size %></td>
           <td>
             <%= render "action", classroom: classroom %>
           </td>

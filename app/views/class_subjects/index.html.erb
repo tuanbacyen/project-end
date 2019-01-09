@@ -1,0 +1,14 @@
+<section class="content">
+  <div class="box">
+    <div class="box-header center-attr">
+      <h3 class="box-title">List subject of classroom : <%= @classroom.name %></h3>
+    </div>
+    <div class="col-md-12">
+      <%= link_to "Back", classrooms_path, class: "btn btn-default" %>
+      <%= link_to new_classroom_class_subject_path, class: "btn btn-lg" do %>
+        <i class="fa fa-user-plus"></i> New subject
+      <% end %>
+    </div>
+    <%= render "grid_class_subject" %>
+  </div>
+</section>

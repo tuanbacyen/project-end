@@ -18,12 +18,12 @@ $(document).ready(function(){
     send_ajax_user_subjects('POST', '/user_subjects', {subject_ids: subject_ids, user_id: teacher_id});
   });
 
-  $('.list-group-item').on('mouseover', function(event) {
+  $('.li-item-mouse').on('mouseover', function(event) {
     event.preventDefault();
     $(this).closest('li').addClass('open');
   });
   
-  $('.list-group-item').on('mouseout', function(event) {
+  $('.li-item-mouse').on('mouseout', function(event) {
     event.preventDefault();
     $(this).closest('li').removeClass('open');
   });
