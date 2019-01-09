@@ -1,5 +1,7 @@
 class Subject < ApplicationRecord
   has_many :class_subjects, dependent: :destroy
+  has_many :user_subjects, dependent: :destroy
+
   validates :name, presence: true, uniqueness: true
 
   scope :load_all_subjects?, (lambda do
