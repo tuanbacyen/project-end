@@ -6,11 +6,11 @@ $( document ).ready(function() {
     var data = {
       semester_id: $(this).val()
     };
-    send_ajax('POST', '/teacher_can_teach', data);
+    send_ajax_classrooms('POST', '/teacher_can_teach', data);
   });
 });
 
-function send_ajax(method, url, data){
+function send_ajax_classrooms(method, url, data){
   $.ajax({
     type: method,
     url: url,

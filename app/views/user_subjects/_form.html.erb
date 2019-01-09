@@ -1,0 +1,27 @@
+<div class="box-body">
+  <div class="row">
+    <div class="col-md-2">List subject</div>
+    <div class="col-md-10">
+      <ul id="list-subject" class="connectedSortable">
+        <% list_subject(@teacher).each do |subject| %>
+          <li class="ui-state-default bg-green" id="<%= subject[0] %>"><%= subject[1] %></li>
+        <% end %>
+      </ul>
+    </div>
+  </div>
+  <br>
+  <div class="row">
+    <div class="col-md-2">Subject of teacher</div>
+    <div class="col-md-10">
+      <ul id="list-subject-teacher" class="connectedSortable">
+        <% @teacher.user_subjects.each do |us| %>
+          <li class="ui-state-default bg-green" id="<%= us.subject.id %>"><%= us.subject_name %></li>
+        <% end %>
+      </ul>
+    </div> 
+  </div>
+</div>
+<div class="box-footer">
+  <%= link_to "Back", user_subjects_path, class: "btn btn-default" %>
+  <button class="btn btn-primary" id="submit-user-subject">submit</button>
+</div>

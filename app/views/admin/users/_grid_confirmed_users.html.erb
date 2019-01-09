@@ -15,8 +15,6 @@
     </thead>
     <tbody>
       <% @users.each do |user| %>
-        <% if user.role_than_you? current_user %>
-        <% end %>
         <tr id="confirm-<%= user.id %>">
           <td>
             <%= check_box_tag "check_user_confirm[]", user, false, class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>

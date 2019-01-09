@@ -17,6 +17,7 @@ Rails.application.routes.draw do
   resources :students do
     resources :student_classrooms, only: [:index, :new, :create, :destroy]
   end
+  resources :user_subjects, only: [:index, :new, :create, :destroy]
   resources :feedbacks, expect: :edit
   namespace :admin do
     resources :users do
