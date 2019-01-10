@@ -15,7 +15,7 @@ class UserSubjectsController < ApplicationController
     subject = UserSubjectService.new params, @teacher
     resutl = subject.create_user_subject
     respond_to do |format|
-      format.json{render json: {resutl: resutl}} 
+      format.json{render json: {resutl: resutl}}
     end
   end
 
@@ -30,8 +30,7 @@ class UserSubjectsController < ApplicationController
 
   private
   def load_user_subjects
-    @user_subjects = User.load_user_of_school(current_user)
-                          .load_teacher
+    @user_subjects = User.load_user_of_school(current_user).load_teacher
   end
 
   def get_teacher

@@ -12,15 +12,11 @@ class UserSubjectService
     fail = 0
     list_remove.each do |r_sub_id|
       us = UserSubject.where(user_id: @teacher.id, subject_id: r_sub_id).first
-      if us && us.destroy
-        fail += 1
-      end
+      fail += 1 if us && us&.destroy
     end
     list_add.each do |c_sub_id|
       us = UserSubject.new user_id: @teacher.id, subject_id: c_sub_id
-      unless us.save
-        fail += 1
-      end
+      fail += 1 unless us.save
     end
     fail
   end

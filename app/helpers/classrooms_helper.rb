@@ -1,11 +1,10 @@
 module ClassroomsHelper
   def list_teacher_in_school teacher_id
-    list_user = []
-    if teacher_id
-      list_user = User.where(id: teacher_id).pluck(:name, :birth, :id) 
-    else
-      list_user = User.load_user_of_school(current_user).load_teacher.user_has_classroom(Semester.first.id).pluck :name, :birth, :id
-    end
+    list_user = if teacher_id
+                  User.where(id: teacher_id).pluck(:name, :birth, :id)
+                else
+                  User.load_user_of_school(current_user).load_teacher.user_has_classroom(Semester.first.id).pluck :name, :birth, :id
+                end
     list = []
     list_user.map{|u| list << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
     list

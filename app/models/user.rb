@@ -43,7 +43,7 @@ class User < ApplicationRecord
   scope :load_manager, ->{where(role: 2)}
 
   scope :load_teacher, ->{where(role: 1)}
-  
+
   scope :load_parent, ->{where(role: 0)}
 
   scope :is_working, ->{where(working: 1)}
