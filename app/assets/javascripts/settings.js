@@ -98,6 +98,19 @@ function readURL(input) {
   }
 }
 
+function load_dialog(content){
+  var dialog = $('#dialog');
+  dialog.dialog({
+    buttons : {
+      'Refresh now' : function() {
+        location.reload();
+      }
+    }
+  });
+  dialog.html(content);
+  dialog.dialog('open');
+}
+
 Number.prototype.toHHMMSS = function () {
   var sec_num = parseInt(this, 10);
   var hours   = Math.floor(sec_num / 3600);

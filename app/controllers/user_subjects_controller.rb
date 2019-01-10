@@ -20,9 +20,7 @@ class UserSubjectsController < ApplicationController
   end
 
   def destroy
-    if @user_subject.check_present?
-      flash[:danger] = "mon hoc co gia tri con"
-    elsif @user_subject.destroy
+    if @user_subject.destroy
       flash[:success] = "oke"
     else
       flash[:danger] = "Loi"

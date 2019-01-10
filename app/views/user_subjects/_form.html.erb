@@ -4,7 +4,7 @@
     <div class="col-md-10">
       <ul id="list-subject" class="connectedSortable">
         <% list_subject(@teacher).each do |subject| %>
-          <li class="ui-state-default bg-green" id="<%= subject[0] %>"><%= subject[1] %></li>
+          <li class="ui-state-default" id="<%= subject[0] %>"><%= subject[1] %></li>
         <% end %>
       </ul>
     </div>
@@ -15,7 +15,7 @@
     <div class="col-md-10">
       <ul id="list-subject-teacher" class="connectedSortable">
         <% @teacher.user_subjects.each do |us| %>
-          <li class="ui-state-default bg-green" id="<%= us.subject.id %>"><%= us.subject_name %></li>
+          <li class="ui-state-default" id="<%= us.subject.id %>"><%= us.subject_name %></li>
         <% end %>
       </ul>
     </div> 
