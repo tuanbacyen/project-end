@@ -19,7 +19,7 @@
           </td>
           <td><%= user.phone %></td>
           <td><%= image_tag user.avatar.thumb.url, class: "img-thumb-size" %></td>
-          <td><%= working_label user.working %></td>
+          <td class="center-attr"><%= working_label user.working %></td>
           <td>
             <ul>
               <% if user.user_subjects.present? %>

@@ -1,6 +1,6 @@
 class SchoolsController < ApplicationController
   load_and_authorize_resource except: :create
-  
+
   before_action :user_confirmed, :authenticate_user!
   before_action :load_all_schools, only: :index
   before_action :new_school, only: :new

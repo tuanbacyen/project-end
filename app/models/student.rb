@@ -8,7 +8,7 @@ class Student < ApplicationRecord
 
   belongs_to :parent, class_name: :User, foreign_key: "user_id", optional: true
   belongs_to :school
-  
+
   validate :birth_not_than_today
   validates :student_code, presence: true, uniqueness: true
   validates :name, presence: true
@@ -18,7 +18,7 @@ class Student < ApplicationRecord
 
   delegate :name, :phone, to: :parent, prefix: true, allow_nil: true
 
-  scope :load_all_students, (lambda do ||
+  scope :load_all_students, (lambda do
     order(created_at: :desc)
     .select :id, :student_code, :name, :birth, :address, :favorite, :phone, :father_name,
       :father_phone, :mother_name, :mother_phone, :user_id, :avatar, :studying
@@ -33,7 +33,7 @@ class Student < ApplicationRecord
     now.year - birth.year -
       (now.month > birth.month || (now.month == birth.month && now.day >= birth.day) ? 0 : 1)
   end
-  
+
   private
   def birth_not_than_today
     return if birth.blank?
