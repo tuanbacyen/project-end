@@ -8,7 +8,6 @@ class User < ApplicationRecord
 
   has_many :school_users, dependent: :destroy
   has_many :classrooms, dependent: :destroy
-  has_many :class_subjects, dependent: :destroy
   has_many :students, dependent: :destroy
   has_many :attendances, dependent: :destroy
   has_many :comments, dependent: :destroy

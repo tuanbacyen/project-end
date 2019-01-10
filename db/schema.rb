@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_09_020900) do
+ActiveRecord::Schema.define(version: 2019_01_10_041417) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -28,13 +28,11 @@ ActiveRecord::Schema.define(version: 2019_01_09_020900) do
 
   create_table "class_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.bigint "classroom_id", null: false
-    t.bigint "subject_id", null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.bigint "user_subject_id"
     t.index ["classroom_id"], name: "index_class_subjects_on_classroom_id"
-    t.index ["subject_id"], name: "index_class_subjects_on_subject_id"
-    t.index ["user_id"], name: "index_class_subjects_on_user_id"
+    t.index ["user_subject_id"], name: "index_class_subjects_on_user_subject_id"
   end
 
   create_table "classrooms", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -267,8 +265,7 @@ ActiveRecord::Schema.define(version: 2019_01_09_020900) do
   add_foreign_key "attendances", "units"
   add_foreign_key "attendances", "users"
   add_foreign_key "class_subjects", "classrooms"
-  add_foreign_key "class_subjects", "subjects"
-  add_foreign_key "class_subjects", "users"
+  add_foreign_key "class_subjects", "user_subjects"
   add_foreign_key "classrooms", "schools"
   add_foreign_key "classrooms", "semesters"
   add_foreign_key "classrooms", "users"
