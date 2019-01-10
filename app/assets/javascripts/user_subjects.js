@@ -17,6 +17,16 @@ $(document).ready(function(){
     var teacher_id = window.location.search.split('user_id=')[1];
     send_ajax_user_subjects('POST', '/user_subjects', {subject_ids: subject_ids, user_id: teacher_id});
   });
+
+  $('.list-group-item').on('mouseover', function(event) {
+    event.preventDefault();
+    $(this).closest('li').addClass('open');
+  });
+  
+  $('.list-group-item').on('mouseout', function(event) {
+    event.preventDefault();
+    $(this).closest('li').removeClass('open');
+  });
 });
 
 function send_ajax_user_subjects(method, url, data){
@@ -49,17 +59,4 @@ function send_ajax_user_subjects(method, url, data){
       alert('has an error');
     }
   });
-}
-
-function load_dialog(content){
-  var dialog = $('#dialog');
-  dialog.dialog({
-    buttons : {
-      'Refresh now' : function() {
-        location.reload();
-      }
-    }
-  });
-  dialog.html(content);
-  dialog.dialog('open');
 }
