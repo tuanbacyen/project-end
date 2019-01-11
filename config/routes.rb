@@ -12,7 +12,9 @@ Rails.application.routes.draw do
   get "new_auto_subject", to: "subjects#new_auto", as: "new_auto_subject"
   post "create_auto_subject", to: "subjects#create_auto", as: "create_auto_subject"
   resources :notify_types
-  resources :classrooms
+  resources :classrooms do
+    resources :class_subjects, only: [:index, :new, :create, :destroy]
+  end
   post "teacher_can_teach", to: "classrooms#teacher_can_teach", as: "teacher_can_teach"
   resources :students do
     resources :student_classrooms, only: [:index, :new, :create, :destroy]

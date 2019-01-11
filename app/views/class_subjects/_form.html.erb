@@ -1,0 +1,43 @@
+<%= form_tag classroom_class_subjects_path do %>
+  <table class="table">
+    <thead>
+      <tr>
+        <th class="col-md-1">
+          <input type="checkbox" id="check-all-class-subject" class="icheck-me" data-skin="square" data-color="green">
+        </th>
+        <th class="col-md-4">
+          subject name
+        </th>
+        <th class="col-md-7">
+          teacher
+        </th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @subjects.each_with_index do |subject, i| %>
+        <tr class="<%= "success" if i.even? %>" id="<%= i %>">
+          <td>
+            <% unless subject.user_subjects.size == 0 %>
+              <%= check_box_tag "check_class_subject[]", subject.id, subject.user_subjects.size == 0 ? false : true,
+                class: "icheck-me", data: { "skin" => "square", "color" => "green" } %>
+            <% end %>
+          </td>
+          <td>
+            <%= subject.name %>
+          </td>
+          <td>
+            <% if subject.user_subjects.size == 0 %>
+              <span>No teacher in subject</span>
+            <% else %>
+              <%= select_tag "teacher_#{subject.id}", options_from_collection_for_select(list_teacher_subject(subject), "last", "first"), class: "chosen-select" %>
+            <% end %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <div class="box-footer">
+    <%= link_to "Back", classroom_class_subjects_path, class: "btn btn-default" %>
+    <%= submit_tag "Submit", class: "btn btn-success pull-right" %>      
+  </div>
+<% end %>

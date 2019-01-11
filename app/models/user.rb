@@ -35,6 +35,10 @@ class User < ApplicationRecord
     eager_load(:school_users).where("school_users.school_id in (?)", user.school_users.pluck(:school_id))
   end)
 
+  scope :load_teacher_of_school, (lambda do |school_id, ids|
+    eager_load(:school_users, :user_subjects).where("school_users.school_id in (?) and users.id in (?)", school_id, ids)
+  end)
+
   scope :user_has_classroom, (lambda do |semester_id|
     where.not(id: Classroom.where(semester_id: semester_id).pluck(:user_id)).uniq
   end)
@@ -94,6 +98,10 @@ class User < ApplicationRecord
 
   def name_school
     school_users.first.school.name
+  end
+
+  def first_school
+    school_users.first.school
   end
 
   def build_student

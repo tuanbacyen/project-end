@@ -5,9 +5,7 @@ module ClassroomsHelper
                 else
                   User.load_user_of_school(current_user).load_teacher.user_has_classroom(Semester.first.id).pluck :name, :birth, :id
                 end
-    list = []
-    list_user.map{|u| list << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
-    list
+    user_collection_select list_user
   end
 
   def list_semester
@@ -23,5 +21,11 @@ module ClassroomsHelper
 
   def convert_date_to_local date
     date&.strftime(t("date")) if date
+  end
+
+  def user_collection_select list_user
+    list = []
+    list_user.map{|u| list << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
+    list
   end
 end

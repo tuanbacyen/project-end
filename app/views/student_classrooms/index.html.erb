@@ -3,10 +3,12 @@
     <div class="box-header center-attr">
       <h3 class="box-title">List class of student : <%= @student.name %></h3>
     </div>
-    <%= link_to "Back", students_path, class: "btn btn-default" %>
-    <%= link_to new_student_student_classroom_path, class: "btn btn-lg" do %>
-      <i class="fa fa-user-plus"></i> New class
-    <% end %>
+    <div class="col-md-12">
+      <%= link_to "Back", students_path, class: "btn btn-default" %>
+      <%= link_to new_student_student_classroom_path, class: "btn btn-lg" do %>
+        <i class="fa fa-user-plus"></i> New class
+      <% end %>
+    </div>
     <%= render "grid_student_classroom" %>
   </div>
 </section>
