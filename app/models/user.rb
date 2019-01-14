@@ -22,12 +22,16 @@ class User < ApplicationRecord
   validates_length_of :identity_card, minimum: 9, maximum: 12,
                       numericality: {only_integer: true}, allow_blank: true
   validates_uniqueness_of :identity_card, allow_blank: true
+  validates_uniqueness_of :usercode, allow_blank: true
+
+  after_create :set_usercode_create
+  before_update :set_usercode_update
 
   enum role: {student_parent: 0, teacher: 1, manage: 2, admin: 3}
 
   scope :load_users?, (lambda do
     order(updated_at: :desc)
-    .select :id, :email, :phone, :name, :identity_card, :gender, :address, :birth, :role, :avatar,
+    .select :id, :email, :phone, :name, :usercode, :identity_card, :gender, :address, :birth, :role, :avatar,
       :working, :confirmed
   end)
 
@@ -50,6 +54,8 @@ class User < ApplicationRecord
   scope :load_parent, ->{where(role: 0)}
 
   scope :is_working, ->{where(working: 1)}
+
+  scope :last_code, ->{order(id: :asc).where.not(usercode: nil, usercode: "").last.usercode[1..-1].to_i}
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)
@@ -212,5 +218,31 @@ class User < ApplicationRecord
   def birth_not_than_today
     return if birth.blank?
     errors.add(:base, "Birthday cannot equal than today") if age.negative? || birth.today?
+  end
+
+  def role_to_code
+    code = if admin?
+              "A"
+            elsif manage?
+              "M"
+            elsif teacher?
+              "T"
+            else
+              "P"
+            end
+    return code
+  end
+
+  def set_usercode_create
+    code = "#{role_to_code}#{User.last_code + 1}"
+    update usercode: code
+  end
+
+  def set_usercode_update
+    if role_changed? && usercode.present?
+      self.usercode = "#{role_to_code}#{self.usercode[1..-1]}"
+    elsif !usercode.present?
+      self.usercode = "#{role_to_code}#{User.last_code + 1}"
+    end
   end
 end

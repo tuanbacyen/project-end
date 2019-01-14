@@ -103,7 +103,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def get_user
-    load_this_user
+    load_user
     if @user
       semester_convert_date
       return
@@ -113,7 +113,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def get_user_confirm
-    load_this_user
+    load_user
     if @user
       semester_convert_date
       return
