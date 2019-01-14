@@ -2,9 +2,10 @@
   <table class="table table-bordered table-striped datatable">
     <thead>
       <tr>
+        <th class="col-md-1">User code</th>
         <th class="col-md-2">Name</th>
         <th class="col-md-2">Email</th>
-        <th class="col-md-2">Phone</th>
+        <th class="col-md-1">Phone</th>
         <th class="col-md-1">Role</th>
         <th class="col-md-1">Working</th>
         <th class="col-md-2">Avatar</th>
@@ -14,6 +15,7 @@
     <tbody>
       <% @users.each do |user| %>
         <tr>
+          <td><%= user.usercode %></td>
           <td>
             <%= link_to user.name, admin_user_path(user), method: :GET,
             data: {toggle: "modal", target: "#modal-admin"}, remote: true %>
@@ -29,16 +31,5 @@
         </tr>
       <% end %>
     </tbody>
-    <tfoot>
-      <tr>
-        <th>Name</th>
-        <th>Email</th>
-        <th>Phone</th>
-        <th>Role</th>
-        <th>Working</th>
-        <th>Avatar</th>
-        <th>Action</th>
-      </tr>
-    </tfoot>
   </table>
 </div>

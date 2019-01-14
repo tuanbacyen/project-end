@@ -6,6 +6,6 @@ class UserSubject < ApplicationRecord
 
   validates_uniqueness_of :user_id, scope: :subject_id, message: "Giáo viên đã có môn học này"
 
-  delegate :name, to: :teacher, prefix: true, allow_nil: true
+  delegate :name, :usercode, to: :teacher, prefix: true, allow_nil: true
   delegate :name, to: :subject, prefix: true, allow_nil: true
 end

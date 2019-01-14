@@ -3,7 +3,7 @@ module ClassroomsHelper
     list_user = if teacher_id
                   User.where(id: teacher_id).pluck(:name, :birth, :id)
                 else
-                  User.load_user_of_school(current_user).load_teacher.user_has_classroom(Semester.first.id).pluck :name, :birth, :id
+                  User.load_user_of_school(current_user).load_teacher.user_has_classroom(Semester.first.id).pluck :name, :birth, :id, :usercode
                 end
     user_collection_select list_user
   end
@@ -25,7 +25,7 @@ module ClassroomsHelper
 
   def user_collection_select list_user
     list = []
-    list_user.map{|u| list << ["#{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
+    list_user.map{|u| list << ["#{u[3]} - #{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
     list
   end
 end

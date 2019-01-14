@@ -2,7 +2,8 @@
   <table class="table table-bordered table-striped datatable">
     <thead>
       <tr>
-        <th class="col-md-4">Teacher</th>
+        <th class="col-md-1">Teacher code</th>
+        <th class="col-md-3">Teacher</th>
         <th class="col-md-4">Môn học</th>
         <th class="col-md-4">Action</th>
       </tr>
@@ -10,6 +11,7 @@
     <tbody>
       <% @class_subjects.each do |class_subject| %>
         <tr>
+          <td><%= class_subject.teacher.teacher_usercode %></td>
           <td><%= class_subject.teacher.teacher_name %></td>
           <td><%= class_subject.teacher.subject_name %></td>
           <td>
