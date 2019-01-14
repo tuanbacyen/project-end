@@ -55,7 +55,7 @@ class User < ApplicationRecord
 
   scope :is_working, ->{where(working: 1)}
 
-  scope :last_code, ->{order(id: :asc).where.not(usercode: nil, usercode: "").last.usercode[1..-1].to_i}
+  scope :last_code, ->{order(id: :asc).where.not(usercode: [nil, ""]).last.usercode[1..-1].to_i}
 
   scope :user_confirmed, (lambda do |confirmed|
     where(confirmed: confirmed)
@@ -221,7 +221,7 @@ class User < ApplicationRecord
   end
 
   def role_to_code
-    code = if admin?
+    rcode = if admin?
               "A"
             elsif manage?
               "M"
@@ -230,7 +230,7 @@ class User < ApplicationRecord
             else
               "P"
             end
-    return code
+    rcode
   end
 
   def set_usercode_create
@@ -240,7 +240,7 @@ class User < ApplicationRecord
 
   def set_usercode_update
     if role_changed? && usercode.present?
-      self.usercode = "#{role_to_code}#{self.usercode[1..-1]}"
+      self.usercode = "#{role_to_code}#{usercode[1..-1]}"
     elsif !usercode.present?
       self.usercode = "#{role_to_code}#{User.last_code + 1}"
     end
