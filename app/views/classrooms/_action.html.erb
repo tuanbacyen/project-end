@@ -1,5 +1,9 @@
-<%= link_to classroom_class_subjects_path(classroom), method: :GET, class: "btn btn-info" do %>
-  <i class="fa fa-briefcase"></i> subject
+<%= link_to students_classs_path(classroom_id: classroom), method: :GET, class: "btn btn-info" do %>
+  <i class="fa fa-info-circle"></i> List student
+<% end %>
+
+<%= link_to classroom_class_subjects_path(classroom), method: :GET, class: "btn btn-success" do %>
+  <i class="fa fa-briefcase"></i> Subject
 <% end %>
 
 <%= link_to edit_classroom_path(classroom), method: :GET, class: "btn btn-warning" do %>

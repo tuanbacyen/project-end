@@ -24,6 +24,10 @@ class Student < ApplicationRecord
       :father_phone, :mother_name, :mother_phone, :user_id, :avatar, :studying
   end)
 
+  scope :load_student_in_class, (lambda do |class_id|
+    eager_load(:student_classrooms).where("student_classrooms.classroom_id in (?)", class_id)    
+  end)
+
   def check_present?
     attendances.present? || comments.present? || day_offs.present? || student_classrooms.present?
   end
