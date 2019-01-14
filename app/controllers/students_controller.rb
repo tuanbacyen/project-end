@@ -6,6 +6,7 @@ class StudentsController < ApplicationController
   before_action :load_student, only: :show
   before_action :new_student, only: :new
   before_action :get_student, only: [:destroy, :update, :edit]
+  before_action :get_classroom, only: [:students_classs]
 
   def show; end
 
@@ -45,6 +46,10 @@ class StudentsController < ApplicationController
     redirect_to students_path
   end
 
+  def students_classs
+    @students = Student.load_student_in_class @classroom.id
+  end
+
   private
   def load_all_students
     @students = current_user.manage_get_student.load_all_students
@@ -68,5 +73,12 @@ class StudentsController < ApplicationController
     return if @student
     flash[:danger] = "student not found"
     redirect_to students_path
+  end
+
+  def get_classroom
+    @classroom = Classroom.find_by(id: params[:classroom_id])
+    return if @classroom
+    flash[:danger] = "classroom not found"
+    redirect_to classrooms_path
   end
 end

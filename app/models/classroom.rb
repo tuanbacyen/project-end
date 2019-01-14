@@ -11,7 +11,7 @@ class Classroom < ApplicationRecord
   delegate :name, to: :teacher, prefix: true, allow_nil: true
 
   validates :name, presence: true
-  validates :sizes, presence: true, inclusion: {in: 20..50, message: "%{value} is not a valid size"}
+  validates :sizes, presence: true, inclusion: {in: 0..50, message: "%{value} is not a valid size"}
   validates :name, presence: true, length: {maximum: 10}
   validates_uniqueness_of :name, scope: :semester_id, message: "%{value} Đã tồn tại trong học kỳ"
   validates :user_id, presence: true
@@ -33,5 +33,9 @@ class Classroom < ApplicationRecord
 
   def check_present?
     class_subjects.present? || students.present?
+  end
+
+  def update_size
+    update sizes: student_classrooms.size
   end
 end
