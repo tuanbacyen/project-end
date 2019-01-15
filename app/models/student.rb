@@ -25,7 +25,7 @@ class Student < ApplicationRecord
   end)
 
   scope :load_student_in_class, (lambda do |class_id|
-    eager_load(:student_classrooms).where("student_classrooms.classroom_id in (?)", class_id)    
+    eager_load(:student_classrooms).where("student_classrooms.classroom_id in (?)", class_id)
   end)
 
   def check_present?
