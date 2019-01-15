@@ -20,6 +20,8 @@ Rails.application.routes.draw do
     resources :student_classrooms, only: [:index, :new, :create, :destroy]
   end
   get "students_classs", to: "students#students_classs", as: "students_classs"
+  resources :student_subjects
+  get "show_result", to: "student_subjects#show_result", as: "show_result"
   resources :user_subjects, only: [:index, :new, :create, :destroy]
   resources :feedbacks, expect: :edit
   namespace :admin do

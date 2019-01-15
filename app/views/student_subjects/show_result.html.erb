@@ -1,0 +1,34 @@
+<%= link_to student_subjects_path(student_id: @student_class.student_id), class: "btn btn-lg" do %>
+  <i class="fa fa-backward"></i> back
+<% end %>
+
+<div class="box-body">
+  <table class="table table-bordered table-striped datatable">
+    <thead>
+      <tr>
+        <th class="col-md-1">+</th>
+        <th class="col-md-2">Nam hoc</th>
+        <th class="col-md-2">hoc ky</th>
+        <th class="col-md-2">class name</th>
+        <th class="col-md-2">diem trung binh</th>
+        <th class="col-md-1">xep loai</th>
+        <th class="col-md-1">action</th>
+      </tr>
+    </thead>
+    <tbody>
+      <% @student_classrooms.each do |student_classroom| %>
+        <tr>
+          <td><%= student_classroom.classroom.semester.school_year %></td>
+          <td><%= key_to_text_semester student_classroom.classroom.semester.period %></td>
+          <td><%= student_classroom.classroom.name %></td>
+          <td><%= average_of_student_in_class student_classroom %></td>
+          <td><%= score_to_text student_classroom %></td>
+          <td>
+            <%= render "action", student_classroom: student_classroom %>
+          </td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
+
