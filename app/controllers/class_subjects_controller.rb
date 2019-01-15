@@ -21,9 +21,9 @@ class ClassSubjectsController < ApplicationController
 
   def destroy
     if @class_subject.destroy
-      flash[:success] = t "delete_success"
+      flash[:success] = t "delete success"
     else
-      flash[:danger] = t "delete_failed"
+      flash[:danger] = t "delete failed"
     end
     redirect_to classroom_class_subjects_path
   end
@@ -33,7 +33,7 @@ class ClassSubjectsController < ApplicationController
   def get_classroom
     @classroom = Classroom.find_by(id: params[:classroom_id])
     return if @classroom
-    flash[:danger] = "classroom_not_found"
+    flash[:danger] = "classroom not found"
     redirect_to classrooms_path
   end
 

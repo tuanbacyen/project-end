@@ -24,9 +24,9 @@ class StudentClassroomsController < ApplicationController
 
   def destroy
     if @student_classroom.destroy
-      flash[:success] = t "delete_success"
+      flash[:success] = t "delete success"
     else
-      flash[:danger] = t "delete_failed"
+      flash[:danger] = t "delete failed"
     end
     redirect_to student_student_classrooms_path
   end
@@ -36,7 +36,7 @@ class StudentClassroomsController < ApplicationController
   def get_student
     @student = Student.find_by(id: params[:student_id])
     return if @student
-    flash[:danger] = "student_not_found"
+    flash[:danger] = "student not found"
     redirect_to students_path
   end
 

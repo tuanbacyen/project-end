@@ -44,7 +44,7 @@ class UserSubjectsController < ApplicationController
   def get_user_subject
     @user_subject = UserSubject.find_by(id: params[:id])
     return if @user_subject
-    flash[:danger] = "user_subject not found"
+    flash[:danger] = "user subject not found"
     redirect_to user_subjects_path
   end
 end
