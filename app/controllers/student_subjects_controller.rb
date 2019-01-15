@@ -8,7 +8,6 @@ class StudentSubjectsController < ApplicationController
   end
 
   def show_result
-
   end
 
   def index
