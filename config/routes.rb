@@ -12,6 +12,7 @@ Rails.application.routes.draw do
   get "new_auto_subject", to: "subjects#new_auto", as: "new_auto_subject"
   post "create_auto_subject", to: "subjects#create_auto", as: "create_auto_subject"
   resources :notify_types
+  resources :point_types
   resources :classrooms do
     resources :class_subjects, only: [:index, :new, :create, :destroy]
   end

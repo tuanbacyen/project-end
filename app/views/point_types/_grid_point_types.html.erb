@@ -3,17 +3,19 @@
     <thead>
       <tr>
         <th class="col-md-2">STT</th>
-        <th class="col-md-6">Name</th>
+        <th class="col-md-3">Name</th>
+        <th class="col-md-3">Value</th>
         <th class="col-md-4">Action</th>
       </tr>
     </thead>
     <tbody>
-      <% @notify_types.each_with_index do |notify_type, index| %>
+      <% @point_types.each_with_index do |point_type, index| %>
         <tr>
           <td><%= index + 1 %></td>
-          <td><%= notify_type.name %></td>
+          <td><%= point_type.name %></td>
+          <td><%= point_type.value %></td>
           <td>
-            <%= render "action", notify_type: notify_type %>
+            <%= render "action", point_type: point_type %>
           </td>
         </tr>
       <% end %>
