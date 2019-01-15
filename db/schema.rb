@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_14_012846) do
+ActiveRecord::Schema.define(version: 2019_01_15_035532) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -162,7 +162,6 @@ ActiveRecord::Schema.define(version: 2019_01_14_012846) do
 
   create_table "student_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.float "average", default: 0.0
-    t.float "average_total", default: 0.0
     t.string "classification", default: "F"
     t.bigint "class_subject_id", null: false
     t.datetime "created_at", null: false

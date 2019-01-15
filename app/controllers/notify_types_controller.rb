@@ -23,7 +23,7 @@ class NotifyTypesController < ApplicationController
 
   def update
     if @notify_type.update_attributes notify_type_params
-      flash[:success] = t "update_success"
+      flash[:success] = t "update success"
       redirect_to notify_types_path
     else
       render :edit
@@ -57,7 +57,7 @@ class NotifyTypesController < ApplicationController
   def get_notify_type
     @notify_type = NotifyType.find_by(id: params[:id])
     return if @notify_type
-    flash[:danger] = "notify_type not found"
+    flash[:danger] = "notify type not found"
     redirect_to notify_types_path
   end
 end

@@ -26,7 +26,7 @@ class SchoolsController < ApplicationController
       flash[:success] = t "update_success"
       redirect_to schools_path
     else
-      flash[:danger] = t "update_failed"
+      flash[:danger] = t "update failed"
       render :edit
     end
   end

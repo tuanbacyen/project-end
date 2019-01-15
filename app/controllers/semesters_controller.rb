@@ -24,7 +24,7 @@ class SemestersController < ApplicationController
 
   def update
     if @semester.update_attributes semester_params
-      flash[:success] = t "update_success"
+      flash[:success] = t "update success"
       redirect_to semesters_path
     else
       semester_convert_date

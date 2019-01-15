@@ -1,0 +1,78 @@
+<%= link_to students_path, class: "btn btn-lg" do %>
+  <i class="fa fa-backward"></i> back
+<% end %>
+<div class="box-body">
+  <table class="custom-table">
+      <thead>
+          <tr>
+            <th class="col-md-1"></th>
+            <th class="col-md-1"></th>
+            <th class="col-md-2">ten mon hoc</th>
+            <th class="col-md-2">giao vien day mon hoc</th>
+            <th class="col-md-2">diem trung binh</th>
+            <th class="col-md-2">xep loai chu</th>
+            <th class="col-md-2">action</th>
+          </tr>
+      </thead>
+
+      <% @student_classrooms.each do |student_classroom| %>
+        <tbody>
+          <tr>
+            <td class="page-header">
+              <button type="button" class="tbtn">
+                <i class="fa fa-plus-circle %>"></i>
+              </button>
+            </td>
+            <td class="page-header">
+              <%= student_classroom.classroom.name %>
+            </td>
+            <td class="page-header">
+              <%= key_to_text_semester student_classroom.classroom.semester.period %>
+            </td>
+            <td class="page-header">
+              <%= student_classroom.classroom.semester.school_year %>
+            </td>
+            <td class="page-header">
+              <%= average_of_student_in_class student_classroom %>
+            </td>
+            <td class="page-header">
+              <%= score_to_text student_classroom %>
+            </td>
+            <td class="page-header">
+              <%= render "action", student_classroom: student_classroom %>
+            </td>
+          </tr>
+          <% if student_classroom.student_subjects.present? %>
+            <% student_classroom.student_subjects.each_with_index do |subject, index| %>
+              <tr class="toggler">
+                <% if index == 0 %>
+                  <td rowspan="<%= student_classroom.student_subjects.size %>" ></td>
+                <% end %>
+                <td>
+                  <%= index + 1 %>
+                </td>
+                <td>
+                  <%= subject.name_subject %>
+                </td>
+                <td>
+                  <%= subject.name_teacher %>
+                </td>
+                <td>
+                  <%= subject.average %>
+                </td>
+                <td>
+                  <%= subject.classification %>
+                </td>
+                <td>action</td>
+              </tr>
+            <% end %>
+          <% else %>
+            <tr class="toggler">
+              <td></td>
+              <td colspan="6" class="center-attr">No value</td>
+            </tr>
+          <% end %>
+        </tbody>
+      <% end %>
+  </table>
+</div>

@@ -23,7 +23,7 @@ class ClassroomsController < ApplicationController
 
   def update
     if @classroom.update_attributes classroom_params
-      flash[:success] = t "update_success"
+      flash[:success] = t "update success"
       redirect_to classrooms_path
     else
       render :edit
