@@ -1,3 +1,9 @@
-<%= link_to show_result_path(student_subject_id: student_classroom.id), method: :GET, class: "btn btn-info" do %>
-  <i class="fa fa-database"></i> Detail result
+<% if status %>
+  <%= link_to show_result_path(student_subject_id: student_classroom.id), method: :GET, class: "btn btn-info" do %>
+    <i class="fa fa-database"></i> Details Information
+  <% end %>
+<% else %>
+  <%= link_to "url-score", method: :GET, class: "btn btn-warning" do %>
+    <i class="fa fa-database"></i> Details
+  <% end %>
 <% end %>
