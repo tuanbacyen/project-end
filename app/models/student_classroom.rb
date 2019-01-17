@@ -6,6 +6,9 @@ class StudentClassroom < ApplicationRecord
 
   validate :student_in_semester
 
+  delegate :name, to: :student, prefix: true, allow_nil: true
+  delegate :name, to: :classroom, prefix: true, allow_nil: true
+
   after_create :set_size
   after_destroy :set_size
 
