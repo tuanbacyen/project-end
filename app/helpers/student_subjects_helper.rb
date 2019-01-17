@@ -20,4 +20,20 @@ module StudentSubjectsHelper
       "Giỏi"
     end
   end
+
+  def load_score_mouth subject
+    subject.points.load_point_mouth.pluck(:point).map(&:to_i).join(",  ")
+  end
+
+  def load_score_fifteen subject
+    subject.points.load_point_fifteen.pluck(:point).map(&:to_i).join(",  ")
+  end
+
+  def load_score_sixty subject
+    subject.points.load_point_sixty.pluck(:point).map(&:to_i).join(",  ")
+  end
+
+  def load_score_finish subject
+    subject.points.load_point_finish.pluck(:point).map(&:to_i).join(",  ")
+  end
 end
