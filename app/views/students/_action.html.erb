@@ -2,18 +2,18 @@
   <i class="fa fa-edit"></i> Edit
 <% end %>
 
-<%= link_to student_path(student), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
-  <i class="fa fa-trash-o"></i> Destroy
-<% end %>
-
-<%= link_to student_path(student), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary" do %>
-  <i class="fa fa-eye"></i> Detail
-<% end %>
-
 <%= link_to student_student_classrooms_path(student), method: :GET, class: "btn bg-green" do %>
   <i class="fa fa-briefcase"></i> Class
 <% end %>
 
 <%= link_to student_subjects_path(student_id: student), method: :GET, class: "btn btn-info" do %>
   <i class="fa fa-eye"></i> Result
+<% end %>
+
+<%= link_to student_path(student), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary" do %>
+  <i class="fa fa-eye"></i> Detail
+<% end %>
+
+<%= link_to student_path(student), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+  <i class="fa fa-trash-o"></i> Destroy
 <% end %>

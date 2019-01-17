@@ -3,6 +3,7 @@
     <div class="box-header center-attr">
       <h3 class="box-title"><%= "chi tiet diem mon hoc #{@student_subject.name_subject} cua hoc sinh: #{@student_subject.student_classroom.student_name}"%></h3>
     </div>
+    <%= link_to "Back", students_path, class: "btn btn-default" %>
     <hr>
     <div class="box-body">
       <table class="table table-bordered table-striped datatable">

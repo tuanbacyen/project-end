@@ -1,0 +1,40 @@
+<table style="width:100%">
+  <tr>
+    <th>STT</th>
+    <th>subject name</th>
+    <th>teacher name</th>
+    <th>Mieng</th>
+    <th>15p</th>
+    <th>1 tiet</th>
+    <th>hoc ky</th>
+    <th>diem trung binh</th>
+  </tr>
+  <% student_classroom.student_subjects.each_with_index do |subject, index| %>
+    <tr>
+      <td>
+        <%= index + 1 %>
+      </td>
+      <td>
+        <%= subject.name_subject %>
+      </td>
+      <td>
+        <%= subject.name_teacher %>
+      </td>
+      <td>
+        <%= load_score_mouth subject %>
+      </td>
+      <td>
+        <%= load_score_fifteen subject %>
+      </td>
+      <td>
+        <%= load_score_sixty subject %>        
+      </td>
+      <td>
+        <%= load_score_finish subject %>
+      </td>
+      <td>
+        <%= subject.average %>
+      </td>
+    </tr>
+  <% end %>
+</table>
