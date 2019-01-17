@@ -2,11 +2,9 @@ class StudentSubjectsController < ApplicationController
   load_and_authorize_resource
 
   before_action :get_student, only: [:index, :new, :create, :destroy]
-  before_action :get_result, only: :show_result
+  before_action :get_result, only: :show
 
   def show; end
-
-  def show_result; end
 
   def index
     @student_classrooms = @student.student_classrooms
@@ -28,9 +26,9 @@ class StudentSubjectsController < ApplicationController
   end
 
   def get_result
-    @student_subject = StudentSubject.find_by(id: params[:student_subject_id])
-    return if @student_class
-    flash[:danger] = "student classroom not found"
-    redirect_to student_subjects_path
+    @student_subject = StudentSubject.find_by(id: params[:id])
+    return if @student_subject
+    flash[:danger] = "student subject not found"
+    redirect_to students_path
   end
 end
