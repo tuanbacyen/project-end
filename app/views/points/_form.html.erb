@@ -1,0 +1,18 @@
+<%= simple_form_for @point do |f| %>
+  <%= render "shared/error_messages", object: f.object %>
+  <div class="box-body">
+    <%= f.hidden_field :student_subject_id, value: (@point.id ? @point.student_subject.id : @student_subject.id) %>
+    <div class="form-group">
+      <%= f.label :lbl_semester, "point type" %>
+      <%= f.collection_select :point_type_id, list_point_type(@point), :last, :first,
+          {include_blank: false}, {class: "chosen-select"} %>
+    </div>
+    <div class="form-group">
+      <%= f.input :point, placeholder: "value", input_html: { class: "form-control", type: "number", min: 0, max: 10 } %>
+    </div>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", student_subject_path(@point.id ? @point.student_subject.id : @student_subject.id), class: "btn btn-default" %>
+    <%= f.button :submit, class: "btn btn-primary" %>
+  </div>
+<% end %>
