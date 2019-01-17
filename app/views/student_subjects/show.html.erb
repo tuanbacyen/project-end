@@ -21,7 +21,9 @@
               <td><%= point.point %></td>
               <td><%= convert_date point.created_at %></td>
               <td>
-                action edit
+                <%= link_to edit_point_path(id: point.id), method: :GET, class: "btn btn-warning" do %>
+                  <i class="fa fa-trash-o"></i> Edit
+                <% end %>
               </td>
             </tr>
           <% end %>

@@ -22,6 +22,7 @@ Rails.application.routes.draw do
   end
   get "students_classs", to: "students#students_classs", as: "students_classs"
   resources :student_subjects
+  resources :points
   resources :user_subjects, only: [:index, :new, :create, :destroy]
   resources :feedbacks, expect: :edit
   namespace :admin do
