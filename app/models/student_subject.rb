@@ -23,12 +23,11 @@ class StudentSubject < ApplicationRecord
     fifteen = points.load_point_fifteen.pluck(:point)
     sixty = points.load_point_sixty.pluck(:point)
     finish = points.load_point_finish.pluck(:point)
-    
-    mouth = mouth.size == 0 ? 0 : (mouth.inject(0){|sum, el| sum + el}.to_f / mouth.size)
-    fifteen = fifteen.size == 0 ? 0 : (fifteen.inject(0){|sum, el| sum + el}.to_f / fifteen.size)
-    sixty = sixty.size == 0 ? 0 : (sixty.inject(0){|sum, el| sum + el}.to_f / sixty.size)
-    finish = finish.size == 0 ? 0 : (finish.inject(0){|sum, el| sum + el}.to_f / finish.size)
-    (((mouth + fifteen) + sixty*2 + finish*3).to_f / 7).round(2)
+    mouth = mouth.size.zero? ? 0 : (mouth.reduce(0){|a, e| a + e}.to_f / mouth.size)
+    fifteen = fifteen.size.zero? ? 0 : (fifteen.reduce(0){|a, e| a + e}.to_f / fifteen.size)
+    sixty = sixty.size.zero? ? 0 : (sixty.reduce(0){|a, e| a + e}.to_f / sixty.size)
+    finish = finish.size.zero? ? 0 : (finish.reduce(0){|a, e| a + e}.to_f / finish.size)
+    (((mouth + fifteen) + sixty * 2 + finish * 3).to_f / 7).round(2)
   end
 
   def score_to_classification score
