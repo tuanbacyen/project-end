@@ -49,7 +49,7 @@ class PointsController < ApplicationController
     flash[:danger] = "student not found"
     redirect_to student_path
   end
-  
+
   def load_all_points
     @points = nil
   end

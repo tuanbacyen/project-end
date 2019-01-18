@@ -1,6 +1,6 @@
 module ClassroomsHelper
   def list_teacher_in_school semester_id
-    list_user = User.load_user_of_school(current_user).load_teacher.user_has_classroom(semester_id  ).pluck :name, :birth, :id, :usercode
+    list_user = User.load_user_of_school(current_user).load_teacher.user_has_classroom(semester_id).pluck :name, :birth, :id, :usercode
     user_collection_select list_user
   end
 
