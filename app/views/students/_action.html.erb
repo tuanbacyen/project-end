@@ -1,19 +1,26 @@
-<%= link_to edit_student_path(student), method: :GET, class: "btn btn-warning" do %>
-  <i class="fa fa-edit"></i> Edit
-<% end %>
+<% if view == "student" %>
+  <%= link_to edit_student_path(student), method: :GET, class: "btn btn-warning" do %>
+    <i class="fa fa-edit"></i> Edit
+  <% end %>
 
-<%= link_to student_student_classrooms_path(student), method: :GET, class: "btn bg-green" do %>
-  <i class="fa fa-briefcase"></i> Class
-<% end %>
+  <%= link_to student_student_classrooms_path(student), method: :GET, class: "btn bg-green" do %>
+    <i class="fa fa-briefcase"></i> Class
+  <% end %>
 
-<%= link_to student_subjects_path(student_id: student), method: :GET, class: "btn btn-info" do %>
-  <i class="fa fa-eye"></i> Result
-<% end %>
+  <%= link_to student_subjects_path(student_id: student), method: :GET, class: "btn btn-info" do %>
+    <i class="fa fa-eye"></i> Result
+  <% end %>
 
-<%= link_to student_path(student), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary" do %>
-  <i class="fa fa-eye"></i> Detail
-<% end %>
+  <%= link_to student_path(student), method: :GET, data: {toggle: "modal", target: "#modal-admin"}, class: "btn btn-primary" do %>
+    <i class="fa fa-eye"></i> Detail
+  <% end %>
 
-<%= link_to student_path(student), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
-  <i class="fa fa-trash-o"></i> Destroy
+  <%= link_to student_path(student), method: :DELETE, data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+    <i class="fa fa-trash-o"></i> Destroy
+  <% end %>
+<% else %>
+  <%= link_to student_student_classroom_path(id: load_student_classroom(@classroom, student), student_id: student.id), method: :DELETE,
+    data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+    <i class="fa fa-trash-o"></i> Remove form classroom
+  <% end %>
 <% end %>

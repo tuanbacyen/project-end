@@ -14,4 +14,8 @@ module StudentsHelper
       "<span class='label bg-red'>Not Studying</span>".html_safe
     end
   end
+
+  def load_student_classroom classroom, student
+    StudentClassroom.find_by(classroom_id: classroom.id, student_id: student.id)
+  end
 end
