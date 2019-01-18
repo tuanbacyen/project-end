@@ -25,7 +25,7 @@
           <td><%= image_tag student.avatar.thumb.url, class: "img-thumb-size" %></td>
           <td><%= studying_label student.studying %></td>
           <td>
-            <%= render "action", student: student %>
+            <%= render "action", student: student, view: view %>
           </td>
         </tr>
       <% end %>

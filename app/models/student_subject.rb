@@ -13,7 +13,8 @@ class StudentSubject < ApplicationRecord
   end
 
   def update_average
-    update average: score_average(points)
+    score = score_average(points)
+    update average: score, classification: score_to_classification(score)
   end
 
   private
@@ -28,5 +29,20 @@ class StudentSubject < ApplicationRecord
     sixty = sixty.size == 0 ? 0 : (sixty.inject(0){|sum, el| sum + el}.to_f / sixty.size)
     finish = finish.size == 0 ? 0 : (finish.inject(0){|sum, el| sum + el}.to_f / finish.size)
     (((mouth + fifteen) + sixty*2 + finish*3).to_f / 7).round(2)
+  end
+
+  def score_to_classification score
+    case score
+    when 0..3.5
+      "Đúp"
+    when 3.5..5
+      "Yếu"
+    when 5..6.5
+      "Trung bình"
+    when 6.5..8
+      "Khá"
+    else
+      "Giỏi"
+    end
   end
 end

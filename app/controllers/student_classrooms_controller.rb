@@ -2,7 +2,7 @@ class StudentClassroomsController < ApplicationController
   load_and_authorize_resource
 
   before_action :user_confirmed, :authenticate_user!
-  before_action :get_student, only: [:index, :new, :create, :destroy]
+  before_action :get_student, only: [:index, :new, :create]
   before_action :get_student_classroom, only: :destroy
 
   def index

@@ -12,7 +12,7 @@
     </div>
     <div class="form-group col-md-6">
       <%= f.label :lbl_teacher, "teacher" %>
-      <%= f.collection_select :user_id, list_teacher_in_school(@classroom.user_id), :last, :first,
+      <%= f.collection_select :user_id, list_teacher_in_school(@classroom.semester_id), :last, :first,
           {include_blank: false}, {class: "chosen-select", id: "teacher-has"} %>
     </div>
     <div class="form-group col-md-4">

@@ -1,13 +1,14 @@
 <table style="width:100%">
   <tr>
-    <th>STT</th>
-    <th>subject name</th>
-    <th>teacher name</th>
-    <th>Mieng</th>
-    <th>15p</th>
-    <th>1 tiet</th>
-    <th>hoc ky</th>
-    <th>diem trung binh</th>
+    <th >STT</th>
+    <th class="col-md-2">subject name</th>
+    <th class="col-md-2">teacher name</th>
+    <th class="col-md-1">Mieng</th>
+    <th class="col-md-1">15p</th>
+    <th class="col-md-1">1 tiet</th>
+    <th class="col-md-1">hoc ky</th>
+    <th class="col-md-1">diem trung binh</th>
+    <th class="col-md-3">nhan xet</th>
   </tr>
   <% student_classroom.student_subjects.each_with_index do |subject, index| %>
     <tr>
@@ -34,6 +35,9 @@
       </td>
       <td>
         <%= subject.average %>
+      </td>
+      <td>
+        <%= subject.evaluate %>
       </td>
     </tr>
   <% end %>
