@@ -62,10 +62,10 @@ class StudentsController < ApplicationController
   private
   def load_all_students
     @students = if current_user.admin?
-      Student.load_all_students
-    else
-     current_user.manage_get_student.load_all_students
-    end
+                  Student.load_all_students
+                else
+                  current_user.manage_get_student.load_all_students
+                end
   end
 
   def new_student
