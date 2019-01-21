@@ -1,6 +1,7 @@
 module UsersHelper
   def user_roles
-    User.roles.map{|p| p[0] = key_to_text_user(p[0]), p[1] = p[0]}[0..-2]
+    index = current_user.admin? ? 2 : 3
+    User.roles.map{|p| p[0] = key_to_text_user(p[0]), p[1] = p[0]}[0..-index]
   end
 
   def key_to_text_user key
