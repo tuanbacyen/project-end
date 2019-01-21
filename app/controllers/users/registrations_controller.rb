@@ -10,6 +10,10 @@ class Users::RegistrationsController < Devise::RegistrationsController
     yield resource if block_given?
     if resource.persisted?
       if resource.active_for_authentication?
+        cd = resource.confirmed_descriptions.build
+        cd.school_id = params[:user][:confirmed_descriptions][:school_id]
+        cd.infor_student = params[:user][:confirmed_descriptions][:infor_student]
+        cd.save
         flash[:success] = t "devise.registrations.signed_up"
         sign_up(resource_name, resource)
       else

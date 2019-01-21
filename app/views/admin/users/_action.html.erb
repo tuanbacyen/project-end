@@ -19,7 +19,7 @@
     <i class="fa fa-eye"></i> Schools
   <% end %>
 <% else %>
-  <%= link_to admin_confirm_path(id: user), method: :PUT, class: "btn bg-green", remote: true do %>
+  <%= link_to admin_new_confirm_path(id: user), method: :GET, class: "btn bg-green" do %>
     <i class="fa fa-check"></i> confirmed
   <% end %>
 

@@ -5,11 +5,12 @@
         <th>
           <input type="checkbox" id="check-all-user-confirm" class="icheck-me" data-skin="square" data-color="orange">
         </th>
-        <th class="col-md-2">Name</th>
-        <th class="col-md-2">Email</th>
-        <th class="col-md-2">Phone</th>
-        <th class="col-md-1">Role</th>
-        <th class="col-md-2">Avatar</th>
+        <th class="col-md-1">Name</th>
+        <th class="col-md-1">Email</th>
+        <th class="col-md-1">Phone</th>
+        <th class="col-md-1">School</th>
+        <th class="col-md-3">Infor child</th>
+        <th class="col-md-1">Avatar</th>
         <th class="col-md-3">Action</th>
       </tr>
     </thead>
@@ -25,7 +26,8 @@
           </td>
           <td><%= user.email %></td>
           <td><%= user.phone %></td>
-          <td><%= role_label user.role %></td>
+          <td><%= user.get_confirmed.school.name if user.get_confirmed %></td>
+          <td><%= user.get_confirmed.infor_student if user.get_confirmed %></td>
           <td><%= image_tag user.avatar.thumb.url, class: "img-thumb-size" %></td>
           <td>
             <%= render "action", user: user %>

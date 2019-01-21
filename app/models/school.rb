@@ -10,6 +10,7 @@ class School < ApplicationRecord
                     format: {with: /\A(0)[8|9|3|7|5]\d{8,9}/}
 
   scope :load_all_schools?, ->{select :id, :name, :address, :phone}
+  scope :load_all_schools?, ->{select :id, :name, :address, :phone}
 
   def check_present?
     school_users.present? || classrooms.present?

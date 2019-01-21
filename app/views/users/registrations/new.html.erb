@@ -12,11 +12,19 @@
           <%= f.email_field :email, class:"modal-input form-control", autofocus: true, placeholder: t("user.email"), required: true %><br>
           <%= f.text_field :phone, class:"modal-input form-control", placeholder: "phone", required: true %><br>
           <%= f.text_field :name, class:"modal-input form-control", placeholder: "name", required: true %><br>
+          <%= f.fields_for :confirmed_descriptions, class:"form-control" do |h| %>
+            <%= h.label :lbl_school, "what is the school your child learn" %>
+            <%= h.collection_select :school_id, load_school_collection, :last, :first,
+                {include_blank: false}, {class: "chosen-select", id: "select-school"} %>
+          <br>
+            <%= h.label :lbl_school, "infor your child" %>
+            <%= h.text_area :infor_student, class:"modal-input form-control", placeholder: "infor your child", required: true %>
+          <% end %>
+          <br>
           <%= f.password_field :password, class:"modal-input form-control",
             placeholder: "password", required: true %><br>
           <%= f.password_field :password_confirmation, class:"modal-input form-control",
-            placeholder: "pass_confirm", required: true %>  
-
+            placeholder: "pass_confirm", required: true %>
           <hr>
           <div class="row pointer-add toggle" data-toggle="detail-not-input">
             <div align="left" class="col-xs-10 col-md-10">

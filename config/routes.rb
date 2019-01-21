@@ -21,6 +21,7 @@ Rails.application.routes.draw do
     resources :student_classrooms, only: [:index, :new, :create, :destroy]
   end
   get "students_classs", to: "students#students_classs", as: "students_classs"
+  post "student_in_school", to: "students#student_in_school", as: "student_in_school"
   resources :student_subjects
   resources :points
   resources :user_subjects, only: [:index, :new, :create, :destroy]
@@ -30,7 +31,8 @@ Rails.application.routes.draw do
       resources :school_user, only: [:index, :new, :create, :destroy]
     end
     get "users_confirmed", to: "users#index_confirm", as: "users_confirmed"
-    put "confirm", to: "users#confirm", as: "confirm"
+    get "new_confirm", to: "users#new_confirm", as: "new_confirm"
+    post "confirm", to: "users#confirm", as: "confirm"
   end
   devise_for :users, controllers: { registrations: "users/registrations", sessions: "users/sessions",
     passwords: "users/passwords"}

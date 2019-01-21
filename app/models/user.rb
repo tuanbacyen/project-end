@@ -115,6 +115,15 @@ class User < ApplicationRecord
     school_users.first.school.students.build
   end
 
+  def get_confirmed
+    confirmed_descriptions.first
+  end
+
+  def get_school_confirmed
+    return confirmed_descriptions.first.school_id if confirmed_descriptions.present?
+    nil
+  end
+
   def manage_get_student
     school_users.first.school.students if manage?
   end
@@ -169,8 +178,8 @@ class User < ApplicationRecord
   end
 
   def check_present?
-    school_users.present? || classrooms.present? || class_subjects.present? ||
-      students.present? || attendances.present? || comments.present? || day_offs.present?
+    school_users.present? || classrooms.present? || students.present? ||
+      attendances.present? || comments.present? || day_offs.present? || user_subjects.present?
   end
 
   def update_gender

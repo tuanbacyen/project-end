@@ -7,11 +7,11 @@ class Admin::UsersController < ApplicationController
   before_action :load_user, only: :show
   before_action :new_user, only: :new
   before_action :get_user, only: [:destroy, :update, :edit]
-  before_action :get_user_confirm, only: :confirm
+  before_action :get_user_confirm, only: [:confirm, :new_confirm]
 
   rescue_from CanCan::AccessDenied do
     flash[:danger] = "ban khong co quyen"
-    if current_user.admin?
+    if current_user && current_user.admin?
       redirect_to admin_users_path
     else
       redirect_to root_path
@@ -26,9 +26,22 @@ class Admin::UsersController < ApplicationController
 
   def index_confirm; end
 
+  def new_confirm; end
+
   def confirm
-    @user.update confirmed: true
-    repond
+    @student = Student.find_by id: params[:student_confirmed]
+    if @student
+      @user.update confirmed: true
+      su = @user.school_users.build
+      su.school_id = params[:school_confirmed]
+      su.save
+      @student.update user_id: @user.id
+      @user.confirmed_descriptions.destroy_all
+      flash[:success] = "confirmed success"
+    else
+      flash[:danger] = "Has a error"
+    end
+    redirect_to admin_users_confirmed_path
   end
 
   def new; end
@@ -62,6 +75,7 @@ class Admin::UsersController < ApplicationController
   end
 
   def destroy
+    flag = @user.confirmed
     if @user.check_present?
       flash[:danger] = "mon hoc co gia tri con"
     elsif @user.destroy
@@ -69,7 +83,7 @@ class Admin::UsersController < ApplicationController
     else
       flash[:danger] = "Loi"
     end
-    redirect_to admin_users_path
+    redirect_to(flag ? admin_users_path : admin_users_confirmed_path)
   end
 
   private

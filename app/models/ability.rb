@@ -6,7 +6,7 @@ class Ability
     can [:create, :new], Feedback
     can [:show, :edit, :update], User, id: user.id
     if user.admin?
-      can :manage, [School, Semester, Unit, Subject, NotifyType, User, Feedback, SchoolUser, PointType]
+      can :manage, [School, Semester, Unit, Subject, NotifyType, User, Feedback, SchoolUser, PointType, Student]
       cannot [:edit, :update, :destroy], User do |user|
         user.admin?
       end

@@ -50,9 +50,22 @@ class StudentsController < ApplicationController
     @students = Student.load_student_in_class @classroom.id
   end
 
+  def student_in_school
+    list_students = Student.where(school_id: params[:school_id]).student_no_parent.pluck :name, :id, :student_code, :birth
+    list = []
+    list_students.map{|s| list << ["#{s[2]} - #{s[0]} - #{s[3].day}/#{s[3].month}/#{s[3].year}", s[1]]}
+    respond_to do |format|
+      format.json{render json: {list_student: list}}
+    end
+  end
+
   private
   def load_all_students
-    @students = current_user.manage_get_student.load_all_students
+    @students = if current_user.admin?
+      Student.load_all_students
+    else
+     current_user.manage_get_student.load_all_students
+    end
   end
 
   def new_student
