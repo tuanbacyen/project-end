@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_18_014351) do
+ActiveRecord::Schema.define(version: 2019_01_21_020257) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -58,6 +58,17 @@ ActiveRecord::Schema.define(version: 2019_01_18_014351) do
     t.datetime "updated_at", null: false
     t.index ["student_id"], name: "index_comments_on_student_id"
     t.index ["user_id"], name: "index_comments_on_user_id"
+  end
+
+  create_table "confirmed_descriptions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.bigint "user_id", null: false
+    t.bigint "school_id", null: false
+    t.bigint "student_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_confirmed_descriptions_on_school_id"
+    t.index ["student_id"], name: "index_confirmed_descriptions_on_student_id"
+    t.index ["user_id"], name: "index_confirmed_descriptions_on_user_id"
   end
 
   create_table "day_offs", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -272,6 +283,9 @@ ActiveRecord::Schema.define(version: 2019_01_18_014351) do
   add_foreign_key "classrooms", "users"
   add_foreign_key "comments", "students"
   add_foreign_key "comments", "users"
+  add_foreign_key "confirmed_descriptions", "schools"
+  add_foreign_key "confirmed_descriptions", "students"
+  add_foreign_key "confirmed_descriptions", "users"
   add_foreign_key "day_offs", "students"
   add_foreign_key "day_offs", "users"
   add_foreign_key "examination_schedules", "class_subjects"
