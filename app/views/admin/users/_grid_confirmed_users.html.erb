@@ -15,7 +15,7 @@
       </tr>
     </thead>
     <tbody>
-      <% @users.each do |user| %>
+      <% @list_users.each do |user| %>
         <tr id="confirm-<%= user.id %>">
           <td>
             <%= check_box_tag "check_user_confirm[]", user, false, class: "icheck-me", data: { "skin" => "square", "color" => "blue" } %>
