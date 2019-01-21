@@ -4,7 +4,11 @@ module SchoolUserHelper
   end
 
   def load_school_collection
-    School.pluck :name, :id
+    if current_user.admin?
+      School.pluck :name, :id
+    else
+      [[current_user.first_school.name, current_user.first_school.id]]
+    end
   end
 
   def load_student_collection school_id

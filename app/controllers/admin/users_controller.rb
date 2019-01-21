@@ -67,7 +67,7 @@ class Admin::UsersController < ApplicationController
     if @user.update_attributes current_user.it_me?(@user) ? update_params.except(:role) : update_params
       @user.update_gender if params[:user][:gender] == "nil"
       flash[:success] = t "update_success"
-      current_user.admin? ? redirect_to(admin_users_path) : redirect_to(admin_user_path(current_user))
+      redirect_to((current_user.admin? || current_user.manage?) ? admin_users_path : admin_user_path(current_user))
     else
       semester_convert_date
       render :edit
@@ -88,15 +88,29 @@ class Admin::UsersController < ApplicationController
 
   private
   def load_all_users
-    @users = User.load_users?
-                 .user_less_than_role(current_user)
-                 .user_confirmed true
+    @users = if current_user.admin?
+      User.load_users?
+          .user_less_than_role(current_user)
+          .user_confirmed true
+    else
+      User.load_users?
+          .load_user_of_school(current_user)
+          .user_less_than_role(current_user)
+          .user_confirmed true
+    end
   end
 
   def load_all_confirmed_users
-    @users = User.load_users?
-                 .user_less_than_role(current_user)
-                 .user_confirmed false
+    @users = if current_user.admin?
+      User.load_users?
+          .user_less_than_role(current_user)
+          .user_confirmed false
+    else
+      User.load_users?
+          .load_user_confirmed_of_school(current_user)
+          .user_less_than_role(current_user)
+          .user_confirmed false
+    end
   end
 
   def new_user

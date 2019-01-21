@@ -40,6 +40,10 @@ class User < ApplicationRecord
     eager_load(:school_users).where("school_users.school_id in (?)", user.school_users.pluck(:school_id))
   end)
 
+  scope :load_user_confirmed_of_school, (lambda do |user|
+    eager_load(:confirmed_descriptions).where("confirmed_descriptions.school_id in (?)", user.school_users.pluck(:school_id))
+  end)
+
   scope :load_teacher_of_school, (lambda do |school_id, ids|
     eager_load(:school_users, :user_subjects).where("school_users.school_id in (?) and users.id in (?)", school_id, ids)
   end)
@@ -63,7 +67,7 @@ class User < ApplicationRecord
   end)
 
   scope :user_less_than_role, (lambda do |current_user|
-    where("role < ?", current_user.get_role)
+    where("role <= ?", current_user.get_role)
   end)
 
   def admin?
@@ -104,7 +108,11 @@ class User < ApplicationRecord
   end
 
   def name_school
-    school_users.first.school.name
+    if admin?
+      "all school"
+    else
+      school_users.first.school.name
+    end
   end
 
   def first_school

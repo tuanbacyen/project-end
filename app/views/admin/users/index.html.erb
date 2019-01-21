@@ -1,7 +1,7 @@
 <section class="content">
   <div class="box">
     <div class="box-header center-attr">
-      <h3 class="box-title">List Users</h3>
+      <h3 class="box-title">List Users: <%= current_user.name_school %></h3>
     </div>
     <%= link_to new_admin_user_path, class: "btn btn-lg" do %>
       <i class="fa fa-user-plus"></i> New users
