@@ -5,6 +5,7 @@ class Student < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :day_offs, dependent: :destroy
   has_many :student_classrooms, dependent: :destroy
+  has_many :confirmed_descriptions, dependent: :destroy
 
   belongs_to :parent, class_name: :User, foreign_key: "user_id", optional: true
   belongs_to :school
@@ -27,6 +28,8 @@ class Student < ApplicationRecord
   scope :load_student_in_class, (lambda do |class_id|
     eager_load(:student_classrooms).where("student_classrooms.classroom_id in (?)", class_id)
   end)
+
+  scope :student_no_parent, ->{where(user_id: nil)}
 
   def check_present?
     attendances.present? || comments.present? || day_offs.present? || student_classrooms.present?

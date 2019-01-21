@@ -1,0 +1,28 @@
+<div class="col-md-offset-3 col-lg-6">
+  <div class="box box-success">
+    <div class="box-header with-border">
+      <h3 class="box-title">Add new user</h3>
+    </div>
+    <%= form_tag admin_confirm_path do %>
+      <div class="box-body">
+        <%= hidden_field_tag :id, @user.id %>
+        <div class="form-group col-md-12">
+          <div class="col-md-4">
+            <%= label :school_name, "School" %>
+            <%= select_tag "school_confirmed", options_from_collection_for_select(load_school_collection, "last", "first", @user.get_school_confirmed), class: "chosen-select" %>
+          </div>
+          <div class="col-md-8">
+            <%= label :student_name, "Student" %>
+            <%= select_tag "student_confirmed", options_from_collection_for_select(load_student_collection(@user.get_school_confirmed), "last", "first"), class: "chosen-select" %>
+          </div>
+        </div>
+      </div>
+      <div class="box-footer">
+        <div class="form-group col-md-12">
+          <%= submit_tag "Confirmed", class: "btn btn-success pull-right" %>
+          <%= link_to "Back", admin_users_confirmed_path, class: "btn btn-default" %>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
