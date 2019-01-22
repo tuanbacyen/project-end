@@ -2,12 +2,12 @@
   <table class="table table-bordered table-striped datatable">
     <thead>
       <tr>
-        <th class="col-md-1">Parent</th>
-        <th class="col-md-1">parent phone</th>
         <th class="col-md-1">Code</th>
         <th class="col-md-1">Name</th>
         <th class="col-md-1">birth</th>
         <th class="col-md-1">phone</th>
+        <th class="col-md-1">Parent</th>
+        <th class="col-md-1">parent phone</th>
         <th class="col-md-1">avatar</th>
         <th class="col-md-1">studying</th>
         <th class="col-md-2">Action</th>
@@ -16,12 +16,19 @@
     <tbody>
       <% @students.each do |student| %>
         <tr>
-          <td><%= student.parent ? student.parent_name : "No User parent" %></td>
-          <td><%= student.parent ? student.parent_phone : "No User parent" %></td>
           <td><%= student.student_code %></td>
           <td><%= student.name %></td>
           <td><%= convert_date student.birth %></td>
           <td><%= student.phone %></td>
+          <td>
+            <% if student.parent %>
+              <%= link_to student.parent.name, admin_user_path(student.parent), method: :GET,
+              data: {toggle: "modal", target: "#modal-admin"}, remote: true %>
+            <% else %>
+              No User parent
+            <% end %>
+          </td>
+          <td><%= student.parent ? student.parent_phone : "No User parent" %></td>
           <td><%= image_tag student.avatar.thumb.url, class: "img-thumb-size" %></td>
           <td><%= studying_label student.studying %></td>
           <td>

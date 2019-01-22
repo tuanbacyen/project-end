@@ -31,8 +31,14 @@ class Student < ApplicationRecord
 
   scope :student_no_parent, ->{where(user_id: nil)}
 
+  scope :study, ->{where(studying: true)}
+
   def check_present?
     attendances.present? || comments.present? || day_offs.present? || student_classrooms.present?
+  end
+
+  def update_studying
+    update studying: false
   end
 
   def age

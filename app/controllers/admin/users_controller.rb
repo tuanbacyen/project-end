@@ -77,7 +77,10 @@ class Admin::UsersController < ApplicationController
   def destroy
     flag = @user.confirmed
     if @user.check_present?
-      flash[:danger] = "mon hoc co gia tri con"
+      flash[:danger] = "user co gia tri con"
+    elsif !current_user.admin?
+      flash[:success] = "oke"
+      @user.update_working
     elsif @user.destroy
       flash[:success] = "oke"
     else

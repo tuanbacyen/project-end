@@ -232,6 +232,10 @@ class User < ApplicationRecord
     end
   end
 
+  def update_working
+    update working: false
+  end
+
   private
   def birth_not_than_today
     return if birth.blank?

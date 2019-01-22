@@ -5,7 +5,7 @@ class StudentsController < ApplicationController
   before_action :load_all_students, only: :index
   before_action :load_student, only: :show
   before_action :new_student, only: :new
-  before_action :get_student, only: [:destroy, :update, :edit]
+  before_action :get_student, only: [:destroy, :update, :edit, :edit_parent]
   before_action :get_classroom, only: [:students_classs]
 
   def show; end
@@ -36,12 +36,17 @@ class StudentsController < ApplicationController
   end
 
   def destroy
-    if @student.check_present?
-      flash[:danger] = "mon hoc co gia tri con"
-    elsif @student.destroy
-      flash[:success] = "oke"
+    if current_user.admin?
+      if @student.check_present?
+        flash[:danger] = "mon hoc co gia tri con"
+      elsif @student.destroy
+        flash[:success] = "oke"
+      else
+        flash[:danger] = "Loi"
+      end
     else
-      flash[:danger] = "Loi"
+      flash[:success] = "oke"
+      @student.update_studying
     end
     redirect_to students_path
   end
@@ -62,9 +67,9 @@ class StudentsController < ApplicationController
   private
   def load_all_students
     @students = if current_user.admin?
-                  Student.load_all_students
+                  Student.load_all_students.study
                 else
-                  current_user.manage_get_student.load_all_students
+                  current_user.manage_get_student.study.load_all_students
                 end
   end
 
