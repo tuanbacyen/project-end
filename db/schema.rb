@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_22_065608) do
+ActiveRecord::Schema.define(version: 2019_01_22_070531) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -44,6 +44,7 @@ ActiveRecord::Schema.define(version: 2019_01_22_065608) do
     t.string "name"
     t.integer "sizes"
     t.integer "number"
+    t.boolean "finish", default: false
     t.index ["school_id"], name: "index_classrooms_on_school_id"
     t.index ["semester_id"], name: "index_classrooms_on_semester_id"
     t.index ["user_id"], name: "index_classrooms_on_user_id"
