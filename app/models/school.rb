@@ -4,6 +4,7 @@ class School < ApplicationRecord
   has_many :students, dependent: :destroy
   has_many :confirmed_descriptions, dependent: :destroy
   has_many :semesters, dependent: :destroy
+  has_many :units, dependent: :destroy
 
   validates :name, presence: true
   validates :address, presence: true
