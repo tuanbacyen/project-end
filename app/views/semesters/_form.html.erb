@@ -1,6 +1,15 @@
 <%= form_for @semester do |f| %>
   <%= render "shared/error_messages", object: f.object %>
   <div class="box-body">
+    <% if current_user.admin? %>
+      <div class="form-group">
+        <%= f.label :lbl_school, "school" %>
+        <%= f.collection_select :school_id, school_collection, :last, :first,
+            {include_blank: false}, {class: "form-control"} %>
+      </div>
+    <% else %>
+      <%= f.hidden_field :school_id, value: current_user.first_school.id %>
+    <% end %>
     <div class="form-group">
       <%= f.label :lbl_period, "period" %>
       <%= f.collection_select :period, semesters_periods, :last, :first,
@@ -21,6 +30,9 @@
   </div>
   <div class="box-footer">
     <%= link_to "Back", semesters_path, class: "btn btn-default" %>
-    <%= f.button :submit, class: "btn btn-primary" %>
+    <div class="pull-right">
+      <%= f.button :submit, class: "btn btn-primary" %>
+      <%= f.button "submit and continue", value: "continue", class: "btn btn-success" if !@semester.id && current_user.manage? %>
+    </div>
   </div>
 <% end %>

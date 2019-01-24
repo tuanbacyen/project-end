@@ -18,6 +18,8 @@ class Ability
         user.list_school.include?(classroom.school_id)
       end
       can [:new, :create, :load_teacher_can_teach], Classroom
+      # config new Semester
+      can :manage, [Semester]
       can :manage, [Student, StudentClassroom, UserSubject, ClassSubject, StudentSubject, Point, User]
       cannot [:edit, :update, :destroy], User do |user|
         user.admin? || user.manage?
