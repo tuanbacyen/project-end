@@ -17,7 +17,7 @@ class Semester < ApplicationRecord
   enum period: {hoc_ky_mot: 1, hoc_ky_hai: 2, hoc_ky_he: 3}
 
   def check_present?
-    class_subjects.present? || classrooms.present?
+    classrooms.present?
   end
 
   def get_period

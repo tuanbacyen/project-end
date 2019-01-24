@@ -13,7 +13,7 @@ class SemestersController < ApplicationController
   def create
     if @semester.save
       flash[:success] = "create success"
-      redirect_to semesters_path
+      redirect_to(params[:button].present? ? root_path : semesters_path)
     else
       semester_convert_date
       render :new
@@ -55,7 +55,7 @@ class SemestersController < ApplicationController
   def semester_params
     params[:semester][:start_date] = convert_date params[:semester][:start_date]
     params[:semester][:end_date] = convert_date params[:semester][:end_date]
-    params.require(:semester).permit :period, :start_date, :end_date, :school_year
+    params.require(:semester).permit :period, :start_date, :end_date, :school_year, :school_id
   end
 
   def get_semester
