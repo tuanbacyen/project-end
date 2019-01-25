@@ -1,0 +1,42 @@
+<section class="content">
+  <div class="box">
+    <div class="box-header center-attr">
+      <h3 class="box-title">List class in semester</h3>
+    </div>
+    <%= label '', @semester.id, class: "hidden", id: "semester_hidden" %>
+    <%= link_to semesters_path, class: "btn btn-lg" do %>
+      <i class="fa fa-caret-square-o-left"></i> Back
+    <% end %>
+    <button class="btn btn-info" id="add_new_class">
+      <i class="fa fa-plus-square"></i>
+      New class
+    </button>
+    <hr>
+    <div class="box-body">
+      <table class="table table-bordered table-striped" id="tbl_class">
+        <thead>
+          <tr>
+            <th>STT</th>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Teacber</th>
+            <th>Count Subject</th>
+            <th>Sizes</th>
+          </tr>
+        </thead>
+        <tbody>
+          <% @semester.classrooms.each_with_index do |classroom, index| %>
+            <tr>
+              <td id="index_class"><%= index + 1 %></td>
+              <td><%= classroom.number %></td>
+              <td><%= classroom.name %></td>
+              <td><%= classroom.teacher_name %></td>
+              <td><%= classroom.class_subjects.size %></td>
+              <td><%= classroom.sizes %></td>
+            </tr>
+          <% end %>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>

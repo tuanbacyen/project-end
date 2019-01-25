@@ -4,7 +4,9 @@ class SemestersController < ApplicationController
   before_action :user_confirmed, :authenticate_user!
   before_action :load_all_semesters, only: :index
   before_action :new_semester, only: :new
-  before_action :get_semester, only: [:destroy, :update, :edit]
+  before_action :get_semester, only: [:show, :destroy, :update, :edit]
+
+  def show; end
 
   def index; end
 

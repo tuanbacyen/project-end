@@ -13,8 +13,13 @@ $(document).ready(function() {
 
 $(document).on('click', '.close', function () {$(this).parent().hide();});
 $(document).on('click', '.notify2', function () {
-  window.open($(this).attr('data-url'), '_blank');
-  $(this).remove();
+  var url = $(this).attr('data-url');
+  if(url != ''){
+    window.open(url, '_blank');
+    $(this).remove();
+  } else {
+    return;
+  }
 });
 
 /**
@@ -32,7 +37,7 @@ $(document).on('click', '.notify2', function () {
  * */
 function show_notify(id, type, message, url) {
   var lst_type = ['alert-info', 'alert-success', 'alert-warning', 'alert-danger']
-  $('.my-notify').append('<div id="' + id +'" class="alert ' + lst_type[type] + ' notify2 pointer-add" \
+  $('.my-notify').append('<div id="' + id +'" class="alert ' + lst_type[parseInt(type)] + ' notify2 pointer-add" \
     data-url="' + url + '"><button type="button" class="close">×</button>\
     <p class="line-clamp">' + message + '</p></div>');
   var div_notify = $('#'+id);
