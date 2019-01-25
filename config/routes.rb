@@ -16,13 +16,14 @@ Rails.application.routes.draw do
   resources :classrooms do
     resources :class_subjects, only: [:index, :new, :create, :destroy]
   end
-  post "teacher_can_teach", to: "classrooms#teacher_can_teach", as: "teacher_can_teach"
   resources :students do
     resources :student_classrooms, only: [:index, :new, :create, :destroy]
   end
   get "students_classs", to: "students#students_classs", as: "students_classs"
   post "student_in_school", to: "students#student_in_school", as: "student_in_school"
   resources :student_subjects
+  resources :new_semesters, only: :create
+  post "teacher_can_teach", to: "new_semesters#teacher_can_teach", as: "teacher_can_teach"
   resources :points
   resources :user_subjects, only: [:index, :new, :create, :destroy]
   resources :feedbacks, expect: :edit

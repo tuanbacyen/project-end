@@ -41,15 +41,6 @@ class ClassroomsController < ApplicationController
     redirect_to classrooms_path
   end
 
-  def teacher_can_teach
-    list_user = User.load_user_of_school(current_user).load_teacher.user_has_classroom(params[:semester_id]).pluck :name, :birth, :id, :usercode
-    list = []
-    list_user.map{|u| list << ["#{u[3]} - #{u[0]} - #{u[1].day}/#{u[1].month}/#{u[1].year}", u[2]]}
-    respond_to do |format|
-      format.json{render json: {list_teacher: list}}
-    end
-  end
-
   private
   def load_all_classrooms
     @classrooms = Classroom.load_all_classrooms current_user
