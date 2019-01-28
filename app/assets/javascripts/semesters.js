@@ -11,6 +11,7 @@ $(document).ready(function() {
     set_up_chosen();
     icheck();
     send_ajax_new_semester('POST', '/teacher_can_teach', data, '#select_teacher_'+ count_max);
+    show_update_all();
   });
 
   $('body').on('click', '.create-class', function(){
@@ -24,13 +25,29 @@ $(document).ready(function() {
         name: tr.find('#name_class').val()
       }
     };
-    send_ajax_new_semester('POST', '/new_semesters', data, null);
+    send_ajax_new_semester('POST', '/new_semesters', data, null, $(this).closest('tr'));
   });
 
   $('body').on('click', '.destroy-class', function(){
     $(this).closest('tr').remove();
+    show_update_all();
   });
 });
+
+function show_update_all(){
+  var btn_update = '<button class="btn btn-info pull-right" id="update_all"><i class="fa fa-save"></i>Update all</button>';
+  var checkbox_list = $('body').find('input:checkbox[id="auto_subject"]');
+  var count = 0;
+  
+  checkbox_list.each(function() {
+    count++;
+  });
+  
+  $('#update_all').remove();
+  if (count > 1) {
+    $('#bar_list_class').append(btn_update);
+  }
+}
 
 function select_num(){
   result = '<select class="chosen-select" id="select_num">';
@@ -61,7 +78,16 @@ function render_tr(count_max){
           <i class="fa fa-times-circle"></i></button></td></tr>';
 }
 
-function send_ajax_new_semester(method, url, data, id){
+function render_tr_result(tr){
+  var select_teacher = "#select_teacher_" + tr.find('#index_class').text();
+  return '<tr><td id="index_class">'+ tr.find('#index_class').text() +'</td>\
+          <td>'+ tr.find('#select_num option:selected').text() +'</td>\
+          <td>'+ tr.find('#name_class').val() +'</td>\
+          <td>'+ tr.find(select_teacher + ' option:selected').text() +'</td>\
+          <td>0</td><td>0</td></tr>';
+}
+
+function send_ajax_new_semester(method, url, data, id, tr_result){
   $.ajax({
     type: method,
     url: url,
@@ -70,9 +96,12 @@ function send_ajax_new_semester(method, url, data, id){
     success: function(data){
       if(id == null){
         if(data['notifi'].type == "1"){
-          // chua xong
+          var tbl = $('#tbl_class').find('tbody');
+          tbl.append(render_tr_result(tr_result));          
+          tr_result.remove();
+          show_update_all();
         } else {
-          // chua xong
+          alert('You need F5');
         }
         show_notify('new_semester', data['notifi'].type, data['notifi'].message, '')
       } else {

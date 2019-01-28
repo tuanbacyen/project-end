@@ -4,13 +4,15 @@
       <h3 class="box-title">List class in semester</h3>
     </div>
     <%= label '', @semester.id, class: "hidden", id: "semester_hidden" %>
-    <%= link_to semesters_path, class: "btn btn-lg" do %>
-      <i class="fa fa-caret-square-o-left"></i> Back
-    <% end %>
-    <button class="btn btn-info" id="add_new_class">
-      <i class="fa fa-plus-square"></i>
-      New class
-    </button>
+    <div class="col-md-12" id="bar_list_class">
+      <%= link_to semesters_path, class: "btn btn-lg" do %>
+        <i class="fa fa-caret-square-o-left"></i> Back
+      <% end %>
+      <button class="btn btn-info" id="add_new_class">
+        <i class="fa fa-plus-square"></i>
+        New class
+      </button>
+    </div>
     <hr>
     <div class="box-body">
       <table class="table table-bordered table-striped" id="tbl_class">

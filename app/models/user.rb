@@ -123,6 +123,10 @@ class User < ApplicationRecord
     school_users.first.school.students.build
   end
 
+  def build_classroom
+    school_users.first.school.classrooms.build
+  end
+
   def get_confirmed
     confirmed_descriptions.first
   end
