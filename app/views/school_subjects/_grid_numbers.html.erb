@@ -1,0 +1,36 @@
+<div class="box-body">
+  <% if @list_number.present? %>
+    <table class="custom-table">
+        <% @list_number.sort.each do |number| %>
+          <tbody>
+            <tr>
+              <td class="page-header page-btn col-md-1">
+                <button type="button" class="tbtn">
+                  <i class="fa fa-plus-circle %>"></i>
+                </button>
+              </td>
+              <td class="page-header">
+                <%= "Lớp #{number}" %>
+              </td>
+              <td class="page-header col-md-3">
+                <%= link_to edit_school_subject_path(id: number, number: number), method: :GET, class: "btn btn-warning" do %>
+                  <i class="fa fa-trash-o"></i> Edit
+                <% end %>
+                <%= link_to school_subject_path(id: number, number: number), method: :DELETE,
+                  data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+                  <i class="fa fa-trash-o"></i> Destroy number
+                <% end %>
+              </td>
+            </tr>
+            <tr class="toggler">
+              <td colspan="3">
+                <%= render "grid_subjects", number: number %>
+              </td>
+            </tr>
+          </tbody>
+        <% end %>
+    </table>
+  <% else %>
+    No result
+  <% end %>
+</div>

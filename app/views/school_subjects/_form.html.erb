@@ -1,0 +1,27 @@
+<%= form_tag school_subjects_path do %>
+  <%= hidden_field_tag :edit, (params[:action] == "edit" ? true : false) %>
+  <div class="form-group col-md-12">
+    <br>
+    <div class="form-group">
+      <%= label_tag "Number" %>
+      <%= select_tag "number", options_from_collection_for_select(list_number_select(@list_number, params[:action]),
+        "first", "last"), class: "chosen-select" %>
+    </div>
+    <hr>
+    <div class="form-group">
+      <input type="checkbox" id="check-all-number" class="icheck-me" data-skin="square" data-color="green">
+      <strong>Check all number</strong>
+    </div>
+    <% Subject.load_all_subjects?.each do |subject| %>
+      <div class="form-group col-md-3">
+        <%= check_box_tag "check_number[]", subject.id, value_check_subject(params[:action], subject.id, @school_subject),
+          class: "icheck-me", data: { "skin" => "square", "color" => "green" } %>
+        <%= label_tag subject.name %>
+      </div>
+    <% end %>
+  </div>
+  <div class="box-footer">
+    <%= link_to "Back", school_subjects_path, class: "btn btn-default" %>
+    <%= submit_tag "Submit", class: "btn btn-success pull-right" %>      
+  </div>
+<% end %>

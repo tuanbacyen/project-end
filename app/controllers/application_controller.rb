@@ -58,4 +58,8 @@ class ApplicationController < ActionController::Base
       format.js
     end
   end
+
+  def true?(obj)
+    obj.to_s == "true"
+  end  
 end
