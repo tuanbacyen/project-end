@@ -1,5 +1,6 @@
 class School < ApplicationRecord
   has_many :school_users, dependent: :destroy
+  has_many :school_subjects, dependent: :destroy
   has_many :classrooms, dependent: :destroy
   has_many :students, dependent: :destroy
   has_many :confirmed_descriptions, dependent: :destroy
