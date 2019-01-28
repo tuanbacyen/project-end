@@ -3,10 +3,15 @@ class NewSemestersController < ApplicationController
 
   def create
     @classroom = Classroom.new classroom_params
-    @classroom.sizes = 0;
+    @classroom.school_id = current_user.first_school.id
+    @classroom.sizes = 0
     respond_to do |format|
       notifi = nil
-      if @classroom
+      if @classroom.save
+        if true? params[:auto_create]
+          subject = ClassroomService.new @classroom
+          subject.create
+        end
         notifi = {message: "success", type: "1"}
       else
         notifi = {message: "failed", type: "3"}
