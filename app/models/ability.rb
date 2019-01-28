@@ -20,7 +20,7 @@ class Ability
       can [:new, :create, :load_teacher_can_teach], Classroom
       # config new Semester
       can :manage, [Semester]
-      can :manage, [Student, StudentClassroom, UserSubject, ClassSubject, StudentSubject, Point, User]
+      can :manage, [Student, StudentClassroom, UserSubject, ClassSubject, StudentSubject, Point, User, SchoolSubject]
       cannot [:edit, :update, :destroy], User do |user|
         user.admin? || user.manage?
       end

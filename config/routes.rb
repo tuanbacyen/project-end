@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get "home/index"
   root "home#index"
   resources :schools
+  resources :school_subjects
   resources :semesters
   resources :units
   get "new_auto_unit", to: "units#new_auto", as: "new_auto_unit"

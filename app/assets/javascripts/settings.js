@@ -116,6 +116,18 @@ function load_dialog(content){
   dialog.dialog('open');
 }
 
+function tbtn_click(btn){
+  if(btn.find('i').hasClass('fa-plus-circle') == true) {
+    btn.find('i').removeClass('fa-plus-circle');
+    btn.find('i').addClass('fa-minus-circle');
+    btn.parents("tbody").find(".toggler").addClass("toggler1");
+  } else {
+    btn.find('i').removeClass('fa-minus-circle');
+    btn.find('i').addClass('fa-plus-circle');
+    btn.parents("tbody").find(".toggler1").removeClass("toggler1");
+  }
+}
+
 Number.prototype.toHHMMSS = function () {
   var sec_num = parseInt(this, 10);
   var hours   = Math.floor(sec_num / 3600);

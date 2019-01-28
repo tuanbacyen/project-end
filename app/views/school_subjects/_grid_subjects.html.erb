@@ -1,0 +1,23 @@
+<table style="width:100%">
+  <tr>
+    <th class="col-md-1">STT</th>
+    <th>subject name</th>
+    <th class="col-md-1">Action</th>
+  </tr>
+  <% @school_subjects.where(number: number).each_with_index do |subject, index| %>
+    <tr>
+      <td>
+        <%= index + 1 %>
+      </td>
+      <td>
+        <%= subject.subject_name %>
+      </td>
+      <td>
+        <%= link_to school_subject_path(id: subject.id), method: :DELETE,
+          data: {confirm: "Are you sure?"}, class: "btn btn-danger" do %>
+          <i class="fa fa-trash-o"></i>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+</table>
