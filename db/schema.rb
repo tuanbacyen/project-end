@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_01_23_091909) do
+ActiveRecord::Schema.define(version: 2019_01_28_012810) do
 
   create_table "attendances", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.date "day_check", null: false
@@ -134,6 +134,16 @@ ActiveRecord::Schema.define(version: 2019_01_23_091909) do
     t.datetime "updated_at", null: false
     t.index ["point_type_id"], name: "index_points_on_point_type_id"
     t.index ["student_subject_id"], name: "index_points_on_student_subject_id"
+  end
+
+  create_table "school_subjects", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
+    t.integer "number", null: false
+    t.bigint "school_id", null: false
+    t.bigint "subject_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["school_id"], name: "index_school_subjects_on_school_id"
+    t.index ["subject_id"], name: "index_school_subjects_on_subject_id"
   end
 
   create_table "school_users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
@@ -297,6 +307,8 @@ ActiveRecord::Schema.define(version: 2019_01_23_091909) do
   add_foreign_key "notifications", "notify_types"
   add_foreign_key "points", "point_types"
   add_foreign_key "points", "student_subjects"
+  add_foreign_key "school_subjects", "schools"
+  add_foreign_key "school_subjects", "subjects"
   add_foreign_key "school_users", "schools"
   add_foreign_key "school_users", "users"
   add_foreign_key "semesters", "schools"

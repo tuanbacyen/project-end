@@ -1,5 +1,6 @@
 class Subject < ApplicationRecord
   has_many :user_subjects, dependent: :destroy
+  has_many :school_subjects, dependent: :destroy
 
   validates :name, presence: true, uniqueness: true
 
