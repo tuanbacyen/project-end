@@ -84,6 +84,7 @@ function check_class_name_exist(name){
 }
 
 function show_update_all(){
+  return;
   var btn_update = '<button class="btn btn-info pull-right" id="update_all"><i class="fa fa-save"></i>Update all</button>';
   var checkbox_list = $('body').find('input:checkbox[id="auto_subject"]');
   var count = 0;

@@ -32,7 +32,7 @@ class Classroom < ApplicationRecord
   end
 
   def check_present?
-    class_subjects.present? || students.present?
+    class_subjects.present? || student_classrooms.present?
   end
 
   def update_size
