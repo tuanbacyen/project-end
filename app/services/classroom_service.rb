@@ -4,12 +4,16 @@ class ClassroomService
   end
 
   def create
-    subject = SchoolSubject.where(school_id: @classroom.school.id, number: @classroom.number)
-    subject.each do |s|
+    ssubject = SchoolSubject.where(school_id: @classroom.school.id, number: @classroom.number)
+    ssubject.each do |ss|
       ClassSubject.create(
-        user_subject_id: s.subject.user_subjects.order("RAND()").first.id,
+        user_subject_id: teacher(ss.subject, @classroom),
         classroom_id: @classroom.id
       )
     end
+  end
+  
+  def teacher subject, classroom
+    subject.is_activitie? ? classroom.teacher.get_activitie_subject.id : subject.user_subjects.order("RAND()").first.id
   end
 end

@@ -31,13 +31,14 @@ class ClassroomsController < ApplicationController
   end
 
   def destroy
-    if @classroom.check_present?
-      flash[:danger] = "mon hoc co gia tri con"
-    elsif @classroom.destroy
-      flash[:success] = "oke"
-    else
-      flash[:danger] = "Loi"
-    end
+    @classroom.destroy
+    # if @classroom.check_present?
+    #   flash[:danger] = "mon hoc co gia tri con"
+    # elsif @classroom.destroy
+    #   flash[:success] = "oke"
+    # else
+    #   flash[:danger] = "Loi"
+    # end
     redirect_to classrooms_path
   end
 

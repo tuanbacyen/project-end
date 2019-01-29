@@ -240,6 +240,19 @@ class User < ApplicationRecord
     update working: false
   end
 
+  def check_activitie_subject
+    user_subjects.pluck(:subject_id).include? Subject.get_activitie.id
+  end
+  
+  def get_activitie_subject
+    user_subjects.find_by subject_id: Subject.get_activitie.id
+  end
+
+  def create_activitie_subject
+    us = user_subjects.build
+    us.subject_id = Subject.get_activitie.id
+    us.save
+  end
   private
   def birth_not_than_today
     return if birth.blank?

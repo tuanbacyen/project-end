@@ -30,7 +30,7 @@
           <% @semester.classrooms.each_with_index do |classroom, index| %>
             <tr>
               <td id="index_class"><%= index + 1 %></td>
-              <td><%= classroom.number %></td>
+              <td><%= "Lớp #{classroom.number}" %></td>
               <td id="class_name"><%= classroom.name %></td>
               <td data-tid="<%= classroom.teacher.id %>"><%= classroom.teacher_name %></td>
               <td><%= classroom.class_subjects.size %></td>
