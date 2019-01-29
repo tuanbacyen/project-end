@@ -17,7 +17,7 @@ class SchoolSubjectService
     number = @params[:number]
     school_id = @manage.first_school.id
     list_subject = @params[:check_number].map(&:to_i)
-    list_subject_old = SchoolSubject.where(school_id: 2, number:11).pluck :subject_id
+    list_subject_old = SchoolSubject.where(school_id: school_id, number: number).pluck :subject_id
 
     list_create = list_subject - list_subject_old
     list_destroy = list_subject_old - list_subject

@@ -1,6 +1,6 @@
 class Semester < ApplicationRecord
   belongs_to :school
-  
+
   has_many :classrooms, dependent: :destroy
 
   validates :period, presence: true

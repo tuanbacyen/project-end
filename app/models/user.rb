@@ -243,7 +243,7 @@ class User < ApplicationRecord
   def check_activitie_subject
     user_subjects.pluck(:subject_id).include? Subject.get_activitie.id
   end
-  
+
   def get_activitie_subject
     user_subjects.find_by subject_id: Subject.get_activitie.id
   end

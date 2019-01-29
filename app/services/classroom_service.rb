@@ -12,7 +12,7 @@ class ClassroomService
       )
     end
   end
-  
+
   def teacher subject, classroom
     subject.is_activitie? ? classroom.teacher.get_activitie_subject.id : subject.user_subjects.order("RAND()").first.id
   end

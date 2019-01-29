@@ -9,7 +9,7 @@ class Subject < ApplicationRecord
     order(name: :asc)
     .select :id, :name, :subject_code
   end)
-  
+
   scope :get_activitie, ->{find_by subject_code: Settings.list_code_subject.last}
 
   scope :list_subject_exists?, ->{pluck :name}
