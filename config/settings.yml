@@ -1,8 +1,10 @@
 none: "none"
-list_default_subject: ["Tiếng việt", "Ngữ văn", "Toán", "Đạo đức", "Tự nhiên và xã hội", "Lịch sử",
+list_default_subject: ["Bá đạo", "Tiếng việt", "Ngữ văn", "Toán", "Đạo đức", "Tự nhiên và xã hội", "Lịch sử",
                       "Địa lý", "Giáo dục công dân", "Giáo dục kinh tế và pháp luật","Khoa học",
                       "Khoa học tự nhiên", "Vật lý", "Hóa Học", "Sinh học", "Công nghệ", "Tin học",
                       "Âm nhạc", "Mỹ thuật", "Giáo dục thể chất", "Hướng nghiệp", "Sinh hoạt lớp"]
+list_code_subject: ["bd", "tv", "nv", "t", "dd", "tnvxh", "ls", "dl", "gdcd", "gdktvpl","kh","khtn", "vl", "hh",
+                      "sh", "cn", "th", "am", "mt", "gdtc", "hn", "shl"]
 morning_time_start: "06:45:00"
 morning_time_end: "11:45:00"
 morning_count_unit: 5

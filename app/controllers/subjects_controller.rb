@@ -60,7 +60,7 @@ class SubjectsController < ApplicationController
   end
 
   def subject_params
-    params.require(:subject).permit :name
+    params.require(:subject).permit :name, :subject_code
   end
 
   def get_subject
