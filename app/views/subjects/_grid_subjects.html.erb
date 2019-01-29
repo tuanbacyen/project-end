@@ -2,15 +2,17 @@
   <table class="table table-bordered table-striped datatable">
     <thead>
       <tr>
-        <th class="col-md-2">STT</th>
-        <th class="col-md-6">Name</th>
-        <th class="col-md-4">Action</th>
+        <th class="col-md-1">STT</th>
+        <th class="col-md-4">Subject code</th>
+        <th class="col-md-4">Name</th>
+        <th class="col-md-3">Action</th>
       </tr>
     </thead>
     <tbody>
       <% @subjects.each_with_index do |subject, index| %>
         <tr>
           <td><%= index + 1 %></td>
+          <td><%= subject.subject_code %></td>
           <td><%= subject.name %></td>
           <td>
             <%= render "action", subject: subject %>
