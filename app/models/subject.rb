@@ -14,6 +14,11 @@ class Subject < ApplicationRecord
 
   scope :list_subject_exists?, ->{pluck :name}
 
+  def is_activitie?
+    return true if Settings.list_code_subject.last == subject_code
+    false
+  end
+
   def list_teacher
     user_subjects.uniq.pluck :user_id
   end

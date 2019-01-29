@@ -17,6 +17,8 @@ class Classroom < ApplicationRecord
   validates :user_id, presence: true
   validates_uniqueness_of :user_id, scope: :semester_id, message: "Đã giảng dạy trong học kỳ"
 
+  after_create :create_activitie_for_teacher
+
   scope :load_all_classrooms, (lambda do |current_user|
     order(updated_at: :desc)
     .where(school_id: current_user.list_school)
@@ -37,5 +39,11 @@ class Classroom < ApplicationRecord
 
   def update_size
     update sizes: student_classrooms.size
+  end
+
+  private
+  def create_activitie_for_teacher
+    return if teacher.check_activitie_subject
+    teacher.create_activitie_subject
   end
 end
