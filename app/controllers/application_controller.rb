@@ -59,7 +59,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
-  def true?(obj)
+  def true? obj
     obj.to_s == "true"
-  end  
+  end
 end

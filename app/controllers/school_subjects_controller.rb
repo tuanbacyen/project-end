@@ -27,7 +27,6 @@ class SchoolSubjectsController < ApplicationController
   end
 
   def update
-    byebug
     redirect_to school_subjects_path
   end
 
