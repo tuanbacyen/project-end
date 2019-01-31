@@ -1,0 +1,11 @@
+wb = xlsx_package.workbook
+wb.styles do |s|
+  black_cell = s.add_style bg_color: "00", fg_color: "FF", :sz => 14, :alignment => { :horizontal=> :center }
+  wb.add_worksheet(name: "Students") do |sheet|
+    sheet.add_row Student.get_field_ex_im
+    sheet.add_row Student.get_field_example
+    # @users.each do |user|
+    #   sheet.add_row [user.name, user.age]
+    # end
+  end
+end

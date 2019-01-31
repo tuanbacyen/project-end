@@ -6,6 +6,18 @@
     <%= link_to new_student_path, class: "btn btn-lg" do %>
       <i class="fa fa-user-plus"></i> New Student
     <% end %>
+    <button type="button" class="btn btn-success" id="show-import-users">
+       <i class="fa fa-upload"></i> Import student
+    </button>
+    <%= link_to new_student_path, class: "btn btn-warning" do %>
+      <i class="fa fa-download"></i> Export student
+    <% end %>
+    <div class="hidden col-md-12" id="import-file">
+      <%= render "import_student_form" %>
+    </div>
+    <hr>
     <%= render "grid_students", view: "student" %>
   </div>
 </section>
+
+

@@ -9,4 +9,13 @@ $(document).ready(function() {
       readURL(this);
     }
   });
+
+  $('body').on('click', '#show-import-users', function(){
+    var div = $('#import-file');
+    if(div.hasClass('hidden')){
+      div.removeClass('hidden');
+    } else {
+      div.addClass('hidden');
+    }
+  });
 });
