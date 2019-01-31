@@ -7,12 +7,13 @@ class ImportStudentService
   def import
     spreadsheet = open_spreadsheet @file
     header = spreadsheet.row 1
+    return if !(header - Student.get_field_ex_im).present? || spreadsheet.last_row <= 1
     (2..spreadsheet.last_row).each do |i|
       row = Hash[[header, spreadsheet.row(i)].transpose]
       student = Student.new
       student.attributes = row.to_hash.slice(*row.to_hash.keys)
       student.school_id = @school_id
-      student.student_id = ""
+      student.student_code = ""
       student.save!
     end
   end

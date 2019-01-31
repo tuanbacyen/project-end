@@ -71,7 +71,7 @@ class Student < ApplicationRecord
     max = 0
     Student.get_student_semester(school_id, code).pluck(:student_code).each{|sc| max = sc.gsub(code, "").to_i if sc.gsub(code, "").to_i > max}
     code = "#{code}#{format("%04d", max +1)}"
-    update studnet_code: code
+    update student_code: code
   end
 
   def birth_not_than_today
