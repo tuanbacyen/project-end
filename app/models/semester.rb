@@ -8,13 +8,19 @@ class Semester < ApplicationRecord
   validates :school_year, presence: true, uniqueness: {scope: :period}
   validate :minus_not_greater_than_1
   validate :end_after_start
+  
+  enum period: {hoc_ky_mot: 1, hoc_ky_hai: 2, hoc_ky_he: 3}
 
   scope :load_all_semesters?, (lambda do
     order(start_date: :desc)
     .select :id, :period, :start_date, :end_date, :school_year
   end)
 
-  enum period: {hoc_ky_mot: 1, hoc_ky_hai: 2, hoc_ky_he: 3}
+  class << self
+    def get_code_year school_id
+      order(end_date: :desc).where(school_id: school_id).pluck(:school_year).first.split(" - ").last.to_i - 2000
+    end
+  end
 
   def check_present?
     classrooms.present?

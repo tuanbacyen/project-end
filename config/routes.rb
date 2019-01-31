@@ -28,6 +28,9 @@ Rails.application.routes.draw do
   resources :points
   resources :user_subjects, only: [:index, :new, :create, :destroy]
   resources :feedbacks, expect: :edit
+  resources :import_export
+  get "export_template_student", to: "import_export#export_template_student", as: "export_template_student"
+  post "import_student", to: "import_export#import_student", as: "import_student"
   namespace :admin do
     resources :users do
       resources :school_user, only: [:index, :new, :create, :destroy]

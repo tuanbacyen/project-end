@@ -3,6 +3,8 @@ git_source(:github){|repo| "https://github.com/#{repo}.git"}
 
 ruby "2.5.3"
 
+gem "axlsx", git: "https://github.com/randym/axlsx.git", ref: "c8ac844"
+gem "axlsx_rails"
 gem "bootsnap", ">= 1.1.0", require: false
 gem "bootstrap-datepicker-rails"
 gem "bootstrap-sass", "~> 3.3.7"
@@ -29,6 +31,8 @@ gem "pygments.rb", "~> 0.6.3"
 gem "rails", "~> 5.2.2"
 gem "rails-i18n"
 gem "redcarpet", "~> 3.3", ">= 3.3.4"
+gem "roo", "~> 2.7.0"
+gem "rubyzip", ">= 1.2.1"
 gem "sass-rails", "~> 5.0"
 gem "simple_form"
 gem "simplemde-rails"

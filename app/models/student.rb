@@ -11,11 +11,13 @@ class Student < ApplicationRecord
   belongs_to :school
 
   validate :birth_not_than_today
-  validates :student_code, presence: true, uniqueness: true
+  validates :student_code, uniqueness: true
   validates :name, presence: true
   validates :birth, presence: true
   validates :address, presence: true
   validates :phone, length: {minimum: 10, maximum: 11}, format: {with: /\A(0)[8|9|3|7|5]\d{8,9}/}
+
+  after_create :student_code_auto
 
   delegate :name, :phone, to: :parent, prefix: true, allow_nil: true
 
@@ -33,6 +35,22 @@ class Student < ApplicationRecord
 
   scope :study, ->{where(studying: true)}
 
+  scope :get_student_semester, (lambda do |school_id, code|
+    order(student_code: :desc).where("school_id = ? and student_code like ?", school_id, "#{code}%")
+  end)
+
+  class << self
+    def get_field_ex_im
+      ["name", "birth", "address", "phone", "favorite",
+        "father_name", "father_phone", "mother_name", "mother_phone"]
+    end
+
+    def get_field_example
+      ["Phạm Anh Tuấn", "30/04/1996", "Hà nội", "0364888888", "Không có bỏ trống",
+        "Không có bỏ trống", "Không có bỏ trống", "Không có bỏ trống", "Không có bỏ trống"]
+    end
+  end
+
   def check_present?
     attendances.present? || comments.present? || day_offs.present? || student_classrooms.present?
   end
@@ -48,6 +66,14 @@ class Student < ApplicationRecord
   end
 
   private
+  def student_code_auto
+    code = "HS#{school_id}#{Semester.get_code_year(school_id)}"
+    max = 0
+    Student.get_student_semester(school_id, code).pluck(:student_code).each{|sc| max = sc.gsub(code, "").to_i if sc.gsub(code, "").to_i > max}
+    code = "#{code}#{format("%04d", max +1)}"
+    update studnet_code: code
+  end
+
   def birth_not_than_today
     return if birth.blank?
     errors.add(:base, "Birthday cannot equal than today") if age.negative? || birth.today?
